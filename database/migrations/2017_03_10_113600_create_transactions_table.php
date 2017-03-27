@@ -29,7 +29,7 @@ class CreateTransactionsTable extends Migration
             ->onDelete('cascade');
             $table->text('observations');
             $table->float('ammount');
-            $table->boolean('verified');
+            $table->boolean('verified')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

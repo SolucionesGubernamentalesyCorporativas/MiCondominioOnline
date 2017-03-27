@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    protected $fillable =[
+        'observations', 'ammount', 'verified'
+    ];
+    
     public function typeOfTransaction()
     {
         return $this->hasOne('App\TypeOfTransaction');
