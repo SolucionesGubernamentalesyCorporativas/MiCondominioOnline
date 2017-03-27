@@ -19,10 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-//Menu routes
+//CRUD routes
 Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('condos', 'CondoController');
 Route::resource('estates', 'EstateController');
 Route::resource('typeoftransactions', 'TypeOfTransactionController');
-
+Route::resource('transactions', 'TransactionController');
