@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/semantic.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -99,5 +100,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/semantic.min.js"></script>
 </body>
 </html>
