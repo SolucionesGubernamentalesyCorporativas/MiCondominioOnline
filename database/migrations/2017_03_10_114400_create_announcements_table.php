@@ -16,15 +16,16 @@ class CreateAnnouncementsTable extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->text('title');
+            $table->text('url_of_content');
+            $table->timestamps();
+            $table->softDeletes();
+
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->text('title');
-            $table->text('url_of_content');
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

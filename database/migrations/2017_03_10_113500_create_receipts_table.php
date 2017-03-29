@@ -15,11 +15,18 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function(Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('transaction_id')->nullable();
             $table->date('date');
             $table->text('name_of_img');
             $table->text('type_of_img');
             $table->timestamps();
             $table->softDeletes();
+
+             $table->foreign('transaction_id')
+            ->references('id')
+            ->on('transactions')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

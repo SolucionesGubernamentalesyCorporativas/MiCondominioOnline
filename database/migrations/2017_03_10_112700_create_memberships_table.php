@@ -15,12 +15,6 @@ class CreateMembershipsTable extends Migration
     {
         Schema::create('memberships', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('type_of_membership_id');
-            $table->foreign('type_of_membership_id')
-            ->references('id')
-            ->on('type_of_memberships')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->timestamps();

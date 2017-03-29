@@ -15,10 +15,17 @@ class CreateTypeOfVisitorsTable extends Migration
     {
         Schema::create('type_of_visitors', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('visitor_id')->nullable();
             $table->text('name');
             $table->text('description');
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->foreign('visitor_id')
+            ->references('id')
+            ->on('visitors')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 
