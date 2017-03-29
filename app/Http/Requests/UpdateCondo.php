@@ -13,7 +13,7 @@ class UpdateCondo extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
