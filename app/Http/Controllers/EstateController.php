@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Estate;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreEstate;
+use App\Http\Requests\UpdateEstate;
 
 class EstateController extends Controller
 {
@@ -34,15 +36,8 @@ class EstateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEstate $request)
     {
-        $this->validate($request, [
-            'number' => 'required',
-            'rented' => 'required',
-            'number_of_parking_lots' => 'required',
-            'notes' => 'required'
-        ]);
-
         Estate::create($request->all());
         return redirect()->route('estates.index')
                         ->with('success', 'Item created successfully');
@@ -79,15 +74,8 @@ class EstateController extends Controller
      * @param  \App\Estate  $estate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estate $estate)
+    public function update(UpdateEstate $request, Estate $estate)
     {
-        $this->validate($request, [
-            'number' => 'required',
-            'rented' => 'required',
-            'number_of_parking_lots' => 'required',
-            'notes' => 'required'
-        ]);
-
         Estate::update($request->all());
         return redirect()->route('estates.index')
                         ->with('success', 'Item updated successfully');
