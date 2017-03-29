@@ -9,8 +9,8 @@
     <div class="panel-body">
         <div class="list-group">
             <div class="list-group-item">ID: {{ $user->id }}</div>
-            <div class="list-group-item">Membresia: {{ $user->membership_id }}</div>
-            <div class="list-group-item">Rol: {{ $user->role_id}} </div>
+            <div class="list-group-item">Membresia: {{ $user->membership }}</div>
+            <div class="list-group-item">Rol: {{ $user->role->name }} </div>
             <div class="list-group-item">Nombre: {{ $user->name }}</div>
             <div class="list-group-item">Apellido: {{ $user->lastname }}</div>
             <div class="list-group-item">Correo Electrónico: {{ $user->email }}</div>
