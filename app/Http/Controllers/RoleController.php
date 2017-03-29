@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRole;
+use App\Http\Requests\UpdateRole;
 
 class RoleController extends Controller
 {
@@ -34,12 +36,8 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRole $request)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-
         Role::create($request->all());
         return redirect()->route('roles.index')
                         ->with('success', 'Rol creado satisfactoriamente');
@@ -76,12 +74,8 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(UpdateRole $request, Role $role)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-
         Role::find($role)->update($request->all());
         return redirect()->route('roles.index')
                         ->with('success', 'Role updated successfully!');
