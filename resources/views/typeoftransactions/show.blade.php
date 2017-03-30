@@ -7,12 +7,13 @@
         <a class="btn btn-default pull-right" href="{{ route('typeoftransactions.index') }}">Atras</a>
     </div>
     <div class="panel-body">
-        <div class="list-group">
-            <div class="list-group-item">ID: {{ $typeoftransaction->id }}</div>
-            <div class="list-group-item">Nombre: {{ $typeoftransaction->name }}</div>
-            <div class="list-group-item">Ingreso o Gasto: {{ $typeoftransaction->income_outcome }}</div>
-            <div class="list-group-item">Fecha De Creación: {{ $typeoftransaction->created_at }}</div>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item">ID: {{ $typeoftransaction->id }}</li>
+            <li class="list-group-item">Transacción: {{ $typeoftransaction->transaction->id }}</li>
+            <li class="list-group-item">Nombre: {{ $typeoftransaction->name }}</li>
+            <li class="list-group-item">Ingreso o Gasto: {{ $typeoftransaction->income_outcome }}</li>
+            <li class="list-group-item">Fecha De Creación: {{ $typeoftransaction->created_at }}</li>
+        </ul>
     </div>
 </div>
 @endsection

@@ -7,13 +7,22 @@
         <a class="btn btn-default pull-right" href="{{ route('transactions.index') }}">Atras</a>
     </div>
     <div class="panel-body">
-        <div class="list-group">
-            <div class="list-group-item">ID: {{ $transaction->id }}</div>
-            <div class="list-group-item">Observaciones: {{ $transaction->observations }}</div>
-            <div class="list-group-item">Cantidad: {{ $transaction->ammount}} </div>
-            <div class="list-group-item">Verificada: {{ $transaction->verified}} </div>
-            <div class="list-group-item">Fecha De Creación: {{ $transaction->created_at }}</div>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item">ID: {{ $transaction->id }}</li>
+            <li class="list-group-item">Nombre de la transacción: {{ $transaction->typeOfTransaction->name }}</li>
+            <li class="list-group-item">Usuario: {{ $transaction->user->name . ' ' . $transaction->user->lastname }}</li>
+            <li class="list-group-item">Observaciones: {{ $transaction->observations }}</li>
+            <li class="list-group-item">Cantidad: {{ $transaction->ammount}} </li>
+            <li class="list-group-item">Verificada: {{ $transaction->verified}} </li>
+            <li class="list-group-item">Recibo: {{ $transaction->receipt->name_of_img }}</li>
+            <li class="list-group-item">
+                Usuarios:
+                @foreach($transaction->users)
+                    <li>{{ $transaction->users->name . ' ' . $transaction->users->lastname }}</li>
+                @endforeach
+            </li>
+            <li class="list-group-item">Fecha De Creación: {{ $transaction->created_at }}</li>
+        </ul>
     </div>
 </div>
 @endsection

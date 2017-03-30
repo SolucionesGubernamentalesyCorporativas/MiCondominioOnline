@@ -7,12 +7,22 @@
         <a class="btn btn-default pull-right" href="{{ route('condos.index') }}">Atras</a>
     </div>
     <div class="panel-body">
-        <div class="list-group">
-            <div class="list-group-item">ID: {{ $condo->id }}</div>
-            <div class="list-group-item">Condomino: {{ $condo->name }}</div>
-            <div class="list-group-item">Dirección: {{ $condo->direction }}</div>
-            <div class="list-group-item">Fecha De Creación: {{ $condo->created_at }}</div>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item">ID: {{ $condo->id }}</li>
+            <li class="list-group-item">Condomino: {{ $condo->name }}</li>
+            <li class="list-group-item">Dirección: {{ $condo->direction }}</li>
+            <li class="list-group-item">
+                @foreach($condo->estates)
+                    Condominio: {{ $condo->estates->number }}
+                @endforeach
+            </li>
+            <li class="list-group-item">
+                @foreach($condo->users)
+                    Usuario: {{ $condo->users->name . ' ' . $condo->users->lastname }}
+                @endforeach
+            </li>
+            <li class="list-group-item">Fecha De Creación: {{ $condo->created_at }}</li>
+        </ul>
     </div>
 </div>
 @endsection

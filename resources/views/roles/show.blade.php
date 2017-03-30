@@ -7,12 +7,17 @@
         <a class="btn btn-default pull-right" href="{{ route('roles.index') }}">Atras</a>
     </div>
     <div class="panel-body">
-        <div class="list-group">
-            <div class="list-group-item">ID: {{ $role->id }}</div>
-            <div class="list-group-item">Membresia: {{ $role->permission_id }}</div>
-            <div class="list-group-item">Rol: {{ $role->name}} </div>
-            <div class="list-group-item">Fecha De Creación: {{ $role->created_at }}</div>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item">ID: {{ $role->id }}</li>
+            <li class="list-group-item">Rol: {{ $role->name}} </li>
+            <li class="list-group-item">Permiso: {{ $role->permission_id }}</li>
+            <li class="list-group-item">
+                @foreach($role->users)
+                    Usuarios: {{ $role->users->name . ' ' . $role->users->lastname }}
+                @endforeach    
+            </li>
+            <li class="list-group-item">Fecha De Creación: {{ $role->created_at }}</li>
+        </ul>
     </div>
 </div>
 @endsection
