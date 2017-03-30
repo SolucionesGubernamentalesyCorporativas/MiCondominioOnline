@@ -15,7 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('membership_id')->nullable();
+            $table->unsignedBigInteger('membership_id');
+            $table->unsignedBigInteger('role_id');
             $table->text('name');
             $table->text('lastname');
             $table->string('email')->unique();
@@ -28,6 +29,11 @@ class CreateUsersTable extends Migration
             $table->foreign('membership_id')
             ->references('id')
             ->on('memberships')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreign('role_id')
+            ->references('id')
+            ->on('roles')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });
