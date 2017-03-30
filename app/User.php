@@ -53,7 +53,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Transaction');
     }
 
-    public function visitor()
+    public function visitors()
     {
         return $this->hasMany('App\Visitor');
     }
