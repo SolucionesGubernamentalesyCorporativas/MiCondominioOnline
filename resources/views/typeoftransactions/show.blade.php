@@ -9,7 +9,11 @@
     <div class="panel-body">
         <ul class="list-group">
             <li class="list-group-item">ID: {{ $typeoftransaction->id }}</li>
-            <li class="list-group-item">Transacción: {{ $typeoftransaction->transaction->id }}</li>
+            @if(count($typeoftransaction->transaction) == 1)
+                <li class="list-group-item">Transacción: {{ $typeoftransaction->transaction->id }}</li>
+            @else
+                <li class="list-group-item">Transacción: Ninguna</li>
+            @endif
             <li class="list-group-item">Nombre: {{ $typeoftransaction->name }}</li>
             <li class="list-group-item">Ingreso o Gasto: {{ $typeoftransaction->income_outcome }}</li>
             <li class="list-group-item">Fecha De Creación: {{ $typeoftransaction->created_at }}</li>

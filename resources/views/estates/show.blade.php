@@ -9,17 +9,27 @@
     <div class="panel-body">
         <ul class="list-group">
             <li class="list-group-item">ID: {{ $estate->id }}</li>
-            <li class="list-group-item">Tipo De Condominio: {{ $estate->typeOfEstate->name }}</li>
-            <li class="list-group-item">
-                @foreach($estate->condos as $condo)
-                    Condomino: {{ $condo->name }}
-                @endforeach
-            </li>
-            <li class="list-group-item">
-                @foreach($estate->users as $user)
-                    Usuario: {{ $user->name }}
-                @endforeach    
-            </li>
+            <li class="list-group-item">Tipo De Condominio: {{ count($estate->typeOfEstate) == 1 ? $estate->typeOfEstate->name : 'Ninguno' }}</li>
+            @if(count($estate->condos) >= 1)
+                <li class="list-group-item">
+                    Condomino:
+                    @foreach($estate->condos as $condo)
+                         <li>{{ $condo->name }}</li>
+                    @endforeach
+                </li>
+            @else
+                <li class="list-group-item">Condomino: Ninguno</li>
+            @endif
+            @if(count($estate->users) >= 1)
+                <li class="list-group-item">
+                    Usuario:
+                    @foreach($estate->users as $user)
+                        <li>{{ $user->name }}</li>
+                    @endforeach    
+                </li>
+            @else
+                <li class="list-group-item">Condomino: Ninguno</li>
+            @endif
             <li class="list-group-item">Numero: {{ $estate->number}} </li>
             <li class="list-group-item">Rentado: {{ $estate->rented }}</li>
             <li class="list-group-item">Lugares De Estacionamiento: {{ $estate->number_of_parking_lots }}</li>

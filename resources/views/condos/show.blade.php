@@ -11,16 +11,26 @@
             <li class="list-group-item">ID: {{ $condo->id }}</li>
             <li class="list-group-item">Condomino: {{ $condo->name }}</li>
             <li class="list-group-item">Dirección: {{ $condo->direction }}</li>
-            <li class="list-group-item">
-                @foreach($condo->estates as $estate)
-                    Condominio: {{ $estate->number }}
-                @endforeach
-            </li>
-            <li class="list-group-item">
-                @foreach($condo->users as $user)
-                    Usuario: {{ $user->name . ' ' . $user->lastname }}
-                @endforeach
-            </li>
+            @if(count($condo->estates) >= 1)
+                <li class="list-group-item">
+                    Condominios:
+                    @foreach($condo->estates as $estate)
+                        <li>{{ $estate->number }}</li>
+                    @endforeach
+                </li>
+            @else
+                <li class="list-group-item">Condominio: Ninguno</li>
+            @endif
+            @if(count($condo->users) >= 1)
+                <li class="list-group-item">
+                    Usuarios:
+                    @foreach($condo->users as $user)
+                        <li>{{ $user->name . ' ' . $user->lastname }}</li>
+                    @endforeach
+                </li>
+            @else
+                <li class="list-group-item">Usuarios: Ninguno</li>
+            @endif
             <li class="list-group-item">Fecha De Creación: {{ $condo->created_at }}</li>
         </ul>
     </div>

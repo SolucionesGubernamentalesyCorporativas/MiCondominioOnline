@@ -10,12 +10,17 @@
         <ul class="list-group">
             <li class="list-group-item">ID: {{ $role->id }}</li>
             <li class="list-group-item">Rol: {{ $role->name}} </li>
-            <li class="list-group-item">Permiso: {{ $role->permission->name }}</li>
-            <li class="list-group-item">
-                @foreach($role->users as $user)
-                    Usuarios: {{ $user->name . ' ' . $user->lastname }}
-                @endforeach    
-            </li>
+            <li class="list-group-item">Permiso: {{ count($role->permission) == 1 ? $role->permission->name : 'Ninguno' }}</li>
+            @if(count($role->users) >= 1)
+                <li class="list-group-item">
+                    Usuarios:
+                    @foreach($role->users as $user)
+                        <li>{{ $user->name . ' ' . $user->lastname }}</li>
+                    @endforeach    
+                </li>
+            @else
+                <li class="list-group-item">Usuarios: Ninguno</li>
+            @endif
             <li class="list-group-item">Fecha De Creación: {{ $role->created_at }}</li>
         </ul>
     </div>
