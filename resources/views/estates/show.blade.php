@@ -11,13 +11,13 @@
             <li class="list-group-item">ID: {{ $estate->id }}</li>
             <li class="list-group-item">Tipo De Condominio: {{ $estate->typeOfEstate->name }}</li>
             <li class="list-group-item">
-                @foreach($estate->condos)
-                    Condomino: {{ $estate->condos->name }}
+                @foreach($estate->condos as $condo)
+                    Condomino: {{ $condo->name }}
                 @endforeach
             </li>
             <li class="list-group-item">
-                @foreach($estate->users)
-                    Usuario: {{ $estate->users->name }}
+                @foreach($estate->users as $user)
+                    Usuario: {{ $user->name }}
                 @endforeach    
             </li>
             <li class="list-group-item">Numero: {{ $estate->number}} </li>

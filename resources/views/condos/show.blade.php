@@ -12,13 +12,13 @@
             <li class="list-group-item">Condomino: {{ $condo->name }}</li>
             <li class="list-group-item">Dirección: {{ $condo->direction }}</li>
             <li class="list-group-item">
-                @foreach($condo->estates)
-                    Condominio: {{ $condo->estates->number }}
+                @foreach($condo->estates as $estate)
+                    Condominio: {{ $estate->number }}
                 @endforeach
             </li>
             <li class="list-group-item">
-                @foreach($condo->users)
-                    Usuario: {{ $condo->users->name . ' ' . $condo->users->lastname }}
+                @foreach($condo->users as $user)
+                    Usuario: {{ $user->name . ' ' . $user->lastname }}
                 @endforeach
             </li>
             <li class="list-group-item">Fecha De Creación: {{ $condo->created_at }}</li>

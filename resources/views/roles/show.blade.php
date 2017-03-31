@@ -10,10 +10,10 @@
         <ul class="list-group">
             <li class="list-group-item">ID: {{ $role->id }}</li>
             <li class="list-group-item">Rol: {{ $role->name}} </li>
-            <li class="list-group-item">Permiso: {{ $role->permission_id }}</li>
+            <li class="list-group-item">Permiso: {{ $role->permission->name }}</li>
             <li class="list-group-item">
-                @foreach($role->users)
-                    Usuarios: {{ $role->users->name . ' ' . $role->users->lastname }}
+                @foreach($role->users as $user)
+                    Usuarios: {{ $user->name . ' ' . $user->lastname }}
                 @endforeach    
             </li>
             <li class="list-group-item">Fecha De Creación: {{ $role->created_at }}</li>
