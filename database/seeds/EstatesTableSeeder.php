@@ -33,6 +33,6 @@ class EstatesTableSeeder extends Seeder
                 'notes' => 'Patio de servicio descubierto',
                 'type_of_estate_id' => '3'
             )
-        ))
+        ));
     }
 }

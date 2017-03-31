@@ -11,7 +11,7 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB:table('permissions')->insert(array(
+        DB::table('permissions')->insert(array(
             array(
                 'name' => 'Todos',
                 'role_id' => '1'
@@ -24,6 +24,6 @@ class PermissionsTableSeeder extends Seeder
                 'name' => 'Ninguno',
                 'role_id' => '3'
             )
-        ))
+        ));
     }
 }
