@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeOfTransactionsTableSeeder::class);
         $this->call(ReceiptsTableSeeder::class);
         $this->call(TypeOfResourcesTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(VisitorsTableSeeder::class);
         $this->call(TypeOfVisitorsTableSeeder::class);
         $this->call(EstateUserTableSeeder::class);
