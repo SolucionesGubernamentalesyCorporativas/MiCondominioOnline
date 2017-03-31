@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class VisitorTableSeeder extends Seeder
+class VisitorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

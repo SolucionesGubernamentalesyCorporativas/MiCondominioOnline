@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TypeOfMembershipTableSeeder extends Seeder
+class TypeOfMembershipsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

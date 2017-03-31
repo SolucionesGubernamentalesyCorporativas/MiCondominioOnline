@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UnlockedFeatureTableSeeder extends Seeder
+class UnlockedFeaturesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

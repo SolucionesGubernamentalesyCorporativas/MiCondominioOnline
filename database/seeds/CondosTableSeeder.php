@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CondoTableSeeder extends Seeder
+class CondosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
