@@ -9,19 +9,11 @@
     <div class="panel-body">
         <ul class="list-group">
             <li class="list-group-item">ID: {{ $transaction->id }}</li>
-            @if(count($transaction->typeoftransaction) == 1)
-                <li class="list-group-item">Nombre de la transacción: {{ $transaction->typeOfTransaction->name }}</li>
-            @else
-                <li class="list-group-item">Nombre de la transacción: Ninguno</li>
-            @endif
+            <li class="list-group-item">Tipo de membresia: {{ count($transaction->typeOfTransaction) == 1 ? $transaction->typeOfTransaction->name : 'Ninguno' }}</li>
             <li class="list-group-item">Observaciones: {{ $transaction->observations }}</li>
             <li class="list-group-item">Cantidad: {{ $transaction->ammount }} </li>
             <li class="list-group-item">Verificada: {{ $transaction->verified }} </li>
-            @if(count($transaction->receipt) == 1)
-                <li class="list-group-item">Recibo: {{ $transaction->receipt->name_of_img }}</li>
-            @else
-                <li class="list-group-item">Recibo: Ninguno</li>
-            @endif
+            <li class="list-group-item">Recibo: {{ count($transaction->receipt) == 1 ? $transaction->receipt->name_of_img : 'Ninguno' }}</li>
             @if(count($transaction->users) >= 1)
                 <li class="list-group-item">
                     Usuarios:
