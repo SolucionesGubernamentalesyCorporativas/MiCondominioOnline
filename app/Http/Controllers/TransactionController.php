@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTransaction;
+use App\Http\Requests\UpdateTransaction;
 
 class TransactionController extends Controller
 {
@@ -34,14 +36,8 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTransaction $request)
     {
-        $this->validate($request, [
-            'observations' => 'required',
-            'ammount' => 'required',
-            'verified' => 'required'
-        ]);
-
         Transaction::create($request->all());
         return redirect()->route('transactions.index')
                         ->with('success', 'Item created successfully');
@@ -78,14 +74,8 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(UpdateTransaction $request, Transaction $transaction)
     {
-        $this->validate($request, [
-            'observations' => 'required',
-            'ammount' => 'required',
-            'verified' => 'required'
-        ]);
-
         Transaction::find($transaction)->update($request->all());
         return redirect()->route('transactions.index')
                         ->with('success', 'Item updated successfully');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
 {
@@ -36,16 +38,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'password' => 'required'
-        ]);
-
         User::create($request->all());
         return redirect()->route('users.index')
                         ->with('success','Usuario creaado satisfactoriamente');
@@ -82,15 +76,8 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUser $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'phone' => 'required'
-        ]);
-
         User::find($user)->update($request->all());
         return redirect()->route('users.index')
                         ->with('success','Item updated successfully');
