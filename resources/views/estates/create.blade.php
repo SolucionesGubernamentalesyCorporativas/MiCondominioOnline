@@ -9,61 +9,29 @@
     <div class="panel-body">
         <form class="form-horizontal" role="form" method="POST" action="{{ route('estates.store') }}">
             {{ csrf_field() }}
-
-            <div class="form-group{{ $errors->has('number') ? ' has-error' : '' }}">
+            <div class="form-group">
                 <label for="number" class="col-md-4 control-label">Numero</label>
-
                 <div class="col-md-6">
-                    <input id="number" type="text" class="form-control" name="number" value="{{ old('number') }}" required autofocus>
-
-                    @if ($errors->has('number'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('number') }}</strong>
-                        </span>
-                    @endif
+                    <input id="number" type="numeric" class="form-control" name="number" placeholder="Ejemplo: Blvd. Centro Sur #120" value="{{ old('number') }}" autofocus>
                 </div>
             </div>
-
-            <div class="form-group{{ $errors->has('rented') ? ' has-error' : '' }}">
+            <div class="form-group">
                 <label for="rented" class="col-md-4 control-label">Rentado</label>
-
                 <div class="col-md-6">
-                    <input id="rented" type="text" class="form-control" name="rented" value="{{ old('rented') }}" required autofocus>
-
-                    @if ($errors->has('rented'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('rented') }}</strong>
-                        </span>
-                    @endif
+                    <input id="rented" type="radio" name="rented" value="0" checked> No
+                    <input id="rented" type="radio" name="rented" value="1"> Si  
                 </div>
             </div>
-
-            <div class="form-group{{ $errors->has('number_of_parking_lots') ? ' has-error' : '' }}">
-                <label for="number_of_parking_lots" class="col-md-4 control-label">Lugares de Estacionamiento</label>
-
+            <div class="form-group">
+                <label for="number_of_parking_lots" class="col-md-4 control-label">Lugares de estacionamiento</label>
                 <div class="col-md-6">
-                    <input id="number_of_parking_lots" type="text" class="form-control" name="number_of_parking_lots" value="{{ old('number_of_parking_lots') }}" required>
-
-                    @if ($errors->has('number_of_parking_lots'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('number_of_parking_lots') }}</strong>
-                        </span>
-                    @endif
+                    <input id="number_of_parking_lots" type="numeric" class="form-control" name="number_of_parking_lots" placeholder="¿Cuantos lugares de estacionamiento tiene?" value="{{ old('number_of_parking_lots') }}">
                 </div>
             </div>
-
-
-            <div class="form-group{{ $errors->has('notes') ? ' has-error' : '' }}">
+            <div class="form-group">
                 <label for="notes" class="col-md-4 control-label">Notas</label>
-
                 <div class="col-md-6">
-                    <input id="notes" type="notes" class="form-control" name="notes" value="{{ old('notes') }}" required>
-
-                    @if ($errors->has('notes'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('notes') }}</strong>
-                        </span>
-                    @endif
+                    <input id="notes" type="text" class="form-control" name="notes" placeholder="Caracteristicas del condominio" value="{{ old('notes') }}">
                 </div>
             </div>
             <div class="form-group">
@@ -74,6 +42,15 @@
                 </div>
             </div>
         </form>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </div>                 
 @endsection
