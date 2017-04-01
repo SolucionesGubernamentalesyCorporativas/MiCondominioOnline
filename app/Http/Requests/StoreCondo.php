@@ -24,8 +24,8 @@ class StoreCondo extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'direction' => 'required'
+            'name' => 'required|string',
+            'direction' => 'required|string'
         ];
     }
 }
