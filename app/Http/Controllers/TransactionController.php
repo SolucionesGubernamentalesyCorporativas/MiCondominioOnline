@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreTransaction;
+use App\Http\Requests\UpdateTransaction;
 
 class TransactionController extends Controller
 {
@@ -15,7 +17,7 @@ class TransactionController extends Controller
     public function index()
     {
         $data = Transaction::all();
-        return view('transactions.index', compact('data'));
+        return view('transactions.index')->with('data', $data);
     }
 
     /**
@@ -34,14 +36,8 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTransaction $request)
     {
-        $this->validate($request, [
-            'observations' => 'required',
-            'ammount' => 'required',
-            'verified' => 'required'
-        ]);
-
         Transaction::create($request->all());
         return redirect()->route('transactions.index')
                         ->with('success', 'Item created successfully');
@@ -55,8 +51,8 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        $transaction = Transaction::find($transaction);
-        return view('transactions.show', compact('transaction'));
+        $transaction = Transaction::find($transaction->id);
+        return view('transactions.show')->with('transaction', $transaction);
     }
 
     /**
@@ -67,8 +63,8 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        $transaction = Transaction::Find($transaction);
-        return view('transactions.edit', compact('transaction'));
+        $transaction = Transaction::Find($transaction->id);
+        return view('transactions.edit')->with('transaction', $transaction);;
     }
 
     /**
@@ -78,15 +74,9 @@ class TransactionController extends Controller
      * @param  \App\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(UpdateTransaction $request, Transaction $transaction)
     {
-        $this->validate($request, [
-            'observations' => 'required',
-            'ammount' => 'required',
-            'verified' => 'required'
-        ]);
-
-        Transaction::find($transaction)->update($request->all());
+        Transaction::find($transaction->id)->update($request->all());
         return redirect()->route('transactions.index')
                         ->with('success', 'Item updated successfully');
     }
@@ -99,7 +89,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        Transaction::find($transaction)->delete();
+        Transaction::find($transaction->id)->delete();
         return redirect()->route('transactions.index')
                         ->with('success', 'Item deleted successfully');
     }

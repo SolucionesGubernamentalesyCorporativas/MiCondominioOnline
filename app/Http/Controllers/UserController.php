@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
 {
@@ -17,7 +19,7 @@ class UserController extends Controller
         // call User model
         $data = User::all();
         // send to view
-        return view('users.index', compact('data'));
+        return view('users.index')->with('data', $data);
     }
 
     /**
@@ -36,17 +38,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'password' => 'required'
+        User::create([
+            'name' =>$request['name'],
+            'lastname' => $request['lastname'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'password' => bcrypt($request['password']),
+            'membership_id' => $request['membership_id'],
+            'role_id' => $request['role_id']
         ]);
-
-        User::create($request->all());
         return redirect()->route('users.index')
                         ->with('success','Usuario creaado satisfactoriamente');
     }
@@ -59,8 +61,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::find($user);
-        return view('users.show', compact('user'));
+        $user = User::find($user->id);
+        return view('users.show')->with('user', $user);
     }
 
     /**
@@ -71,8 +73,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $user = User::find($user);
-        return view('users.edit', compact('user'));
+        $user = User::find($user->id);
+        return view('users.edit')->with('user', $user);
     }
 
     /**
@@ -82,16 +84,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUser $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'phone' => 'required'
-        ]);
-
-        User::find($user)->update($request->all());
+        User::find($user->id)->update($request->all());
         return redirect()->route('users.index')
                         ->with('success','Item updated successfully');
     }
@@ -104,7 +99,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        User::find($user)->delete();
+        User::find($user->id)->delete();
         return redirect()->route('users.index')
                         ->with('success','Item deleted successfully');
     }

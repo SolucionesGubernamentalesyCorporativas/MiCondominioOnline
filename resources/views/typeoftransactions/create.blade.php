@@ -9,43 +9,36 @@
     <div class="panel-body">
         <form class="form-horizontal" role="form" method="POST" action="{{ route('typeoftransactions.store') }}">
             {{ csrf_field() }}
-
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+             <div class="form-group">
                 <label for="name" class="col-md-4 control-label">Nombre</label>
-
                 <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
+                    <input id="name" type="text" class="form-control" name="name" placeholder="Ejemplo: Pago de luz" value="{{ old('name') }}" autofocus>
                 </div>
             </div>
-
-            <div class="form-group{{ $errors->has('income_outcome') ? ' has-error' : '' }}">
+            <div class="form-group">
                 <label for="income_outcome" class="col-md-4 control-label">Ingreso o Gasto</label>
-
                 <div class="col-md-6">
-                    <input id="income_outcome" type="checkbox" class="form-control" name="income_outcome" value="1" autofocus>
-
-                    @if ($errors->has('income_outcome'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('income_outcome') }}</strong>
-                        </span>
-                    @endif
+                    <input id="income_outcome" type="radio" name="income_outcome" value="0" checked> Ingreso
+                    <input id="income_outcome" type="radio" name="income_outcome" value="1"> Gasto  
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
-                        Añadir usuario
+                        Añadir tipo de transacción
                     </button>
                 </div>
             </div>
         </form>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </div>                 
 @endsection

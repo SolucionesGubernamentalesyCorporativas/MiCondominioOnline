@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePermissionsTable extends Migration
+class CreateTypeOfVisitorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,19 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function(Blueprint $table) {
+        Schema::create('type_of_visitors', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('visitor_id')->nullable();
             $table->text('name');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->foreign('visitor_id')
+            ->references('id')
+            ->on('visitors')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 
@@ -28,6 +36,6 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('type_of_visitors');
     }
 }

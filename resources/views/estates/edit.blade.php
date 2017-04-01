@@ -10,25 +10,57 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ route('estates.update', $estate->id) }}">
             {{ method_field('PUT') }}
             {{ csrf_field() }}
-            
             <div class="form-group">
-                <strong>Numero:</strong>
-                <input class="form-control" type="text" name="number">
+                <label for="number" class="col-md-4 control-label">Numero</label>
+                <div class="col-md-4">
+                    <input id="number" type="text" class="form-control" name="number" placeholder="{{ $estate->number }}" value="{{ old('number') }}" autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
-            <div class="form-group">
-                <strong>Rentado:</strong>
-                <input class="form-control" type="text" name="rented">
-            </div>
-            <div class="form-group">
-                <strong>Lugares de estacionamiento:</strong>
-                <input class="form-control" type="text" name="number_of_parking_lots">
-            </div>
-            <div class="form-group">
-                <strong>Nota:</strong>
-                <input class="form-control" type="text" name="notes">
-            </div>
-            <button type="submit" class="btn btn-primary">Editar</button>
         </form>
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('estates.update', $estate->id) }}">
+            {{ method_field('PUT') }}
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="rented" class="col-md-4 control-label">Rentado</label>
+                <div class="col-md-4">
+                    <input id="rented" type="radio" name="rented" checked> No
+                    <input id="rented" type="radio" name="rented"> Si
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('estates.update', $estate->id) }}">
+            {{ method_field('PUT') }}
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="number_of_parking_lots" class="col-md-4 control-label">Lugares de estacionamiento</label>
+                <div class="col-md-4">
+                    <input id="number_of_parking_lots" type="numeric" class="form-control" name="number_of_parking_lots" placeholder="{{ $estate->number_of_parking_lots }}" value="{{ old('number_of_parking_lots') }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('estates.update', $estate->id) }}">
+            {{ method_field('PUT') }}
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="notes" class="col-md-4 control-label">Lugares de estacionamiento</label>
+                <div class="col-md-4">
+                    <input id="notes" type="text" class="form-control" name="notes" placeholder="{{ $estate->notes }}" value="{{ old('notes') }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </div>
 @endsection
