@@ -17,7 +17,7 @@ class TypeOfTransactionController extends Controller
     public function index()
     {
         $data = TypeOfTransaction::all();
-        return view('typeoftransactions.index', compact('data'));
+        return view('typeoftransactions.index')->with('data', $data);
     }
 
     /**
@@ -52,7 +52,7 @@ class TypeOfTransactionController extends Controller
     public function show(TypeOfTransaction $typeoftransaction)
     {
         $typeoftransaction = TypeOfTransaction::find($typeoftransaction->id);
-        return view('typeoftransactions.show', compact('typeoftransaction'));
+        return view('typeoftransactions.show')->with('typeoftransaction', $typeoftransaction);
     }
 
     /**
@@ -64,7 +64,7 @@ class TypeOfTransactionController extends Controller
     public function edit(TypeOfTransaction $typeoftransaction)
     {
         $typeoftransaction = TypeOfTransaction::find($typeoftransaction->id);
-        return view('typeoftransactions.edit', compact('typeoftransaction'));
+        return view('typeoftransactions.edit')->with('typeoftransaction' , $typeoftransaction);
     }
 
     /**

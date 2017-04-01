@@ -17,7 +17,7 @@ class CondoController extends Controller
     public function index()
     {
         $data = Condo::all();
-        return view('condos.index', compact('data'));
+        return view('condos.index')->with('data', $data);
     }
 
     /**
@@ -51,8 +51,8 @@ class CondoController extends Controller
      */
     public function show(Condo $condo)
     {
-        $condo = Condo::find($condo);
-        return view('condos.show', compact('condo'));
+        $condo = Condo::find($condo->id);
+        return view('condos.show')->with('condo', $condo);
     }
 
     /**
@@ -63,8 +63,8 @@ class CondoController extends Controller
      */
     public function edit(Condo $condo)
     {
-        $condo = Condo::find($condo);
-        return view('condos.edit', compact('condo'));
+        $condo = Condo::find($condo->id);
+        return view('condos.edit')->with('condo', $condo);
     }
 
     /**
@@ -89,7 +89,7 @@ class CondoController extends Controller
      */
     public function destroy(Condo $condo)
     {
-        Condo::find($condo)->delete();
+        Condo::find($condo->id)->delete();
         return redirect()->route('condos.index')
                         ->with('success', 'Item deleted successfully');
     }

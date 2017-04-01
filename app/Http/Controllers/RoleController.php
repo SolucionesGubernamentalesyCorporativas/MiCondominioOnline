@@ -17,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $data = Role::all();
-        return view('roles.index', compact('data'));
+        return view('roles.index')->with('data', $data);
     }
 
     /**
@@ -52,7 +52,7 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         $role = Role::find($role->id);
-        return view('roles.show', compact('role'));
+        return view('roles.show')->with('role', $role);
     }
 
     /**
@@ -64,7 +64,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $role = Role::find($role->id);
-        return view('roles.edit', compact('role'));
+        return view('roles.edit')->with('role', $role);
     }
 
     /**

@@ -19,7 +19,7 @@ class UserController extends Controller
         // call User model
         $data = User::all();
         // send to view
-        return view('users.index', compact('data'));
+        return view('users.index')->with('data', $data);
     }
 
     /**
@@ -62,7 +62,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user = User::find($user->id);
-        return view('users.show', compact('user'));
+        return view('users.show')->with('user', $user);
     }
 
     /**
@@ -74,7 +74,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $user = User::find($user->id);
-        return view('users.edit', compact('user'));
+        return view('users.edit')->with('user', $user);
     }
 
     /**
