@@ -51,7 +51,7 @@ class TypeOfTransactionController extends Controller
      */
     public function show(TypeOfTransaction $typeoftransaction)
     {
-        $typeoftransaction = TypeOfTransaction::find($typeoftransaction);
+        $typeoftransaction = TypeOfTransaction::find($typeoftransaction->id);
         return view('typeoftransactions.show', compact('typeoftransaction'));
     }
 
@@ -63,7 +63,7 @@ class TypeOfTransactionController extends Controller
      */
     public function edit(TypeOfTransaction $typeoftransaction)
     {
-        $typeoftransaction = TypeOfTransaction::find($typeoftransaction);
+        $typeoftransaction = TypeOfTransaction::find($typeoftransaction->id);
         return view('typeoftransactions.edit', compact('typeoftransaction'));
     }
 
@@ -76,7 +76,7 @@ class TypeOfTransactionController extends Controller
      */
     public function update(UpdateTypeOfTransaction $request, TypeOfTransaction $typeoftransaction)
     {
-        TypeOfTransaction::find($typeoftransaction)->update($request->all());
+        TypeOfTransaction::find($typeoftransaction->id)->update($request->all());
         return redirect()->route('typeoftransactions.index')
                             ->with('success', 'Item created successfully');
     }
@@ -89,7 +89,7 @@ class TypeOfTransactionController extends Controller
      */
     public function destroy(TypeOfTransaction $typeoftransaction)
     {
-        TypeOfTransaction::find($typeoftransaction)->delete();
+        TypeOfTransaction::find($typeoftransaction->id)->delete();
         return redirect()->route('typeoftransactions.index')
                         ->with('success', 'Item deleted successfully');
     }
