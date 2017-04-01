@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="notes" class="col-md-4 control-label">Notas</label>
                 <div class="col-md-6">
-                    <input id="notes" type="text" class="form-control" name="notes" placeholder="Caracteristicas del condominio" value="{{ old('notes') }}">
+                    <input id="notes" type="text" class="form-control" name="notes" placeholder="Agrega alguna nota" value="{{ old('notes') }}">
                 </div>
             </div>
             <div class="form-group">
