@@ -7,12 +7,22 @@
         <a class="btn btn-default pull-right" href="{{ route('roles.index') }}">Atras</a>
     </div>
     <div class="panel-body">
-        <div class="list-group">
-            <div class="list-group-item">ID: {{ $role->id }}</div>
-            <div class="list-group-item">Membresia: {{ $role->permission_id }}</div>
-            <div class="list-group-item">Rol: {{ $role->name}} </div>
-            <div class="list-group-item">Fecha De Creación: {{ $role->created_at }}</div>
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item">ID: {{ $role->id }}</li>
+            <li class="list-group-item">Rol: {{ $role->name}} </li>
+            <li class="list-group-item">Permiso: {{ count($role->permission) == 1 ? $role->permission->name : 'Ninguno' }}</li>
+            @if(count($role->users) >= 1)
+                <li class="list-group-item">
+                    Usuarios:
+                    @foreach($role->users as $user)
+                        <li>{{ $user->name . ' ' . $user->lastname }}</li>
+                    @endforeach    
+                </li>
+            @else
+                <li class="list-group-item">Usuarios: Ninguno</li>
+            @endif
+            <li class="list-group-item">Fecha De Creación: {{ $role->created_at }}</li>
+        </ul>
     </div>
 </div>
 @endsection

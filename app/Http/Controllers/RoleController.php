@@ -17,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $data = Role::all();
-        return view('roles.index', compact('data'));
+        return view('roles.index')->with('data', $data);
     }
 
     /**
@@ -51,8 +51,8 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        $role = Role::find($role);
-        return view('roles.show', compact('role'));
+        $role = Role::find($role->id);
+        return view('roles.show')->with('role', $role);
     }
 
     /**
@@ -63,8 +63,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $role = Role::find($role);
-        return view('roles.edit', compact('role'));
+        $role = Role::find($role->id);
+        return view('roles.edit')->with('role', $role);
     }
 
     /**
@@ -76,7 +76,7 @@ class RoleController extends Controller
      */
     public function update(UpdateRole $request, Role $role)
     {
-        Role::find($role)->update($request->all());
+        Role::find($role->id)->update($request->all());
         return redirect()->route('roles.index')
                         ->with('success', 'Role updated successfully!');
     }
@@ -89,7 +89,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        Role::find($role)->delete();
+        Role::find($role->id)->delete();
         return redirect()->route('roles.index')
                         ->with('success', 'Item deleted successfully');
     }

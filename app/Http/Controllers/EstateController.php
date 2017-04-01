@@ -17,7 +17,7 @@ class EstateController extends Controller
     public function index()
     {
         $data = Estate::all();
-        return view('estates.index', compact('data'));
+        return view('estates.index')->with('data', $data);
     }
 
     /**
@@ -51,8 +51,8 @@ class EstateController extends Controller
      */
     public function show(Estate $estate)
     {
-        $estate = Estate::find($estate);
-        return view('estates.show', compact('estate'));
+        $estate = Estate::find($estate->id);
+        return view('estates.show')->with('estate', $estate);
     }
 
     /**
@@ -63,8 +63,8 @@ class EstateController extends Controller
      */
     public function edit(Estate $estate)
     {
-        $estate = Estate::find($estate);
-        return view('estates.edit', compact('estate'));
+        $estate = Estate::find($estate->id);
+        return view('estates.edit')->with('estate', $estate);
     }
 
     /**
@@ -89,7 +89,7 @@ class EstateController extends Controller
      */
     public function destroy(Estate $estate)
     {
-        Estate::find($estate)->delete();
+        Estate::find($estate->id)->delete();
         return redirect()->route('estates.index')
                         ->with('success', 'Item deleted successfully');
     }

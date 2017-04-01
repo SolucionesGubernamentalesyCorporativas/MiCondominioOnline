@@ -16,17 +16,18 @@ class CreateEstatesTable extends Migration
         Schema::create('estates', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('type_of_estate_id')->nullable();
-            $table->foreign('type_of_estate_id')
-            ->references('id')
-            ->on('type_of_estates')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
             $table->text('number');
             $table->boolean('rented');
             $table->integer('number_of_parking_lots');
             $table->text('notes');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('type_of_estate_id')
+            ->references('id')
+            ->on('type_of_estates')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

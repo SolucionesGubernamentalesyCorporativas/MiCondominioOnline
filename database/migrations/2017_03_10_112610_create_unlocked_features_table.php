@@ -15,9 +15,16 @@ class CreateUnlockedFeaturesTable extends Migration
     {
         Schema::create('unlocked_features', function(Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('type_of_membership_id')->nullable();
             $table->text('name');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('type_of_membership_id')
+            ->references('id')
+            ->on('type_of_memberships')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

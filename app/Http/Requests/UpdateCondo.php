@@ -24,8 +24,8 @@ class UpdateCondo extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'direction' => 'required'
+            'name' => 'string',
+            'direction' => 'string'
         ];
     }
 }

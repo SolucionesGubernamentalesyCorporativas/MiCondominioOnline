@@ -20,7 +20,7 @@
                 @foreach($data as $row)   
                     <tr>
                         <td>{{ $row->name }}</td>
-                        <td>{{ $row->income_outcome }}</td>
+                        <td>{{ $row->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</td>
                         <td>
                             <a class="btn btn-info" href="{{ route('typeoftransactions.show', $row->id) }}">Info</a>
                             <a class="btn btn-primary" href="{{ route('typeoftransactions.edit', $row->id) }}">Editar</a>

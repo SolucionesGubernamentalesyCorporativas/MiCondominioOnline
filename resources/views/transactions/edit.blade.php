@@ -10,21 +10,46 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ route('transactions.update', $transaction->id) }}">
             {{ method_field('PUT') }}
             {{ csrf_field() }}
-            
             <div class="form-group">
-                <strong>Observaciones:</strong>
-                <input class="form-control" type="text" name="observations">
+                <label for="observations" class="col-md-4 control-label">Observaciones</label>
+                <div class="col-md-4">
+                    <input id="observations" type="text" class="form-control" name="observations" placeholder="{{ $transaction->observations }}" value="{{ old('observations') }}" autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
-            <div class="form-group">
-                <strong>Cantidad:</strong>
-                <input class="form-control" type="text" name="ammount">
-            </div>
-            <div class="form-group">
-                <strong>Verificada:</strong>
-                <input class="form-control" type="checkbox" name="verified" value="1">
-            </div>
-            <button type="submit" class="btn btn-primary">Editar</button>
         </form>
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('transactions.update', $transaction->id) }}">
+            {{ method_field('PUT') }}
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="ammount" class="col-md-4 control-label">Cantidad</label>
+                <div class="col-md-4">
+                    <input id="ammount" type="numeric" class="form-control" name="ammount" placeholder="{{ $transaction->ammount }}" value="{{ old('ammount') }}" autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('transactions.update', $transaction->id) }}">
+            {{ method_field('PUT') }}
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="verified" class="col-md-4 control-label">Verificada</label>
+                <div class="col-md-4">
+                    <input id="verified" type="radio" name="verified" value="0" checked> No
+                    <input id="verified" type="radio" name="verified" value="1"> Si
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </div>
 @endsection

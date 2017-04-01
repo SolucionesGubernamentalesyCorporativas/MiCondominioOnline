@@ -24,9 +24,9 @@ class UpdateTransaction extends FormRequest
     public function rules()
     {
         return [
-            'observations' => 'required',
-            'ammount' => 'required',
-            'verified' => 'required'
+            'observations' => 'string',
+            'ammount' => 'numeric',
+            'verified' => 'boolean'
         ];
     }
 }

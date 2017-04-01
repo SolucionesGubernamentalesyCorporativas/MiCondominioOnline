@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMembershipsTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateMembershipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('memberships', function(Blueprint $table) {
+        Schema::create('permissions', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('type_of_membership_id');
-            $table->foreign('type_of_membership_id')
-            ->references('id')
-            ->on('type_of_memberships')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->text('name');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('role_id')
+            ->references('id')
+            ->on('roles')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 
@@ -35,6 +35,6 @@ class CreateMembershipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('memberships');
+        Schema::dropIfExists('permissions');
     }
 }

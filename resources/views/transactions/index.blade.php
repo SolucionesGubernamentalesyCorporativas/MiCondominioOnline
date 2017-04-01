@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ $row->observations }}</td>
                         <td>{{ $row->ammount }}</td>
-                        <td>{{ $row->verified }}</td>
+                        <td>{{ $row->verified == 0 ? 'No' : 'Si' }}</td>
                         <td>
                             <a class="btn btn-info" href="{{ route('transactions.show', $row->id) }}">Info</a>
                             <a class="btn btn-primary" href="{{ route('transactions.edit', $row->id) }}">Editar</a>

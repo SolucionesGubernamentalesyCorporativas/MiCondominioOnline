@@ -24,9 +24,9 @@ class StoreTransaction extends FormRequest
     public function rules()
     {
         return [
-            'observations' => 'required',
-            'ammount' => 'required',
-            'verified' => 'required'
+            'observations' => 'required|string',
+            'ammount' => 'required|numeric',
+            'verified' => 'required|boolean'
         ];
     }
 }
