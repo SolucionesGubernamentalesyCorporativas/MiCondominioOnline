@@ -8,7 +8,7 @@
     </div>
     <div class="panel-body">
         <ul class="list-group">
-            <li class="list-group-item">Membresia: {{ count($typeoftransaction->transaction) == 1 ? $typeoftransaction->transaction->id : 'Ninguna' }}</li>
+            <li class="list-group-item">Transacción: {{ count($typeoftransaction->transaction) == 1 ? $typeoftransaction->transaction->id : 'Ninguna' }}</li>
             <li class="list-group-item">ID: {{ $typeoftransaction->id }}</li>
             <li class="list-group-item">Nombre: {{ $typeoftransaction->name }}</li>
             <li class="list-group-item">Ingreso o Gasto: {{ $typeoftransaction->income_outcome }}</li>
