@@ -10,13 +10,23 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ route('roles.update', $role->id) }}">
             {{ method_field('PUT') }}
             {{ csrf_field() }}
-            
             <div class="form-group">
-                <strong>Rol:</strong>
-                <input class="form-control" type="text" name="name">
+                <label for="name" class="col-md-4 control-label">Rol</label>
+                <div class="col-md-4">
+                    <input id="name" type="text" class="form-control" name="name" placeholder="{{ $role->name }}" value="{{ old('name') }}" autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
-            <button type="submit" class="btn btn-primary">Editar</button>
         </form>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </div>
 @endsection
