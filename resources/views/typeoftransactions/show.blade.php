@@ -11,7 +11,7 @@
             <li class="list-group-item">Transacción: {{ count($typeoftransaction->transaction) == 1 ? $typeoftransaction->transaction->id : 'Ninguna' }}</li>
             <li class="list-group-item">ID: {{ $typeoftransaction->id }}</li>
             <li class="list-group-item">Nombre: {{ $typeoftransaction->name }}</li>
-            <li class="list-group-item">Ingreso o Gasto: {{ $typeoftransaction->income_outcome }}</li>
+            <li class="list-group-item">Ingreso o Gasto: {{ $typeoftransaction->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</li>
             <li class="list-group-item">Fecha De Creación: {{ $typeoftransaction->created_at }}</li>
         </ul>
     </div>

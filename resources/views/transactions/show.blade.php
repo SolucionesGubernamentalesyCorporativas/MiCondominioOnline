@@ -12,7 +12,7 @@
             <li class="list-group-item">Tipo de membresia: {{ count($transaction->typeOfTransaction) == 1 ? $transaction->typeOfTransaction->name : 'Ninguno' }}</li>
             <li class="list-group-item">Observaciones: {{ $transaction->observations }}</li>
             <li class="list-group-item">Cantidad: {{ $transaction->ammount }} </li>
-            <li class="list-group-item">Verificada: {{ $transaction->verified }} </li>
+            <li class="list-group-item">Verificada: {{ $transaction->verified == 0 ? 'No' : 'Si' }} </li>
             <li class="list-group-item">Recibo: {{ count($transaction->receipt) == 1 ? $transaction->receipt->name_of_img : 'Ninguno' }}</li>
             @if(count($transaction->users) >= 1)
                 <li class="list-group-item">

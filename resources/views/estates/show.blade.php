@@ -31,7 +31,7 @@
                 <li class="list-group-item">Condomino: Ninguno</li>
             @endif
             <li class="list-group-item">Numero: {{ $estate->number}} </li>
-            <li class="list-group-item">Rentado: {{ $estate->rented }}</li>
+            <li class="list-group-item">Rentado: {{ $estate->rented == 0 ? 'No' : 'Si' }}</li>
             <li class="list-group-item">Lugares De Estacionamiento: {{ $estate->number_of_parking_lots }}</li>
             <li class="list-group-item">Notas: {{ $estate->notes }}</li>
             <li class="list-group-item">Fecha De Creación: {{ $estate->created_at }}</li>

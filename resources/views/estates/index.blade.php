@@ -22,7 +22,7 @@
                 @foreach($data as $row)   
                     <tr>
                         <td>{{ $row->number }}</td>
-                        <td>{{ $row->rented }}</td>
+                        <td>{{ $row->rented == 0 ? 'No' : 'Si' }}</td>
                         <td>{{ $row->number_of_parking_lots }}</td>
                         <td>{{ $row->notes }}</td>
                         <td>
