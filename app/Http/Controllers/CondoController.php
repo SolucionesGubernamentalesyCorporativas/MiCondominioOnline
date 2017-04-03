@@ -76,7 +76,7 @@ class CondoController extends Controller
      */
     public function update(UpdateCondo $request, Condo $condo)
     {
-        Condo::find($condo)->update($request->all());
+        Condo::find($condo->id)->update($request->all());
         return redirect()->route('condos.index')
                         ->with('success', 'Item updated successfully');
     }
