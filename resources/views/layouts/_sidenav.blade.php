@@ -13,4 +13,3 @@
     <a href="{{ route('announcements.index') }}" class="{{ Request::is('announcements*') ? 'item active' : 'item' }}">Anuncios</a>
 </div>
 
-
