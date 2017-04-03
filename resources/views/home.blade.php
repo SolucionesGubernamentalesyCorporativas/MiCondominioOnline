@@ -5,7 +5,7 @@
 @section('content')
 <div class="ui segments">
     <div class="ui segment">Inicio</div>
-    <div class="ui secondary segment">
+    <div class="ui segment">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, repellendus.</p>
     </div>
 </div>
