@@ -12,6 +12,7 @@
             <li class="list-group-item"><a href="{{ route('typeoftransactions.index') }}">Tipo de Transacciones</a></li>
             <li class="list-group-item"><a href="{{ route('transactions.index') }}">Transacciones</a></li>
             <li class="list-group-item"><a href="{{ route('receipts.index') }}">Recibos</a></li>
+            <li class="list-group-item"><a href="{{ route('announcements.index') }}">Anuncios</a></li>
         </ul>
     </div>
 </div>
