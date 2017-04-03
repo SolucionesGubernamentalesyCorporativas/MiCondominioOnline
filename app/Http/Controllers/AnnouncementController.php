@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use Illuminate\Http\Request;
-use App\Html\Requests\StoreAnnouncement;
-use App\Html\Requests\UpdateAnnouncement;
+use App\Http\Requests\StoreAnnouncement;
+use App\Http\Requests\UpdateAnnouncement;
 
 class AnnouncementController extends Controller
 {
@@ -38,7 +38,7 @@ class AnnouncementController extends Controller
      */
     public function store(StoreAnnouncement $request)
     {
-        Announcement::create($request)->all();
+        Announcement::create($request->all());
         return redirect()->route('announcements.index')
                         ->with('success', 'Item created successfully');
     }
@@ -76,7 +76,7 @@ class AnnouncementController extends Controller
      */
     public function update(UpdateAnnouncement $request, Announcement $announcement)
     {
-        Annoucement::find($announcement->id)->update($request->all());
+        Announcement::find($announcement->id)->update($request->all());
         return redirect()->route('announcements.index')
                         ->with('success', 'Item updated successfully');
     }
