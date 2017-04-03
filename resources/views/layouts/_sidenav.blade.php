@@ -9,4 +9,6 @@
     <a href="{{ route('estates.index') }}" class="{{ Request::is('estates*') ? 'item active' : 'item' }}">Condominios</a>
     <a href="{{ route('typeoftransactions.index') }}" class="{{ Request::is('typeoftransactions*') ? 'item active' : 'item' }}">Tipo de transacción</a>
     <a href="{{ route('transactions.index') }}" class="{{ Request::is('transactions*') ? 'item active' : 'item' }}">Transacción</a>
+    <a href="{{ route('receipts.index') }}" class="{{ Request::is('receipts*') ? 'item active' : 'item' }}">Recibos</a>
+    <a href="{{ route('announcements.index') }}" class="{{ Request::is('announcements*') ? 'item active' : 'item' }}">Anuncios</a>
 </div>
