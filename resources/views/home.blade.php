@@ -3,9 +3,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading">Inicio</div>
-    <div class="panel-body">
+<div class="ui segments">
+    <div class="ui segment">Inicio</div>
+    <div class="ui secondary segment">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, repellendus.</p>
     </div>
 </div>
