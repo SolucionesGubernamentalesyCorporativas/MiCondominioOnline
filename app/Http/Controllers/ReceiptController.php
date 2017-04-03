@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Condo;
+use App\Receipt;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreCondo;
-use App\Http\Requests\UpdateCondo;
+use App\Http\Requests\StoreReceipt;
+use App\Http\Requests\UpdateReceipt;
 
-class CondoController extends Controller
+class ReceiptController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CondoController extends Controller
      */
     public function index()
     {
-        $data = Condo::all();
-        return view('condos.index')->with('data', $data);
+        $data = Receipt::all();
+        return view('receipts.index')->with('data', $data);
     }
 
     /**
@@ -27,7 +27,7 @@ class CondoController extends Controller
      */
     public function create()
     {
-        return view('condos.create');
+        return view('receipts.create');
     }
 
     /**
@@ -36,61 +36,61 @@ class CondoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCondo $request)
+    public function store(StoreReceipt $request)
     {
-        Condo::create($request->all());
-        return redirect()->route('condos.index')
+        Receipt::create($request->all());
+        return redirect()->route('receipts.index')
                         ->with('success', 'Item created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Condo  $condo
+     * @param  \App\Receipt  $receipt
      * @return \Illuminate\Http\Response
      */
-    public function show(Condo $condo)
+    public function show(Receipt $receipt)
     {
-        $condo = Condo::find($condo->id);
-        return view('condos.show')->with('condo', $condo);
+        $receipt = Receipt::find($receipt->id);
+        return view('receipts.show')->with('receipt', $receipt);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Condo  $condo
+     * @param  \App\Receipt  $receipt
      * @return \Illuminate\Http\Response
      */
-    public function edit(Condo $condo)
+    public function edit(Receipt $receipt)
     {
-        $condo = Condo::find($condo->id);
-        return view('condos.edit')->with('condo', $condo);
+        $receipt = Receipt::find($receipt->id);
+        return view('receipts.edit')->with('receipt', $receipt);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Condo  $condo
+     * @param  \App\Receipt  $receipt
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCondo $request, Condo $condo)
+    public function update(UpdateReceipt $request, Receipt $receipt)
     {
-        Condo::find($condo->id)->update($request->all());
-        return redirect()->route('condos.index')
+        Receipt::find($receipt->id)->update($request->all());
+        return redirect()->route('receipts.index')
                         ->with('success', 'Item updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Condo  $condo
+     * @param  \App\Receipt  $receipt
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Condo $condo)
+    public function destroy(Receipt $receipt)
     {
-        Condo::find($condo->id)->delete();
-        return redirect()->route('condos.index')
+        Receipt::find($receipt->id)->delete();
+        return redirect()->route('receipts.index')
                         ->with('success', 'Item deleted successfully');
     }
 }

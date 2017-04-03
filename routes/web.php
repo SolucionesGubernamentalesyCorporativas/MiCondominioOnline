@@ -26,3 +26,5 @@ Route::resource('condos', 'CondoController');
 Route::resource('estates', 'EstateController');
 Route::resource('typeoftransactions', 'TypeOfTransactionController');
 Route::resource('transactions', 'TransactionController');
+Route::resource('receipts', 'ReceiptController');
+Route::resource('announcements', 'AnnouncementController');
