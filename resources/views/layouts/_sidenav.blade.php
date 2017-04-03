@@ -12,3 +12,4 @@
     <a href="{{ route('receipts.index') }}" class="{{ Request::is('receipts*') ? 'item active' : 'item' }}">Recibos</a>
     <a href="{{ route('announcements.index') }}" class="{{ Request::is('announcements*') ? 'item active' : 'item' }}">Anuncios</a>
 </div>
+
