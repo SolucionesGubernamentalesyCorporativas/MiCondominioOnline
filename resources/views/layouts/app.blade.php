@@ -16,7 +16,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/semantic.min.css" rel="stylesheet">
+    <link href="/semantic-ui/semantic.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -26,73 +26,40 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Navegar</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Mi Condominio Online') }}
-                    </a>
+    <nav class="ui large borderless menu">
+        <div class="header item">Mi Condominio Online</div>
+        <div class="right menu">
+            @if (Auth::guest())
+                <a class="item" href="{{ route('login') }}">Iniciar Sesión</a>
+                <a class="item" href="{{ route('register') }}">Registrarse</a>
+            @else
+                <div class="ui simple dropdown item">
+                    <i class="icon"></i>
+                    {{ Auth::user()->name }}
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault(); 
+                                document.getElementById('logout-form').submit();">
+                        Salir
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
                 </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
-                            <li><a href="{{ route('register') }}">Registrarse</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Salir
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
+            @endif
+        </div>
+    </nav>
         @if (Auth::guest())
             @yield('content')
         @else
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        @include('layouts._sidenav')
-                    </div>
-                    <div class="col-md-9">
-                        @yield('content')
-                    </div>
+            <div class="ui grid container">
+                <div class="four wide column">
+                    @include('layouts._sidenav')
+                </div>
+                <div class="twelve wide column">
+                    @yield('content')
                 </div>
             </div>
         @endif
@@ -100,6 +67,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
-    <script src="/js/semantic.min.js"></script>
+    <script src="/semantic-ui/semantic.min.js"></script>
 </body>
 </html>
