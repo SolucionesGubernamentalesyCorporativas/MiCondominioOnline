@@ -1,7 +1,5 @@
 <!-- General View for the application , the major template-->
 
-
-
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
@@ -54,12 +52,14 @@
         @if (Auth::guest())
             @yield('content')
         @else
-            <div class="ui grid container">
-                <div class="four wide column">
-                    @include('layouts._sidenav')
-                </div>
-                <div class="twelve wide column">
-                    @yield('content')
+            <div class="ui fluid container">
+                <div class="ui stackable grid">
+                    <div class="three wide column">
+                        @include('layouts._sidenav')
+                    </div>
+                    <div class="thirteen wide column">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         @endif
