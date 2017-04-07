@@ -5,8 +5,8 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="padding-top: 3.5px;" class="ui left floated header">Usuarios</div>
-            <a class="ui right floated blue button" href="{{ route('users.create') }}">Añadir usuario</a>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Usuarios</div>
+                <a class="ui right floated blue button" href="{{ route('users.create') }}">Añadir usuario</a>
             </div>
         </div>
     </div>
