@@ -71,6 +71,9 @@
         $('.ui.dropdown')
         .dropdown()
         ;
+        $('.ui.checkbox')
+         .checkbox()
+        ;
     </script>
 </body>
 </html>
