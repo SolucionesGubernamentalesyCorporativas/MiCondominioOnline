@@ -24,15 +24,14 @@
     </script>
 </head>
 <body>
-    <nav class="ui large borderless menu">
+    <nav class="ui large borderless inverted blue menu">
         <div class="header item">Mi Condominio Online</div>
         <div class="right menu">
             @if (Auth::guest())
                 <a class="item" href="{{ route('login') }}">Iniciar Sesión</a>
                 <a class="item" href="{{ route('register') }}">Registrarse</a>
             @else
-                <div class="ui simple dropdown item">
-                    <i class="icon"></i>
+                <div class="ui dropdown item">
                     {{ Auth::user()->name }}
                     <i class="dropdown icon"></i>
                     <div class="menu">
@@ -68,5 +67,10 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/semantic-ui/semantic.min.js"></script>
+    <script>
+        $('.ui.dropdown')
+        .dropdown()
+        ;
+    </script>
 </body>
 </html>
