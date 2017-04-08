@@ -42,8 +42,8 @@
                                     </div>
                                 </td>
                             </tr>
-                        </tbody>
-                    @endforeach
+                        @endforeach
+                    </tbody>
                 </table>
             @endif
         </div>

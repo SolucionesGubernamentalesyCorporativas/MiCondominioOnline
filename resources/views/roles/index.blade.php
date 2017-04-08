@@ -21,23 +21,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($data as $row)   
-                        <tr>
-                            <td>{{ $row->name }}</td>
-                            <td>
-                                <div class="ui buttons">
-                                    <a class="ui green button" href="{{ route('roles.show', $row->id) }}">Info</a>
-                                    <a class="ui blue button" href="{{ route('roles.edit', $row->id) }}">Editar</a>
-                                    <form method="POST" action="{{ route('roles.destroy', $row->id) }}" style="display: inline;">
-                                        {{ method_field('DELETE')}}
-                                        {{ csrf_field() }}
-                                        <button type="submit" class="ui red button">Borrar</button>
-                                    </form> 
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach($data as $row)   
+                            <tr>
+                                <td>{{ $row->name }}</td>
+                                <td>
+                                    <div class="ui buttons">
+                                        <a class="ui green button" href="{{ route('roles.show', $row->id) }}">Info</a>
+                                        <a class="ui blue button" href="{{ route('roles.edit', $row->id) }}">Editar</a>
+                                        <form method="POST" action="{{ route('roles.destroy', $row->id) }}" style="display: inline;">
+                                            {{ method_field('DELETE')}}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="ui red button">Borrar</button>
+                                        </form> 
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
-                    @endforeach
                 </table>
             @endif
         </div>

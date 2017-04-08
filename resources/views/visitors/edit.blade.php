@@ -70,13 +70,13 @@
                                 <div class="inline fields {{ $errors->has('vehicle') ? 'error' : '' }}">
                                     <label>Vehiculo</label>
                                     <div class="field">
-                                        <div class="ui toggle checkbox">
+                                        <div class="ui toggle {{ $visitor->vehicle == 0 ? 'checked' : '' }} checkbox">
                                             <input type="radio" name="vehicle" value="0">
                                             <label>No</label>
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <div class="ui toggle checkbox">
+                                        <div class="ui toggle {{ $visitor->vehicle == 1 ? 'checked' : '' }} checkbox">
                                             <input type="radio" name="vehicle" value="1">
                                             <label>Si</label>
                                         </div>
