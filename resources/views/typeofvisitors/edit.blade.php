@@ -20,7 +20,8 @@
                             Editar nombre
                         </div>
                         <div class="content field">
-                            <form class="ui form error" role="form" method="POST" action="{{ route('typeofvisitors.store') }}">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('typeofvisitors.update', $typeofvisitor->id) }}">
+                                {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="field {{ $errors->has('name') ? 'error' : '' }}">
                                     <label>Nombre</label>
@@ -41,7 +42,8 @@
                             Editar descripción
                         </div>
                         <div class="content field">
-                            <form class="ui form error" role="form" method="POST" action="{{ route('typeofvisitors.store') }}">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('typeofvisitors.update', $typeofvisitor->id) }}">
+                                {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="field {{ $errors->has('description') ? 'error' : '' }}">
                                     <label>Descripción</label>
