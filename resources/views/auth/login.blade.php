@@ -9,7 +9,6 @@
             </div>
             <div class="ui blue segment">
                 <form class="ui form error" role="form" method="POST" action="{{ route('login') }}">
-                    <!--Security issues ... token to verify post request-->
                     {{ csrf_field() }}
                     <div class="field {{ $errors->has('email') ? 'error' : '' }}">
                         <label>Correo electrónico</label>
@@ -30,7 +29,7 @@
                         @endif
                     </div>
                     <div class="inline field">
-                        <div class="ui toggle {{ old('remember') ? 'checked' : '' }} checkbox">
+                        <div class="ui toggle checkbox">
                         <input type="checkbox" name="remember" tabindex="0" class="hidden">
                         <label>Recuerdame</label>
                         </div>
