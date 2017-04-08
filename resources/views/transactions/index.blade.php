@@ -29,7 +29,7 @@
                                 <td>{{ $row->ammount }}</td>
                                 <td>{{ $row->verified == 0 ? 'No' : 'Si' }}</td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('transactions.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('transactions.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('transactions.destroy', $row->id) }}" style="display: inline;">

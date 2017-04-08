@@ -29,7 +29,7 @@
                                 <td>{{ $row->date_arrival }}</td>
                                 <td>{{ $row->vehicle == 0 ? 'No' : 'Si' }}</td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('visitors.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('visitors.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('visitors.destroy', $row->id) }}" style="display: inline;">

@@ -27,7 +27,7 @@
                                 <td>{{ $row->title }}</td>
                                 <td><a href="{{ $row->url_of_content }}">{{ $row->url_of_content }}</a></td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('announcements.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('announcements.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('announcements.destroy', $row->id) }}" style="display: inline;">

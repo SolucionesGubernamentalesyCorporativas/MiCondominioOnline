@@ -29,7 +29,7 @@
                                 <td>{{ $row->name_of_img }}</td>
                                 <td>{{ $row->type_of_img }}</td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('receipts.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('receipts.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('receipts.destroy', $row->id) }}" style="display: inline;">

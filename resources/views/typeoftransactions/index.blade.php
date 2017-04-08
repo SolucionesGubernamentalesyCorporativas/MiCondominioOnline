@@ -27,7 +27,7 @@
                                 <td>{{ $row->name }}</td>
                                 <td>{{ $row->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('typeoftransactions.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('typeoftransactions.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('typeoftransactions.destroy', $row->id) }}" style="display: inline;">

@@ -31,7 +31,7 @@
                                 <td>{{ $row->email }}</td>
                                 <td>{{ $row->phone }}</td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('users.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('users.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('users.destroy', $row->id) }}" style="display: inline;">

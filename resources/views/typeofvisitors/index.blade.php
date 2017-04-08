@@ -27,7 +27,7 @@
                                 <td>{{ $row->name }}</td>
                                 <td>{{ $row->description }}</td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('typeofvisitors.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('typeofvisitors.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('typeofvisitors.destroy', $row->id) }}" style="display: inline;">

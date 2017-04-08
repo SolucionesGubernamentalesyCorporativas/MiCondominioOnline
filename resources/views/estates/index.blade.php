@@ -31,7 +31,7 @@
                                 <td>{{ $row->number_of_parking_lots }}</td>
                                 <td>{{ $row->notes }}</td>
                                 <td>
-                                    <div class="ui buttons">
+                                    <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('estates.show', $row->id) }}">Info</a>
                                         <a class="ui blue button" href="{{ route('estates.edit', $row->id) }}">Editar</a>
                                         <form method="POST" action="{{ route('estates.destroy', $row->id) }}" style="display: inline;">
