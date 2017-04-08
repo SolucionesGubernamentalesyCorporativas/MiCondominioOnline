@@ -18,7 +18,7 @@ class CreateVisitorsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->text('name');
             $table->date('date_arrival');
-            $table->boolean('vehicle');
+            $table->boolean('vehicle')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

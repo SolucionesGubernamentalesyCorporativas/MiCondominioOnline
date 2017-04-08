@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visitor extends Model
 {
+    protected $fillable = [
+        'name', 'date_arrival', 'vehicle'
+    ];
+    
     public function typeOfVisitor()
     {
         return $this->hasOne('App\TypeOfVisitor');
