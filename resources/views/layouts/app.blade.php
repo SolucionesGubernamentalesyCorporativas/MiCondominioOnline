@@ -74,6 +74,9 @@
         $('.ui.checkbox')
          .checkbox()
         ;
+        $('.ui.accordion')
+        .accordion()
+        ;
     </script>
 </body>
 </html>
