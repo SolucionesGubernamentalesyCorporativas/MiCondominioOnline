@@ -11,5 +11,6 @@
     <a href="{{ route('transactions.index') }}" class="{{ Request::is('transactions*') ? 'item active' : 'item' }}">Transacción</a>
     <a href="{{ route('receipts.index') }}" class="{{ Request::is('receipts*') ? 'item active' : 'item' }}">Recibos</a>
     <a href="{{ route('announcements.index') }}" class="{{ Request::is('announcements*') ? 'item active' : 'item' }}">Anuncios</a>
+    <a href="{{ route('typeofvisitors.index') }}" class="{{ Request::is('typeofvisitors*') ? 'item active' : 'item' }}">Tipo de visitante</a>
 </div>
 
