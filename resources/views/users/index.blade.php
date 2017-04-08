@@ -13,38 +13,29 @@
     <div class="row">
         <div class="column">
             @if($data)
-                <table class="ui five column selectable blue table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>E-mail</th>
-                            <th>Telefono</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data as $row)   
-                            <tr>
-                                <td>{{ $row->name }}</td>
-                                <td>{{ $row->lastname }}</td>
-                                <td>{{ $row->email }}</td>
-                                <td>{{ $row->phone }}</td>
-                                <td>
-                                    <div class="ui small buttons">
-                                        <a class="ui green button" href="{{ route('users.show', $row->id) }}">Info</a>
-                                        <a class="ui blue button" href="{{ route('users.edit', $row->id) }}">Editar</a>
-                                        <form method="POST" action="{{ route('users.destroy', $row->id) }}" style="display: inline;">
+                <div class="ui blue segment">
+                    <div class="ui four cards">
+                        @foreach($data as $row)
+                            <div class="card">
+                                <div class="content">
+                                    <a href="{{ route('users.show', $row->id) }}"><div class="header">{{ $row->name . ' ' . $row->lastname }}</div></a>
+                                    <div class="meta">{{ $row->role->name }}</div>
+                                    <div class="description">Correo electrónico: {{ $row->email }}</div>
+                                </div>
+                                <div class="extra content">
+                                    <div class="ui two buttons">
+                                        <a class="ui green basic button" href="{{ route('users.edit', $row->id) }}">Editar</a>
+                                        <form id="destroy_{{ $row->id }}" method="POST" action="{{ route('users.destroy', $row->id) }}">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
-                                            <button type="submit" class="ui red button">Borrar</button>
                                         </form>
+                                        <button form="destroy_{{ $row->id }}" type="submit" class="ui red basic button">Borrar</button>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         @endforeach
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             @endif
         </div>
     </div>
