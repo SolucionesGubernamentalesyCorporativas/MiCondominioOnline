@@ -29,3 +29,4 @@ Route::resource('transactions', 'TransactionController');
 Route::resource('receipts', 'ReceiptController');
 Route::resource('announcements', 'AnnouncementController');
 Route::resource('typeofvisitors', 'TypeOfVisitorController');
+Route::resource('visitors', 'VisitorController');
