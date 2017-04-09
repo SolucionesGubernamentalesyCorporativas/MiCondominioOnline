@@ -25,7 +25,7 @@
 </head>
 <body>
     <nav class="ui large borderless inverted blue menu">
-        <div class="header item">Mi Condominio Online</div>
+        <div class="header active item">Mi Condominio Online</div>
         <div class="right menu">
             @if (Auth::guest())
                 <a class="item" href="{{ route('login') }}">Iniciar Sesión</a>
