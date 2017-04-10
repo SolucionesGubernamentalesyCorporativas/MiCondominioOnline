@@ -61,6 +61,36 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
+                            Editar usuario al que visita
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('visitors.update', $visitor->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="field {{ $errors->has('user_id') ? 'error' : '' }}">
+                                    <div class="ui selection dropdown">
+                                        <input type="hidden" name="user_id">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">Usuario al que visita</div>
+                                        <div class="menu">
+                                            @foreach($users as $user)
+                                                <div class="item" data-value="{{ $user->id }}">{{ $user->name . ' ' . $user->lastname }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('user_id'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('user_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
                             Editar vehiculo
                         </div>
                         <div class="content field">
@@ -80,14 +110,14 @@
                                             <input type="radio" name="vehicle" value="1">
                                             <label>Si</label>
                                         </div>
-                                    </div
+                                    </div>
                                     @if ($errors->has('date_arrival'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('date_arrival') }}</strong>
                                         </span>
                                     @endif
+                                    <button class="ui submit blue button" type="submit">Guardar</button>
                                 </div>
-                                <button class="ui submit blue button" type="submit">Guardar</button>
                             </form>
                         </div>
                     </div>

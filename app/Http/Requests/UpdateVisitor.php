@@ -26,7 +26,8 @@ class UpdateVisitor extends FormRequest
         return [
             'name' => 'string',
             'date_arrival' => 'date',
-            'vehicle' => 'boolean'
+            'vehicle' => 'boolean',
+            'user_id' => 'numeric'
         ];
     }
 }

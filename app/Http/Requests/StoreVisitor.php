@@ -26,7 +26,8 @@ class StoreVisitor extends FormRequest
         return [
             'name' => 'required|string',
             'date_arrival' => 'required|date',
-            'vehicle' => 'boolean'
+            'vehicle' => 'boolean',
+            'user_id' => 'required|numeric'
         ];
     }
 }

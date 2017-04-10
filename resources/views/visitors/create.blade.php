@@ -33,9 +33,26 @@
                             </span>
                         @endif
                     </div>
-                    <div class="inline field {{ $errors->has('vehicle') ? 'error' : '' }}">
+                    <div class="field {{ $errors->has('user_id') ? 'error' : '' }}">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="user_id">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Usuario al que visita</div>
+                            <div class="menu">
+                                @foreach($users as $user)
+                                    <div class="item" data-value="{{ $user->id }}">{{ $user->name . ' ' . $user->lastname }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @if ($errors->has('user_id'))
+                            <span class="ui error message">
+                                <strong>{{ $errors->first('user_id') }}</strong>
+                            </span>
+                        @endif  
+                    </div>
+                    <div class="field {{ $errors->has('vehicle') ? 'error' : '' }}">
                         <div class="ui toggle checkbox">
-                            <input type="checkbox" name="vehicle" tabindex="0" class="hidden" value="1" checked="{{ old('vehicle') ? 'checked' : '' }}">
+                            <input type="checkbox" name="vehicle" tabindex="0" class="hidden" value="1">
                             <label>Vehiculo</label>
                             @if ($errors->has('vehicle'))
                                 <span class="ui error message">

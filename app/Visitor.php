@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Visitor extends Model
 {
     protected $fillable = [
-        'name', 'date_arrival', 'vehicle'
+        'name', 'date_arrival', 'vehicle', 'user_id'
     ];
     
     public function typeOfVisitor()

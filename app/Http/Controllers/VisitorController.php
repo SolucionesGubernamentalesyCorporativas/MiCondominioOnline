@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Visitor;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVisitor;
 use App\Http\Requests\UpdateVisitor;
@@ -27,7 +28,8 @@ class VisitorController extends Controller
      */
     public function create()
     {
-        return view('visitors.create');
+        $users = User::all();
+        return view('visitors.create')->with('users', $users);
     }
 
     /**
@@ -63,8 +65,9 @@ class VisitorController extends Controller
      */
     public function edit(Visitor $visitor)
     {
+        $users = User::all();
         $visitor = Visitor::find($visitor->id);
-        return view('visitors.edit')->with('visitor', $visitor);
+        return view('visitors.edit')->with('visitor', $visitor)->with('users', $users);
     }
 
     /**
