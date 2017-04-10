@@ -23,7 +23,7 @@
                             <form class="ui form error" role="form" method="POST" action="{{ route('visitors.update', $visitor->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="field {{ $errors->has('name') ? 'error' : '' }}">
+                                <div class="eight wide field {{ $errors->has('name') ? 'error' : '' }}">
                                     <label>Nombre completo</label>
                                     <input type="text" name="name" placeholder="{{ $visitor->name }}">
                                     @if ($errors->has('name'))
@@ -32,7 +32,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <button class="ui submit blue button" type="submit">Guardar</button>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             <form class="ui form error" role="form" method="POST" action="{{ route('visitors.update', $visitor->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="field {{ $errors->has('date_arrival') ? 'error' : '' }}">
+                                <div class="eight wide field {{ $errors->has('date_arrival') ? 'error' : '' }}">
                                     <label>Fecha de llegada</label>
                                     <input type="date" name="date_arrival" placeholder="{{ $visitor->date_arrival }}">
                                     @if ($errors->has('date_arrival'))
@@ -54,7 +54,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <button class="ui submit blue button" type="submit">Guardar</button>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
                     </div>
@@ -67,11 +67,12 @@
                             <form class="ui form error" role="form" method="POST" action="{{ route('visitors.update', $visitor->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="field {{ $errors->has('user_id') ? 'error' : '' }}">
+                                <div class="eight wide field {{ $errors->has('user_id') ? 'error' : '' }}">
+                                    <label>Usuario al que visita</label>
                                     <div class="ui selection dropdown">
                                         <input type="hidden" name="user_id">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">Usuario al que visita</div>
+                                        <div class="default text">Selecciona un usuario</div>
                                         <div class="menu">
                                             @foreach($users as $user)
                                                 <div class="item" data-value="{{ $user->id }}">{{ $user->name . ' ' . $user->lastname }}</div>
@@ -84,7 +85,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <button class="ui submit blue button" type="submit">Guardar</button>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
                     </div>
@@ -100,13 +101,13 @@
                                 <div class="inline fields {{ $errors->has('vehicle') ? 'error' : '' }}">
                                     <label>Vehiculo</label>
                                     <div class="field">
-                                        <div class="ui toggle {{ $visitor->vehicle == 0 ? 'checked' : '' }} checkbox">
-                                            <input type="radio" name="vehicle" value="0">
+                                        <div class="ui toggle checkbox">
+                                            <input type="radio" name="vehicle" value="0" checked>
                                             <label>No</label>
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <div class="ui toggle {{ $visitor->vehicle == 1 ? 'checked' : '' }} checkbox">
+                                        <div class="ui toggle checkbox">
                                             <input type="radio" name="vehicle" value="1">
                                             <label>Si</label>
                                         </div>
@@ -116,8 +117,8 @@
                                             <strong>{{ $errors->first('date_arrival') }}</strong>
                                         </span>
                                     @endif
-                                    <button class="ui submit blue button" type="submit">Guardar</button>
                                 </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
                     </div>
