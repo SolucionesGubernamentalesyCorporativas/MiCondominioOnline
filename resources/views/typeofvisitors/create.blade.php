@@ -13,28 +13,50 @@
     <div class="row">
         <div class="column">
             <div class="ui blue segment">
-                <form class="ui form error" role="form" method="POST" action="{{ route('typeofvisitors.store') }}">
-                    {{ csrf_field() }}
-                    <div class="field {{ $errors->has('name') ? 'error' : '' }}">
-                        <label>Nombre</label>
-                        <input type="text" name="name" value="{{ old('name') }}" autofocus>
-                        @if ($errors->has('name'))
-                            <span class="ui error message">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
+                <div class="ui centered grid">
+                    <div class="ten wide column">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('typeofvisitors.store') }}">
+                            {{ csrf_field() }}
+                            <div class="field {{ $errors->has('name') ? 'error' : '' }}">
+                                <label>Nombre</label>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Ejemplo: Familiar, conocido, mensajeria, etc." autofocus>
+                                @if ($errors->has('name'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('description') ? 'error' : '' }}">
+                                <label>Descripción</label>
+                                <input type="text" name="description" value="{{ old('description') }} " placeholder="¿Cual es el motivo de la visita?">
+                                @if ($errors->has('description'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('visitor_id') ? 'error' : '' }}">
+                                <label>Visitante</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="visitor_id">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona un visitante</div>
+                                    <div class="menu">
+                                        @foreach($visitors as $visitor)
+                                            <div class="item" data-value="{{ $visitor->id }}">{{ $visitor->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('visitor_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('visitor_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <button class="ui submit blue button" type="submit">Guardar</button>
+                        </form>
                     </div>
-                    <div class="field {{ $errors->has('description') ? 'error' : '' }}">
-                        <label>Descripción</label>
-                        <input type="text" name="description" value="{{ old('description') }}">
-                        @if ($errors->has('description'))
-                            <span class="ui error message">
-                                <strong>{{ $errors->first('description') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <button class="ui submit blue button" type="submit">Guardar</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>

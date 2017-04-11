@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TypeOfVisitor;
+use App\Visitor;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTypeOfVisitor;
 use App\Http\Requests\UpdateTypeOfVisitor;
@@ -27,7 +28,8 @@ class TypeOfVisitorController extends Controller
      */
     public function create()
     {
-        return view('typeofvisitors.create');
+        $visitors = Visitor::all();
+        return view('typeofvisitors.create')->with('visitors', $visitors);
     }
 
     /**
@@ -64,7 +66,9 @@ class TypeOfVisitorController extends Controller
     public function edit(TypeOfVisitor $typeofvisitor)
     {
         $typeofvisitor = TypeOfVisitor::find($typeofvisitor->id);
-        return view('typeofvisitors.edit')->with('typeofvisitor', $typeofvisitor);
+        $visitors = Visitor::all();
+        return view('typeofvisitors.edit')->with('typeofvisitor', $typeofvisitor)
+                                        ->with('visitors', $visitors);
     }
 
     /**

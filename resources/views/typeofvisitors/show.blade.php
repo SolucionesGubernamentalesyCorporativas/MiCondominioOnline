@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de visita {{ $typeofvisitor->name }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de visitante {{ $typeofvisitor->name }}</div>
                 <a href="{{ route('typeofvisitors.index') }}" class="ui right floated blue button">Atras</a>
             </div>
         </div>
@@ -16,8 +16,8 @@
                 <div class="ui relaxed divided list">
                     <div class="item">
                         <div class="content">
-                            <div class="header">ID</div>
-                            <div class="description">{{ $typeofvisitor->id }}</div>
+                            <div class="header">Nombre</div>
+                            <div class="description">{{ $typeofvisitor->name }}</div>
                         </div>
                     </div>
                     <div class="item">
