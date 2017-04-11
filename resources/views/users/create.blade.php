@@ -19,7 +19,7 @@
                             {{ csrf_field() }}
                             <div class="field {{ $errors->has('name') ? 'error' : '' }}">
                                 <label>Nombre</label>
-                                <input type="text" name="name" value="{{ old('name') }}" autofocus>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Primer nombre" autofocus>
                                 @if ($errors->has('name'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="field {{ $errors->has('lastname') ? 'error' : '' }}">
                                 <label>Apellido</label>
-                                <input type="text" name="lastname" value="{{ old('lastname') }}" autofocus>
+                                <input type="text" name="lastname" value="{{ old('lastname') }}" placeholder="Apellido paterno">
                                 @if ($errors->has('lastname'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('lastname') }}</strong>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="field {{ $errors->has('email') ? 'error' : '' }}">
                                 <label>Correo electrónico</label>
-                                <input type="email" name="email" value="{{ old('email') }}">
+                                <input type="email" name="email" value="{{ old('email') }}" placeholder="Correo de contacto principal">
                                 @if ($errors->has('email'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="field {{ $errors->has('phone') ? 'error' : '' }}">
                                 <label>Teléfono</label>
-                                <input type="text" name="phone" value="{{ old('phone') }}">
+                                <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Numero telefonico">
                                 @if ($errors->has('phone'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('phone') }}</strong>
