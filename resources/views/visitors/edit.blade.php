@@ -70,7 +70,7 @@
                                 <div class="eight wide field {{ $errors->has('user_id') ? 'error' : '' }}">
                                     <label>Usuario al que visita</label>
                                     <div class="ui selection dropdown">
-                                        <input type="hidden" name="user_id">
+                                        <input type="hidden" name="user_id" value="{{ $visitor->user_id }}">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Selecciona un usuario</div>
                                         <div class="menu">
@@ -112,9 +112,9 @@
                                             <label>Si</label>
                                         </div>
                                     </div>
-                                    @if ($errors->has('date_arrival'))
+                                    @if ($errors->has('vehicle'))
                                         <span class="ui error message">
-                                            <strong>{{ $errors->first('date_arrival') }}</strong>
+                                            <strong>{{ $errors->first('vehicle') }}</strong>
                                         </span>
                                     @endif
                                 </div>
