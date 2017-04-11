@@ -24,7 +24,7 @@
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('name') ? 'error' : '' }}">
-                                    <label>Nombre completo</label>
+                                    <label>Nombre</label>
                                     <input type="text" name="name" placeholder="{{ $visitor->name }}">
                                     @if ($errors->has('name'))
                                         <span class="ui error message">

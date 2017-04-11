@@ -18,8 +18,8 @@
                         <form class="ui form error" role="form" method="POST" action="{{ route('visitors.store') }}">
                             {{ csrf_field() }}
                             <div class="field {{ $errors->has('name') ? 'error' : '' }}">
-                                <label>Nombre completo</label>
-                                <input type="text" name="name" value="{{ old('name') }}" autofocus>
+                                <label>Nombre</label>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Nombre completo del visitante" autofocus>
                                 @if ($errors->has('name'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('name') }}</strong>

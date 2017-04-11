@@ -16,12 +16,6 @@
                 <div class="ui relaxed divided list">
                     <div class="item">
                         <div class="content">
-                            <div class="header">ID</div>
-                            <div class="description">{{ $visitor->id }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
                             <div class="header">Nombre</div>
                             <div class="description">{{ $visitor->name }}</div>
                         </div>
