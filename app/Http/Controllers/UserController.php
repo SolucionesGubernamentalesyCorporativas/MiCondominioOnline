@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Membership;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
@@ -29,7 +31,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $memberships = Membership::all();
+        $roles = Role::all();
+        return view('users.create')->with('memberships', $memberships)
+                                    ->with('roles', $roles);
     }
 
     /**
@@ -74,7 +79,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $user = User::find($user->id);
-        return view('users.edit')->with('user', $user);
+        $memberships = Membership::all();
+        $roles = Role::all();
+        return view('users.edit')->with('user', $user)
+                                ->with('memberships', $memberships)
+                                ->with('roles', $roles);
     }
 
     /**

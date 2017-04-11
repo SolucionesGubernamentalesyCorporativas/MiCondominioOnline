@@ -1,83 +1,118 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Añadir usuario</h5>
-        <a class="btn btn-default pull-right" href="{{ route('users.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir usuario</div>
+                <a class="ui right floated blue button" href="{{ route('users.index') }}">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('users.store') }}">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Nombre</label>
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" placeholder="Primer nombre" value="{{ old('name') }}" autofocus>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui centered grid">
+                    <div class="ten wide column">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('users.store') }}">
+                            {{ csrf_field() }}
+                            <div class="field {{ $errors->has('name') ? 'error' : '' }}">
+                                <label>Nombre</label>
+                                <input type="text" name="name" value="{{ old('name') }}" autofocus>
+                                @if ($errors->has('name'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('lastname') ? 'error' : '' }}">
+                                <label>Apellido</label>
+                                <input type="text" name="lastname" value="{{ old('lastname') }}" autofocus>
+                                @if ($errors->has('lastname'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('lastname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('email') ? 'error' : '' }}">
+                                <label>Correo electrónico</label>
+                                <input type="email" name="email" value="{{ old('email') }}">
+                                @if ($errors->has('email'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('phone') ? 'error' : '' }}">
+                                <label>Teléfono</label>
+                                <input type="text" name="phone" value="{{ old('phone') }}">
+                                @if ($errors->has('phone'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('membership_id') ? 'error' : '' }}">
+                                <label>Membresia</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="membership_id" value="{{ old('membership_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona una membresia</div>
+                                    <div class="menu">
+                                        @foreach($memberships as $membership)
+                                            <div class="item" data-value="{{ $membership->id }}">{{ $membership->typeOfMembership->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('membership_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('membership_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <div class="field {{ $errors->has('role_id') ? 'error' : '' }}">
+                                <label>Rol</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="role_id" value="{{ old('role_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona un rol</div>
+                                    <div class="menu">
+                                        @foreach($roles as $role)
+                                            <div class="item" data-value="{{ $role->id }}">{{ $role->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('role_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <div class="field {{ $errors->has('password') ? 'error' : '' }}">
+                                <label>Contraseña</label>
+                                <input type="password" name="password">
+                                @if ($errors->has('password'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('password_confirmation') ? 'error' : '' }}">
+                                <label>Confirmar contraseña</label>
+                                <input type="password" name="password_confirmation">
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <button class="ui submit blue button" type="submit">Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="lastname" class="col-md-4 control-label">Apellido</label>
-                <div class="col-md-6">
-                    <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Apellido paterno" value="{{ old('lastname') }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email" class="col-md-4 control-label">Correo Electrónico</label>
-                <div class="col-md-6">
-                    <input id="email" type="email" class="form-control" name="email" placeholder="Ejemplo: condominio@plus.com" value="{{ old('email') }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="phone" class="col-md-4 control-label">Teléfono</label>
-                <div class="col-md-6">
-                    <input id="phone" type="numeric" class="form-control" name="phone" placeholder="Ejemplo: (442)1112233" value="{{ old('phone') }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="membership" class="col-md-4 control-label">Membresia</label>
-                <div class="col-md-6">
-                    <input id="membership" type="radio" name="membership_id" value="1" checked> Premium 
-                    <input id="membership" type="radio" name="membership_id" value="2"> Avanzada 
-                    <input id="membership" type="radio" name="membership_id" value="3"> Basica 
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="role" class="col-md-4 control-label">Rol</label>
-                <div class="col-md-6">
-                    <input id="role" type="radio" name="role_id" value="1" checked> Administrador 
-                    <input id="role" type="radio" name="role_id" value="2"> Condomino 
-                    <input id="role" type="radio" name="role_id" value="3"> Residente 
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password" class="col-md-4 control-label">Contraseña</label>
-                <div class="col-md-6">
-                    <input id="password" type="password" class="form-control" name="password">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
-                <div class="col-md-6">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Añadir usuario
-                    </button>
-                </div>
-            </div>
-        </form>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        </div>
     </div>
-</div>                 
+</div>
 @endsection
