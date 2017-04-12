@@ -1,56 +1,84 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Añadir condominio</h5>
-        <a class="btn btn-default pull-right" href="{{ route('estates.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir condominio</div>
+                <a class="ui right floated blue button" href="{{ route('estates.index') }}">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('estates.store') }}">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="number" class="col-md-4 control-label">Numero</label>
-                <div class="col-md-6">
-                    <input id="number" type="numeric" class="form-control" name="number" placeholder="Ejemplo: Blvd. Centro Sur #120" value="{{ old('number') }}" autofocus>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui centered grid">
+                    <div class="ten wide column">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('estates.store') }}">
+                            {{ csrf_field() }}
+                            <div class="field {{ $errors->has('number') ? 'error' : '' }}">
+                                <label>Numero</label>
+                                <input type="text" name="number" value="{{ old('number') }}" placeholder="Ejemplo: Blvd. Centro Sur #120">
+                                @if ($errors->has('number'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('rented') ? 'error' : '' }}">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" name="rented" tabindex="0" class="hidden" value="1">
+                                    <label>Rentado</label>
+                                    @if ($errors->has('rented'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('rented') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="field {{ $errors->has('number_of_parking_lots') ? 'error' : '' }}">
+                                <label>Numero</label>
+                                <input type="text" name="number_of_parking_lots" value="{{ old('number_of_parking_lots') }}" placeholder="Numero de lugares de estacionamiento">
+                                @if ($errors->has('number_of_parking_lots'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('number_of_parking_lots') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('notes') ? 'error' : '' }}">
+                                <label>Notas</label>
+                                <input type="text" name="notes" value="{{ old('notes') }}" placeholder="Referentes al condominio">
+                                @if ($errors->has('notes'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('notes') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('type_of_estate_id') ? 'error' : '' }}">
+                                <label>Tipo de condominio asociado</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="type_of_estate_id" value="{{ old('type_of_estate_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona un tipo de condominio</div>
+                                    <div class="menu">
+                                        @foreach($typeofestates as $typeofestate)
+                                            <div class="item" data-value="{{ $typeofestate->id }}">{{ $typeofestate->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('type_of_estate_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('type_of_estate_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <button class="ui submit blue button" type="submit">Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="rented" class="col-md-4 control-label">Rentado</label>
-                <div class="col-md-6">
-                    <input id="rented" type="radio" name="rented" value="0" checked> No
-                    <input id="rented" type="radio" name="rented" value="1"> Si  
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="number_of_parking_lots" class="col-md-4 control-label">Lugares de estacionamiento</label>
-                <div class="col-md-6">
-                    <input id="number_of_parking_lots" type="numeric" class="form-control" name="number_of_parking_lots" placeholder="¿Cuantos lugares de estacionamiento tiene?" value="{{ old('number_of_parking_lots') }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="notes" class="col-md-4 control-label">Notas</label>
-                <div class="col-md-6">
-                    <input id="notes" type="text" class="form-control" name="notes" placeholder="Agrega alguna nota" value="{{ old('notes') }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Añadir condominio
-                    </button>
-                </div>
-            </div>
-        </form>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        </div>
     </div>
-</div>                 
+</div>
 @endsection

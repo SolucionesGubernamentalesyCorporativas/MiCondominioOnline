@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Estate extends Model
 {
     protected $fillable = [
-        'number', 'rented', 'number_of_parking_lots', 'notes'
+        'number', 'rented', 'number_of_parking_lots', 'notes', 'type_of_estate_id'
     ];
     
     public function typeOfEstate()

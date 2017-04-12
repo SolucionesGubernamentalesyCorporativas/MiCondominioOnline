@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Estate;
+use App\TypeOfEstate;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEstate;
 use App\Http\Requests\UpdateEstate;
@@ -27,7 +28,8 @@ class EstateController extends Controller
      */
     public function create()
     {
-        return view('estates.create');
+        $typeofestates = TypeOfEstate::all();
+        return view('estates.create')->with('typeofestates', $typeofestates);
     }
 
     /**
@@ -64,7 +66,9 @@ class EstateController extends Controller
     public function edit(Estate $estate)
     {
         $estate = Estate::find($estate->id);
-        return view('estates.edit')->with('estate', $estate);
+        $typeofestates = TypeOFEstate::all();
+        return view('estates.edit')->with('estate', $estate)
+                                    ->with('typeofestates', $typeofestates);
     }
 
     /**

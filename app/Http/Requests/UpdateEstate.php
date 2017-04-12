@@ -27,7 +27,8 @@ class UpdateEstate extends FormRequest
             'number' => 'string',
             'rented' => 'boolean',
             'number_of_parking_lots' => 'numeric',
-            'notes' => 'string'
+            'notes' => 'string',
+            'type_of_estate_id' => 'numeric'
         ];
     }
 }
