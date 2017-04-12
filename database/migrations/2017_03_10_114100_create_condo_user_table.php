@@ -14,13 +14,14 @@ class CreateCondoUserTable extends Migration
     public function up()
     {
         Schema::create('condo_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('condo_id');
+            $table->unsignedBigInteger('condo_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+
             $table->foreign('condo_id')
             ->references('id')
             ->on('condos')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')
             ->on('users')

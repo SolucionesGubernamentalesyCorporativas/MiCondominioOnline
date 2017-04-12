@@ -3,10 +3,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading">Inicio</div>
-    <div class="panel-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, repellendus.</p>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div class="ui left floated header">Inicio</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, fugit.
+            </div>
+        </div>
     </div>
 </div>
 @endsection

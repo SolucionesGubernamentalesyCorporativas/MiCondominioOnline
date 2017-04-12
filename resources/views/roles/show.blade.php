@@ -1,17 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Rol {{ $role->name }}</h5>
-        <a class="btn btn-default pull-right" href="{{ route('roles.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Rol {{ $role->name }}</div>
+                <a href="{{ route('roles.index') }}" class="ui right floated blue button">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <div class="list-group">
-            <div class="list-group-item">ID: {{ $role->id }}</div>
-            <div class="list-group-item">Membresia: {{ $role->permission_id }}</div>
-            <div class="list-group-item">Rol: {{ $role->name}} </div>
-            <div class="list-group-item">Fecha De Creación: {{ $role->created_at }}</div>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Nombre</div>
+                            <div class="description">{{ $role->name }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Permiso</div>
+                            <div class="description">{{ count($role->permission) == 1 ? $role->permission->name : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Usuarios</div>
+                            @if(count($role->users) >= 1)
+                                <div class="description">Usuarios con este rol</div>
+                                <div class="list">
+                                    @foreach($role->users as $user)
+                                        <div class="item">
+                                            <div class="description">{{ $user->name . ' ' . $user->lastname }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun usuario asociado a la transacción</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Fecha de creación</div>
+                            <div class="description">{{ $role->created_at }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

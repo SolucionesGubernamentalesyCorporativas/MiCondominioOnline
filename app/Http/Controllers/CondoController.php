@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Condo;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCondo;
+use App\Http\Requests\UpdateCondo;
 
 class CondoController extends Controller
 {
@@ -15,7 +17,7 @@ class CondoController extends Controller
     public function index()
     {
         $data = Condo::all();
-        return view('condos.index', compact('data'));
+        return view('condos.index')->with('data', $data);
     }
 
     /**
@@ -34,13 +36,8 @@ class CondoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCondo $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'direction' => 'required'
-        ]);
-
         Condo::create($request->all());
         return redirect()->route('condos.index')
                         ->with('success', 'Item created successfully');
@@ -54,8 +51,8 @@ class CondoController extends Controller
      */
     public function show(Condo $condo)
     {
-        $condo = Condo::find($condo);
-        return view('condos.show', compact('condo'));
+        $condo = Condo::find($condo->id);
+        return view('condos.show')->with('condo', $condo);
     }
 
     /**
@@ -66,8 +63,8 @@ class CondoController extends Controller
      */
     public function edit(Condo $condo)
     {
-        $condo = Condo::find($condo);
-        return view('condos.edit', compact('condo'));
+        $condo = Condo::find($condo->id);
+        return view('condos.edit')->with('condo', $condo);
     }
 
     /**
@@ -77,14 +74,9 @@ class CondoController extends Controller
      * @param  \App\Condo  $condo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Condo $condo)
+    public function update(UpdateCondo $request, Condo $condo)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'direction' => 'required'
-        ]);
-
-        Condo::find($condo)->update($request->all());
+        Condo::find($condo->id)->update($request->all());
         return redirect()->route('condos.index')
                         ->with('success', 'Item updated successfully');
     }
@@ -97,7 +89,7 @@ class CondoController extends Controller
      */
     public function destroy(Condo $condo)
     {
-        Condo::find($condo)->delete();
+        Condo::find($condo->id)->delete();
         return redirect()->route('condos.index')
                         ->with('success', 'Item deleted successfully');
     }

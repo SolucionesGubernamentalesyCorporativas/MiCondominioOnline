@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeOfVisitorsTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTypeOfVisitorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_of_visitors', function (Blueprint $table) {
+        Schema::create('transactions', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name');
-            $table->text('description');
+            $table->text('observations');
+            $table->float('ammount');
+            $table->boolean('verified')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ class CreateTypeOfVisitorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_of_visitors');
+        Schema::dropIfExists('transactions');
     }
 }

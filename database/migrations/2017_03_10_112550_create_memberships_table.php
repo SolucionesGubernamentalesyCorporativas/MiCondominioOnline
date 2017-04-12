@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnlockedFeaturesTable extends Migration
+class CreateMembershipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateUnlockedFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('unlocked_features', function(Blueprint $table) {
+        Schema::create('memberships', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +29,6 @@ class CreateUnlockedFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropifExists('unlocked_features');
+        Schema::dropIfExists('memberships');
     }
 }

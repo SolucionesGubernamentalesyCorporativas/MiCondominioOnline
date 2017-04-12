@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'email', 'phone', 'password',
+        'name', 'lastname', 'email', 'phone', 'password', 'membership_id', 'role_id'
     ];
 
     /**
@@ -35,7 +35,7 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne('App\Role');
+        return $this->belongsTo('App\Role');
     }
 
     public function estates()
@@ -53,7 +53,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Transaction');
     }
 
-    public function visitor()
+    public function visitors()
     {
         return $this->hasMany('App\Visitor');
     }

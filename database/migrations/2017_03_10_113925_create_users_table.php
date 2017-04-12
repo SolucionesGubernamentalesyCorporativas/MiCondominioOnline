@@ -15,26 +15,27 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('membership_id')->nullable();
-            $table->foreign('membership_id')
-            ->references('id')
-            ->on('memberships')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->unsignedBigInteger('role_id')->nullable();
-            $table->foreign('role_id')
-            ->references('id')
-            ->on('roles')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            $table->unsignedBigInteger('membership_id')->default('3');
+            $table->unsignedBigInteger('role_id')->default('3');
             $table->text('name');
             $table->text('lastname');
-            $table->text('email');
+            $table->string('email')->unique();
             $table->string('phone');
             $table->text('password');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('membership_id')
+            ->references('id')
+            ->on('memberships')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreign('role_id')
+            ->references('id')
+            ->on('roles')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

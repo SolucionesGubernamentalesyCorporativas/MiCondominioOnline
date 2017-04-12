@@ -15,23 +15,18 @@ class CreateVisitorsTable extends Migration
     {
         Schema::create('visitors', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('type_of_visitor_id');
-            $table->foreign('type_of_visitor_id')
-            ->references('id')
-            ->on('type_of_visitors')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->text('name');
+            $table->date('date_arrival');
+            $table->boolean('vehicle')->default(0);
+            $table->timestamps();
+            $table->softDeletes();
+
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->text('name');
-            $table->date('date_arrival');
-            $table->boolean('vehicle');
-            $table->timestamps();
-            $table->softDeletes();
         });
     }
 

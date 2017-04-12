@@ -14,13 +14,14 @@ class CreateTransactionUserTable extends Migration
     public function up()
     {
         Schema::create('transaction_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('transaction_id');
+            $table->unsignedBigInteger('transaction_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+
             $table->foreign('transaction_id')
             ->references('id')
             ->on('transactions')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')
             ->on('users')

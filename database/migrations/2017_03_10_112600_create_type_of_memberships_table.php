@@ -15,16 +15,17 @@ class CreateTypeOfMembershipsTable extends Migration
     {
         Schema::create('type_of_memberships', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('unlocked_feature_id');
-            $table->foreign('unlocked_feature_id')
-            ->references('id')
-            ->on('unlocked_features')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            $table->unsignedBigInteger('membership_id')->nullable();
             $table->text('name');
             $table->float('cost');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('membership_id')
+            ->references('id')
+            ->on('memberships')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

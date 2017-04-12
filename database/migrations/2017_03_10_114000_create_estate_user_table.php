@@ -14,13 +14,14 @@ class CreateEstateUserTable extends Migration
     public function up()
     {
         Schema::create('estate_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('estate_id');
+            $table->unsignedBigInteger('estate_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            
             $table->foreign('estate_id')
             ->references('id')
             ->on('estates')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
