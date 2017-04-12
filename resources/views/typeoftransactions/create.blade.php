@@ -1,44 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Añadir tipo de transacción</h5>
-        <a class="btn btn-default pull-right" href="{{ route('typeoftransactions.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir tipo de transacción</div>
+                <a class="ui right floated blue button" href="{{ route('typeoftransactions.index') }}">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('typeoftransactions.store') }}">
-            {{ csrf_field() }}
-             <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Nombre</label>
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" placeholder="Ejemplo: Pago de luz" value="{{ old('name') }}" autofocus>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui centered grid">
+                    <div class="ten wide column">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('typeoftransactions.store') }}">
+                            {{ csrf_field() }}
+                            <div class="field {{ $errors->has('name') ? 'error' : '' }}">
+                                <label>Nombre</label>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Ejemplo: Pago de luz" autofocus>
+                                @if ($errors->has('name'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="inline fields {{ $errors->has('income_outcome') ? 'error' : '' }}">
+                                <label>Ingreso o gasto</label>
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input type="radio" name="income_outcome" value="0" checked>
+                                        <label>Ingreso</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input type="radio" name="income_outcome" value="1">
+                                        <label>Gasto</label>
+                                    </div>
+                                </div>
+                                @if ($errors->has('income_outcome'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('income_outcome') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('transaction_id') ? 'error' : '' }}">
+                                <label>Transacción</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="transaction_id">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona una transacción</div>
+                                    <div class="menu">
+                                        @foreach($transactions as $transaction)
+                                            <div class="item" data-value="{{ $transaction->id }}">{{ $transaction->observations }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('transaction_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('transaction_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <button class="ui submit blue button" type="submit">Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="income_outcome" class="col-md-4 control-label">Ingreso o Gasto</label>
-                <div class="col-md-6">
-                    <input id="income_outcome" type="radio" name="income_outcome" value="0" checked> Ingreso
-                    <input id="income_outcome" type="radio" name="income_outcome" value="1"> Gasto  
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Añadir tipo de transacción
-                    </button>
-                </div>
-            </div>
-        </form>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        </div>
     </div>
-</div>                 
+</div>
 @endsection

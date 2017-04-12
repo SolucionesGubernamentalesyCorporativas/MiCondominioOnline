@@ -25,7 +25,8 @@ class UpdateTypeOfTransaction extends FormRequest
     {
         return [
             'name' => 'string',
-            'income_outcome' => 'boolean'
+            'income_outcome' => 'boolean',
+            'transaction_id' => 'numeric'
         ];
     }
 }

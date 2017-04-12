@@ -1,19 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Tipo de transacción {{ $typeoftransaction->name }}</h5>
-        <a class="btn btn-default pull-right" href="{{ route('typeoftransactions.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de transacción {{ $typeoftransaction->name }}</div>
+                <a href="{{ route('typeoftransactions.index') }}" class="ui right floated blue button">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <li class="list-group-item">Transacción: {{ count($typeoftransaction->transaction) == 1 ? $typeoftransaction->transaction->id : 'Ninguna' }}</li>
-            <li class="list-group-item">ID: {{ $typeoftransaction->id }}</li>
-            <li class="list-group-item">Nombre: {{ $typeoftransaction->name }}</li>
-            <li class="list-group-item">Ingreso o Gasto: {{ $typeoftransaction->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</li>
-            <li class="list-group-item">Fecha De Creación: {{ $typeoftransaction->created_at }}</li>
-        </ul>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Nombre</div>
+                            <div class="description">{{ $typeoftransaction->name }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Ingreso o gasto</div>
+                            <div class="description">{{ $typeoftransaction->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Transacción</div>
+                            <div class="description">{{ count($typeoftransaction->transaction) == 1 ? $typeoftransaction->transaction->observations : 'Ninguna' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Fecha de creación</div>
+                            <div class="description">{{ $typeoftransaction->created_at }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

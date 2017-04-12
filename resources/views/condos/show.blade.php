@@ -1,38 +1,74 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Condomino {{ $condo->name }}</h5>
-        <a class="btn btn-default pull-right" href="{{ route('condos.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Condomino {{ $condo->name }}</div>
+                <a href="{{ route('condos.index') }}" class="ui right floated blue button">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: {{ $condo->id }}</li>
-            <li class="list-group-item">Condomino: {{ $condo->name }}</li>
-            <li class="list-group-item">Dirección: {{ $condo->direction }}</li>
-            @if(count($condo->estates) >= 1)
-                <li class="list-group-item">
-                    Condominios:
-                    @foreach($condo->estates as $estate)
-                        <li>{{ $estate->number }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Condominio: Ninguno</li>
-            @endif
-            @if(count($condo->users) >= 1)
-                <li class="list-group-item">
-                    Usuarios:
-                    @foreach($condo->users as $user)
-                        <li>{{ $user->name . ' ' . $user->lastname }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Usuarios: Ninguno</li>
-            @endif
-            <li class="list-group-item">Fecha De Creación: {{ $condo->created_at }}</li>
-        </ul>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Nombre</div>
+                            <div class="description">{{ $condo->name }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Dirección</div>
+                            <div class="description">{{ $condo->direction }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Condominios</div>
+                            @if(count($condo->estates) >= 1)
+                                <div class="description">Condominios asociados al condomino</div>
+                                <div class="list">
+                                    @foreach($condo->estates as $estate)
+                                        <div class="item">
+                                            <div class="description">{{ $estate->number }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun condominio asociado al condomino</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Usuarios</div>
+                            @if(count($condo->users) >= 1)
+                                <div class="description">Usuarios asociados al condomino</div>
+                                <div class="list">
+                                    @foreach($condo->users as $user)
+                                        <div class="item">
+                                            <div class="description">{{ $user->name . ' ' . $user->lastname }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun usuario asociado al condomino</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Fecha de creación</div>
+                            <div class="description">{{ $condo->created_at }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

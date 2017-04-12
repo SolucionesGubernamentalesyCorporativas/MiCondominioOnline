@@ -26,7 +26,8 @@ class StoreReceipt extends FormRequest
         return [
             'date' => 'required|date',
             'name_of_img' => 'required|string',
-            'type_of_img' => 'required|string'
+            'type_of_img' => 'required|string',
+            'transaction_id' => 'required|numeric'
         ];
     }
 }

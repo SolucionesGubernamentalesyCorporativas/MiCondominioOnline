@@ -1,37 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Añadir rol</h5>
-        <a class="btn btn-default pull-right" href="{{ route('roles.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir rol</div>
+                <a class="ui right floated blue button" href="{{ route('roles.index') }}">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('roles.store') }}">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Rol</label>
-                <div class="col-md-6">
-                    <input id="name" type="name" class="form-control" name="name" placeholder="Ejemplo: Administrador" value="{{ old('name') }}">
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui centered grid">
+                    <div class="ten wide column">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('roles.store') }}">
+                            {{ csrf_field() }}
+                            <div class="field {{ $errors->has('name') ? 'error' : '' }}">
+                                <label>Rol</label>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Nombre del nuevo rol" autofocus>
+                                @if ($errors->has('name'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <button class="ui submit blue button" type="submit">Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Añadir rol
-                    </button>
-                </div>
-            </div>
-        </form>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif    
+        </div>
     </div>
-</div>         
+</div> 
 @endsection

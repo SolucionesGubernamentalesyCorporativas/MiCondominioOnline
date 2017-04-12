@@ -1,44 +1,61 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Condominios</h5>
-        <a class="btn btn-default pull-right" href="{{ route('estates.create') }}">Añadir condominio</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Condominios</div>
+                <a class="ui right floated blue button" href="{{ route('estates.create') }}">Añadir condominio</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        @if($data)
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>Numero</td>
-                        <td>Rentado</td>
-                        <td>Lugares de Estacionamiento</td>
-                        <td>Notas</td>
-                        <td>Opciones</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($data as $row)   
-                    <tr>
-                        <td>{{ $row->number }}</td>
-                        <td>{{ $row->rented == 0 ? 'No' : 'Si' }}</td>
-                        <td>{{ $row->number_of_parking_lots }}</td>
-                        <td>{{ $row->notes }}</td>
-                        <td>
-                            <a class="btn btn-info" href="{{ route('estates.show', $row->id) }}">Info</a>
-                            <a class="btn btn-primary" href="{{ route('estates.edit', $row->id) }}">Editar</a>
-                            <form method="POST" action="{{ route('estates.destroy', $row->id) }}" style="display: inline;">
-                                {{ method_field('DELETE')}}
-                                {{ csrf_field() }}
-                                <button type="submit" class="btn btn-danger">Borrar</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
-            </table>
-        @endif
+    <div class="row">
+        <div class="column">
+            @if($data)
+                <table class="ui five column selectable blue table">
+                    <thead>
+                        <tr>
+                            <th>Numero</th>
+                            <th>Rentado</th>
+                            <th>Lugares de Estacionamiento</th>
+                            <th>Notas</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data as $row)   
+                            <tr>
+                                <td>{{ $row->number }}</td>
+                                <td>{{ $row->rented == 0 ? 'No' : 'Si' }}</td>
+                                <td>{{ $row->number_of_parking_lots }}</td>
+                                <td>{{ $row->notes }}</td>
+                                <td>
+                                    <div class="ui small buttons">
+                                        <a class="ui green button" href="{{ route('estates.show', $row->id) }}">Info</a>
+                                        <a class="ui blue button" href="{{ route('estates.edit', $row->id) }}">Editar</a>
+                                        <form method="POST" action="{{ route('estates.destroy', $row->id) }}" style="display: inline;">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="ui red button">Borrar</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+        </div>
     </div>
+    @if(session('success'))
+        <div class="row">
+            <div class="column">
+                <div class="ui success message">
+                    <p>{{ session('success') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 @endsection

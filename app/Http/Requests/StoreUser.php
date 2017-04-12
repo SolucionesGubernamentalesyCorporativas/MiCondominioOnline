@@ -29,8 +29,8 @@ class StoreUser extends FormRequest
             'email' => 'required|email|unique:users',
             'phone' => 'required|numeric',
             'password' => 'required|confirmed|alpha_dash|min:8',
-            'membership_id' => 'required',
-            'role_id' => 'required'
+            'membership_id' => 'required|numeric',
+            'role_id' => 'required|numeric'
         ];
     }
 }

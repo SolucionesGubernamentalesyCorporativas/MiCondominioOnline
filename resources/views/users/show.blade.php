@@ -1,92 +1,183 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Usuario {{ $user->name }}</h5>
-        <a class="btn btn-default pull-right" href="{{ route('users.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Usuario {{ $user->name . ' ' . $user->lastname }}</div>
+                <a href="{{ route('users.index') }}" class="ui right floated blue button">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: {{ $user->id }}</li>
-            <li class="list-group-item">Nombre: {{ $user->name }}</li>
-            <li class="list-group-item">Apellido: {{ $user->lastname }}</li>
-            <li class="list-group-item">Correo Electrónico: {{ $user->email }}</li>
-            <li class="list-group-item">Teléfono: {{ $user->phone }}</li>
-            <li class="list-group-item">Membresia: {{ count($user->membership) == 1 ? $user->membership->typeOFMembership->name : 'Ninguno' }}</li>
-            <li class="list-group-item">Rol: {{ count($user->role) == 1 ? $user->role->name : 'Ninguno' }}</li>
-            @if(count($user->estates) >= 1)
-                <li class="list-group-item">
-                    Condominios: 
-                    @foreach($user->estates as $estate)
-                        <li>{{ $estate->number }}</li> 
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Condominios: Ninguno</li>
-            @endif
-            @if(count($user->condos) >= 1)
-                <li class="list-group-item">
-                    Condominos: 
-                    @foreach($user->condos as $condo)
-                        <li>{{ $condo->name }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Condominos: Ninguno</li>
-            @endif
-            @if(count($user->transactions) >= 1)
-                <li class="list-group-item">
-                    Transacciones: 
-                    @foreach($user->transactions as $transaction)
-                        <li>{{ $transaction->typeOfTransaction->name }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Transacciones: Ninguna</li>
-            @endif
-            @if(count($user->visitors) >= 1)
-                <li class="list-group-item">
-                    Visitantes: 
-                    @foreach($user->visitors as $visitor)
-                        <li>{{ $visitor->name }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Visitantes: Ninguno</li>
-            @endif
-            @if(count($user->assets) >= 1)
-                <li class="list-group-item">
-                    Activos: 
-                    @foreach($user->assets as $asset)
-                        <li>{{ $asset->name }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Activos: Ninguno</li>
-            @endif
-            @if(count($user->announcements) >= 1)
-                <li class="list-group-item">
-                    Anuncios: 
-                    @foreach($user->announcements as $announcement)
-                        <li>{{ $announcement->title }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Anuncios: Ninguno</li>
-            @endif
-            @if(count($user->resources) >= 1)
-                <li class="list-group-item">
-                    Recursos: 
-                    @foreach($user->resources as $resource)
-                        <li>{{ $resource->typeOfResource->name }}</li>
-                    @endforeach
-                </li>
-            @else
-                <li class="list-group-item">Recursos: Ninguno</li>
-            @endif
-            <li class="list-group-item">Fecha De Creación: {{ $user->created_at }}</li>
-        </ul>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Nombre</div>
+                            <div class="description">{{ $user->name }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Apellido</div>
+                            <div class="description">{{ $user->lastname }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Correo electrónico</div>
+                            <div class="description">{{ $user->email }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Teléfono</div>
+                            <div class="description">{{ $user->phone }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Membresia</div>
+                            <div class="description">{{ count($user->membership) == 1 ? $user->membership->typeOfMembership->name : 'Ninguna' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Rol</div>
+                            <div class="description">{{ count($user->role) == 1 ? $user->role->name : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Condominios</div>
+                            @if(count($user->estates) >= 1)
+                                <div class="description">Condominios asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->estates as $estate)
+                                        <div class="item">
+                                            <div class="description">{{ $estate->number }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun condominio asociado al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Condominos</div>
+                            @if(count($user->condos) >= 1)
+                                <div class="description">Condominos asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->condos as $condo)
+                                        <div class="item">
+                                            <div class="description">{{ $condo->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun condomino asociado al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Transacciones</div>
+                            @if(count($user->transactions) >= 1)
+                                <div class="description">Transacciones asociadas al usuario</div>
+                                <div class="list">
+                                    @foreach($user->transactions as $transaction)
+                                        <div class="item">
+                                            <div class="description">{{ $transaction->typeOfTransaction->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ninguna transacción asociada al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Visitantes</div>
+                            @if(count($user->visitors) >= 1)
+                                <div class="description">Visitantes asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->visitors as $visitor)
+                                        <div class="item">
+                                            <div class="description">{{ $visitor->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun visitante asociado al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Activos</div>
+                            @if(count($user->assets) >= 1)
+                                <div class="description">Activos asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->assets as $asset)
+                                        <div class="item">
+                                            <div class="description">{{ $asset->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun activo asociado al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Anuncios</div>
+                            @if(count($user->announcements) >= 1)
+                                <div class="description">Anuncios asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->announcements as $announcement)
+                                        <div class="item">
+                                            <div class="description">{{ $announcement->title }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun anuncio asociado al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Recurso</div>
+                            @if(count($user->resources) >= 1)
+                                <div class="description">Recursos asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->resources as $resource)
+                                        <div class="item">
+                                            <div class="description">{{ $resource->typeOfResource->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun recurso asociado al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Fecha de creación</div>
+                            <div class="description">{{ $user->created_at }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

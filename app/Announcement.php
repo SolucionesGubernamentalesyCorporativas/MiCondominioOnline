@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Announcement extends Model
 {
     protected $fillable = [
-        'title', 'url_of_content'
+        'title', 'url_of_content', 'user_id'
     ];
 
     public function user()

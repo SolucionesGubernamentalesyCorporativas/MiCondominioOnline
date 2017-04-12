@@ -27,7 +27,8 @@ class StoreEstate extends FormRequest
             'number' => 'required|string',
             'rented' => 'required|boolean',
             'number_of_parking_lots' => 'required|numeric',
-            'notes' => 'required|string'
+            'notes' => 'required|string',
+            'type_of_estate_id' => 'required|numeric'
         ];
     }
 }

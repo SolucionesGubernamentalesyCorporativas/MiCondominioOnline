@@ -1,19 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Anuncio {{ $announcement->title }}</h5>
-        <a class="btn btn-default pull-right" href="{{ route('announcements.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Anuncio {{ $announcement->title }}</div>
+                <a href="{{ route('announcements.index') }}" class="ui right floated blue button">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: {{ $announcement->id }}</li>
-            <li class="list-group-item">Titulo: {{ $announcement->title }}</li>
-            <li class="list-group-item">URL: {{ $announcement->url_of_content }}</li>
-            <li class="list-group-item">Usuario: {{ count($announcement->user_id) == 1 ? $announcement->user->name . ' ' . $announcement->user->lastname : 'Ninguno'}}</li>
-            <li class="list-group-item">Fecha De Creación: {{ $announcement->created_at }}</li>
-        </ul>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Titulo</div>
+                            <div class="description">{{ $announcement->title }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">URL</div>
+                            <div class="description">{{ $announcement->url_of_content }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Usuario propietario del anuncio</div>
+                            <div class="description">{{ count($announcement->user_id) == 1 ? $announcement->user->name . ' ' . $announcement->user->lastname : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Fecha de creación</div>
+                            <div class="description">{{ $announcement->created_at }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

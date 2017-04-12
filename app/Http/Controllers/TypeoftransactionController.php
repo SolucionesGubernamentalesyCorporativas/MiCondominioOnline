@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TypeOfTransaction;
+use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTypeOfTransaction;
 use App\Http\Requests\UpdateTypeOfTransaction;
@@ -27,7 +28,8 @@ class TypeOfTransactionController extends Controller
      */
     public function create()
     {
-        return view('typeoftransactions.create');
+        $transactions = Transaction::all();
+        return view('typeoftransactions.create')->with('transactions', $transactions);
     }
 
     /**
@@ -64,7 +66,9 @@ class TypeOfTransactionController extends Controller
     public function edit(TypeOfTransaction $typeoftransaction)
     {
         $typeoftransaction = TypeOfTransaction::find($typeoftransaction->id);
-        return view('typeoftransactions.edit')->with('typeoftransaction' , $typeoftransaction);
+        $transactions = Transaction::all();
+        return view('typeoftransactions.edit')->with('typeoftransaction' , $typeoftransaction)
+                                            ->with('transactions', $transactions);
     }
 
     /**

@@ -1,44 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Usuarios</h5>
-        <a class="btn btn-default pull-right" href="{{ route('users.create') }}">Añadir usuario</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Usuarios</div>
+                <a class="ui right floated blue button" href="{{ route('users.create') }}">Añadir usuario</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        @if($data)
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Apellido</td>
-                        <td>E-mail</td>
-                        <td>Telefono</td>
-                        <td>Opciones</td>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($data as $row)   
-                    <tr>
-                        <td>{{ $row->name }}</td>
-                        <td>{{ $row->lastname }}</td>
-                        <td>{{ $row->email }}</td>
-                        <td>{{ $row->phone }}</td>
-                        <td>
-                            <a class="btn btn-info" href="{{ route('users.show', $row->id) }}">Info</a>
-                            <a class="btn btn-primary" href="{{ route('users.edit', $row->id) }}">Editar</a>
-                            <form method="POST" action="{{ route('users.destroy', $row->id) }}" style="display: inline;">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button type="submit" class="btn btn-danger">Borrar</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
-            </table>
-        @endif
+    <div class="row">
+        <div class="column">
+            @if($data)
+                <div class="ui blue segment">
+                    <div class="ui four cards">
+                        @foreach($data as $row)
+                            <div class="card">
+                                <div class="content">
+                                    <a href="{{ route('users.show', $row->id) }}"><div class="header">{{ $row->name . ' ' . $row->lastname }}</div></a>
+                                    <div class="meta">{{ $row->role->name }}</div>
+                                    <div class="description">Correo electrónico: {{ $row->email }}</div>
+                                </div>
+                                <div class="extra content">
+                                    <div class="ui two buttons">
+                                        <a class="ui green basic button" href="{{ route('users.edit', $row->id) }}">Editar</a>
+                                        <form id="destroy_{{ $row->id }}" method="POST" action="{{ route('users.destroy', $row->id) }}">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                        </form>
+                                        <button form="destroy_{{ $row->id }}" type="submit" class="ui red basic button">Borrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
+    @if(session('success'))
+        <div class="row">
+            <div class="column">
+                <div class="ui success message">
+                    <p>{{ session('success') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 @endsection
