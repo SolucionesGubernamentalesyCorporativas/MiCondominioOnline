@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Receipt;
+use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreReceipt;
 use App\Http\Requests\UpdateReceipt;
@@ -27,7 +28,8 @@ class ReceiptController extends Controller
      */
     public function create()
     {
-        return view('receipts.create');
+        $transactions = Transaction::all();
+        return view('receipts.create')->with('transactions', $transactions);
     }
 
     /**
@@ -64,7 +66,9 @@ class ReceiptController extends Controller
     public function edit(Receipt $receipt)
     {
         $receipt = Receipt::find($receipt->id);
-        return view('receipts.edit')->with('receipt', $receipt);
+        $transactions = Transaction::all();
+        return view('receipts.edit')->with('receipt', $receipt)
+                                    ->with('transactions', $transactions);
     }
 
     /**

@@ -1,20 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Recibo {{ $receipt->name_of_img }}</h5>
-        <a class="btn btn-default pull-right" href="{{ route('receipts.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Recibo {{ $receipt->name_of_img }}</div>
+                <a href="{{ route('receipts.index') }}" class="ui right floated blue button">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: {{ $receipt->id }}</li>
-            <li class="list-group-item">Fecha: {{ $receipt->date }}</li>
-            <li class="list-group-item">Nombre de la imagen: {{ $receipt->name_of_img }}</li>
-            <li class="list-group-item">Tipo de imagen: {{ $receipt->type_of_img }}</li>
-            <li class="list-group-item">Transacción: {{ count($receipt->transaction) == 1 ? $receipt->transaction->id : 'Ninguna' }}</li>
-            <li class="list-group-item">Fecha de Creación: {{ $receipt->created_at }}</li>
-        </ul>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Fecha</div>
+                            <div class="description">{{ $receipt->name }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Nombre de la imagen</div>
+                            <div class="description">{{ $receipt->name_of_img }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Tipo de la imagen</div>
+                            <div class="description">{{ $receipt->type_of_img }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Transacción</div>
+                            <div class="description">{{ count($receipt->transaction) == 1 ? $receipt->transaction->observations : 'Ninguna' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Fecha de creación</div>
+                            <div class="description">{{ $receipt->created_at }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
