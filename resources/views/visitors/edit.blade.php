@@ -47,7 +47,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('date_arrival') ? 'error' : '' }}">
                                     <label>Fecha de llegada</label>
-                                    <input type="date" name="date_arrival" placeholder="{{ $visitor->date_arrival }}">
+                                    <input type="date" name="date_arrival" value="{{ $visitor->date_arrival }}">
                                     @if ($errors->has('date_arrival'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('date_arrival') }}</strong>

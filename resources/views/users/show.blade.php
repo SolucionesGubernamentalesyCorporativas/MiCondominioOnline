@@ -41,13 +41,13 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Membresia</div>
-                            <div class="description">{{ $user->membership->typeOfMembership->name }}</div>
+                            <div class="description">{{ count($user->membership) == 1 ? $user->membership->typeOfMembership->name : 'Ninguna' }}</div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="content">
                             <div class="header">Rol</div>
-                            <div class="description">{{ $user->role->name }}</div>
+                            <div class="description">{{ count($user->role) == 1 ? $user->role->name : 'Ninguno' }}</div>
                         </div>
                     </div>
                     <div class="item">

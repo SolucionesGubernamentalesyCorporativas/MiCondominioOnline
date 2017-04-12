@@ -38,7 +38,7 @@
                             <div class="field {{ $errors->has('user_id') ? 'error' : '' }}">
                                 <label>Usuario al que visita</label>
                                 <div class="ui selection dropdown">
-                                    <input type="hidden" name="user_id">
+                                    <input type="hidden" name="user_id" value="{{ old('user_id') }}">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Selecciona un usuario</div>
                                     <div class="menu">
