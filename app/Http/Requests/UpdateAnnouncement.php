@@ -25,7 +25,8 @@ class UpdateAnnouncement extends FormRequest
     {
         return [
             'title' => 'string',
-            'url_of_content' => 'url'
+            'url_of_content' => 'url',
+            'user_id' => 'numeric'
         ];
     }
 }

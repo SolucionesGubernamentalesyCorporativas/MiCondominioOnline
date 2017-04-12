@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Announcement;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAnnouncement;
 use App\Http\Requests\UpdateAnnouncement;
@@ -27,7 +28,8 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        return view('announcements.create');
+        $users = User::all();
+        return view('announcements.create')->with('users', $users);
     }
 
     /**
@@ -64,7 +66,9 @@ class AnnouncementController extends Controller
     public function edit(Announcement $announcement)
     {
         $announcement = Announcement::find($announcement->id);
-        return view('announcements.edit')->with('announcement', $announcement);
+        $users = User::all();
+        return view('announcements.edit')->with('announcement', $announcement)
+                                        ->with('users', $users);
     }
 
     /**

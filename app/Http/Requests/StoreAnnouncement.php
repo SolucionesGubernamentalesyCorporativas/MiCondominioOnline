@@ -25,7 +25,8 @@ class StoreAnnouncement extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'url_of_content' => 'required|url'
+            'url_of_content' => 'required|url',
+            'user_id' => 'required|numeric'
         ];
     }
 }
