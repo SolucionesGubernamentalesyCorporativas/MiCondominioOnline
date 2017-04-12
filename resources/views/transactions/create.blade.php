@@ -1,50 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <h5 style="padding-top: 1.5px;" class="pull-left">Añadir transacción</h5>
-        <a class="btn btn-default pull-right" href="{{ route('transactions.index') }}">Atras</a>
+<div class="ui container">
+    <div class="row">
+        <div class="column">
+            <div class="ui clearing blue segment">
+                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir transacción</div>
+                <a class="ui right floated blue button" href="{{ route('transactions.index') }}">Atras</a>
+            </div>
+        </div>
     </div>
-    <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('transactions.store') }}">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="observations" class="col-md-4 control-label">Observaciones</label>
-                <div class="col-md-6">
-                    <input id="observations" type="text" class="form-control" name="observations" placeholder="Escribe aqui una observacion" value="{{ old('observations') }}" autofocus>
+    <div class="row">
+        <div class="column">
+            <div class="ui blue segment">
+                <div class="ui centered grid">
+                    <div class="ten wide column">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('transactions.store') }}">
+                            {{ csrf_field() }}
+                            <div class="field {{ $errors->has('observations') ? 'error' : '' }}">
+                                <label>Observaciones</label>
+                                <input type="text" name="observations" value="{{ old('observations') }}" placeholder="Describe la transacción" autofocus>
+                                @if ($errors->has('observations'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('observations') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('ammount') ? 'error' : '' }}">
+                                <label>Cantidad</label>
+                                <input type="text" name="ammount" value="{{ old('ammount') }}" placeholder="Cantidad monetaria">
+                                @if ($errors->has('ammount'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('ammount') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
+                                <label>Verificada</label>
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input type="checkbox" name="verified" value="1">
+                                        <label>Si</label>
+                                    </div>
+                                </div>
+                                @if ($errors->has('verified'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('verified') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <button class="ui submit blue button" type="submit">Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="ammount" class="col-md-4 control-label">Cantidad</label>
-                <div class="col-md-6">
-                    <input id="ammount" type="number" class="form-control" name="ammount" placeholder="Digita la cantidad" value="{{ old('ammount') }}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="verified" class="col-md-4 control-label">Verificada</label>
-                <div class="col-md-6">
-                    <input id="verified" type="radio" name="verified" value="0" checked> No 
-                    <input id="verified" type="radio" name="verified" value="1"> Si 
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Añadir transacción
-                    </button>
-                </div>
-            </div>
-        </form>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        </div>
     </div>
-</div>         
+</div>
 @endsection
