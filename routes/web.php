@@ -30,3 +30,5 @@ Route::resource('receipts', 'ReceiptController');
 Route::resource('announcements', 'AnnouncementController');
 Route::resource('typeofvisitors', 'TypeOfVisitorController');
 Route::resource('visitors', 'VisitorController');
+
+Route::resource('typeofresources', 'TypeOfResourceController');
