@@ -28,8 +28,19 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Visitante</div>
-                            <div class="description">{{ count($typeofvisitor->visitor) == 1 ? $typeofvisitor->visitor->name : 'Ninguno' }}</div>
+                            <div class="header">Visitantes</div>
+                            @if(count($typeofvisitor->visitors) >= 1)
+                                <div class="description">Visitantes asociados al tipo de visitante</div>
+                                <div class="list">
+                                    @foreach($typeofvisitor->visitors as $visitor)
+                                        <div class="item">
+                                            <div class="description">{{ $visitor->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun visitante asociado al tipo de visitante</div>
+                            @endif
                         </div>
                     </div>
                     <div class="item">

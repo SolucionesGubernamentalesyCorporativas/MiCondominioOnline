@@ -25,8 +25,7 @@ class StoreTypeOfTransaction extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'income_outcome' => 'required|boolean',
-            'transaction_id' => 'required|numeric'
+            'income_outcome' => 'required|boolean'
         ];
     }
 }

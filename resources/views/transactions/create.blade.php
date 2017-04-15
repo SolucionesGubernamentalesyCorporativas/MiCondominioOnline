@@ -49,6 +49,24 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="field {{ $errors->has('type_of_transaction_id') ? 'error' : '' }}">
+                                <label>Tipo de transacción</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="type_of_transaction_id" value="{{ old('type_of_transaction_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona un tipo de transacción</div>
+                                    <div class="menu">
+                                        @foreach($typeoftransactions as $typeoftransaction)
+                                            <div class="item" data-value="{{ $typeoftransaction->id }}">{{ $typeoftransaction->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('type_of_transaction_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('type_of_transaction_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
                             <button class="ui submit blue button" type="submit">Guardar</button>
                         </form>
                     </div>

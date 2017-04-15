@@ -53,6 +53,24 @@
                                     </span>
                                 @endif  
                             </div>
+                            <div class="field {{ $errors->has('type_of_visitor_id') ? 'error' : '' }}">
+                                <label>Tipo de visitante</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="type_of_visitor_id">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona un tipo de visitante</div>
+                                    <div class="menu">
+                                        @foreach($typeofvisitors as $typeofvisitor)
+                                            <div class="item" data-value="{{ $typeofvisitor->id }}">{{ $typeofvisitor->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('type_of_visitor_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('type_of_visitor_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
                             <div class="field {{ $errors->has('vehicle') ? 'error' : '' }}">
                                 <div class="ui toggle checkbox">
                                     <input type="checkbox" name="vehicle" tabindex="0" class="hidden" value="1">

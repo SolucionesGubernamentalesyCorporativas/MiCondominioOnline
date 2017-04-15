@@ -14,18 +14,15 @@ class TypeOfMembershipsTableSeeder extends Seeder
         DB::table('type_of_memberships')->insert(array(
             array(
                 'name' => 'Premium',
-                'cost' => '3600.00',
-                'membership_id' => '1'
+                'cost' => '3600.00'
             ),
             array(
                 'name' => 'Avanzada',
-                'cost' => '2000.00',
-                'membership_id' => '2'
+                'cost' => '2000.00'
             ),
             array(
                 'name' => 'Basica',
-                'cost' => '1200.00',
-                'membership_id' => '3'
+                'cost' => '1200.00'
             )
         ));
     }

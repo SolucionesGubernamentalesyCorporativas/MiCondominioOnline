@@ -11,8 +11,8 @@ class TypeOfMembership extends Model
         return $this->hasOne('App\UnlockedFeature');
     }
 
-    public function membership()
+    public function memberships()
     {
-        return $this->belongsTo('App\Membership');
+        return $this->hasMany('App\Membership');
     }
 }

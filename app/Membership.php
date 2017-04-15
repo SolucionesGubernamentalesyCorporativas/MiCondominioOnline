@@ -8,7 +8,7 @@ class Membership extends Model
 {
     public function typeOfMembership()
     {
-        return $this->hasOne('App\TypeOfMembership');
+        return $this->belongsTo('App\TypeOfMembership');
     }
 
     public function users()

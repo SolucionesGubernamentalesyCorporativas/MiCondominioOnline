@@ -26,10 +26,21 @@
                             <div class="description">{{ $typeoftransaction->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</div>
                         </div>
                     </div>
-                    <div class="item">
+                     <div class="item">
                         <div class="content">
-                            <div class="header">Transacción</div>
-                            <div class="description">{{ count($typeoftransaction->transaction) == 1 ? $typeoftransaction->transaction->observations : 'Ninguna' }}</div>
+                            <div class="header">Transacciones</div>
+                            @if(count($typeoftransaction->transactions) >= 1)
+                                <div class="description">Transacciones asociadas al tipo de transacción</div>
+                                <div class="list">
+                                    @foreach($typeoftransaction->transactions as $transaction)
+                                        <div class="item">
+                                            <div class="description">{{ $transaction->observations }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ninguna transacción asociada al tipo de transacción</div>
+                            @endif
                         </div>
                     </div>
                     <div class="item">

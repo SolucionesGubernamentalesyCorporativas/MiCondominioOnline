@@ -40,6 +40,12 @@
                     </div>
                     <div class="item">
                         <div class="content">
+                            <div class="header">Tipo de visitante</div>
+                            <div class="description">{{ count($visitor->typeOfVisitor) == 1 ? $visitor->typeOfVisitor->name : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
                             <div class="header">Fecha de creación</div>
                             <div class="description">{{ $visitor->created_at }}</div>
                         </div>

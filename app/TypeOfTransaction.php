@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class TypeOfTransaction extends Model
 {
     protected $fillable = [
-        'name', 'income_outcome', 'transaction_id'
+        'name', 'income_outcome'
     ];
 
-    public function transaction()
+    public function transactions()
     {
-        return $this->belongsTo('App\Transaction');
+        return $this->hasMany('App\Transaction');
     }
 }

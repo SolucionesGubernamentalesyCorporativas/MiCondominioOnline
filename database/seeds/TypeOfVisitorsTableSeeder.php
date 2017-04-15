@@ -14,18 +14,15 @@ class TypeOfVisitorsTableSeeder extends Seeder
         DB::table('type_of_visitors')->insert(array(
             array(
                 'name' => 'Familiar',
-                'description' => 'Pariente del residente',
-                'visitor_id' => '1'
+                'description' => 'Pariente del residente'
             ),
             array(
                 'name' => 'Mensajeria',
-                'description' => 'Mensajero de DHL, entra sin vehiculo',
-                'visitor_id' => '2'
+                'description' => 'Mensajero de DHL, entra sin vehiculo'
             ),
             array(
                 'name' => 'Conocido',
-                'description' => 'Amigo del residente',
-                'visitor_id' => '3'
+                'description' => 'Amigo del residente'
             )
         ));
     }

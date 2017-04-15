@@ -25,8 +25,7 @@ class StoreTypeOfVisitor extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'description' => 'required|string',
-            'visitor_id' => 'required|numeric'
+            'description' => 'required|string'
         ];
     }
 }

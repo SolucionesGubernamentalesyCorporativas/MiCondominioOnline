@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $fillable =[
-        'observations', 'ammount', 'verified'
+        'observations', 'ammount', 'verified', 'type_of_transaction_id'
     ];
     
     public function typeOfTransaction()
     {
-        return $this->hasOne('App\TypeOfTransaction');
+        return $this->belongsTo('App\TypeOfTransaction');
     }
 
     public function receipt()

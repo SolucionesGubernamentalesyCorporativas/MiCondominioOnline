@@ -69,37 +69,6 @@
                             </form>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="title">
-                            <i class="icon dropdown"></i>
-                            Editar transacción
-                        </div>
-                        <div class="content field">
-                            <form class="ui form error" role="form" method="POST" action="{{ route('typeoftransactions.update', $typeoftransaction->id) }}">
-                                {{ method_field('PUT') }}
-                                {{ csrf_field() }}
-                                <div class="eight wide field {{ $errors->has('transaction_id') ? 'error' : '' }}">
-                                    <label>Transacción</label>
-                                    <div class="ui selection dropdown">
-                                        <input type="hidden" name="transaction_id" value="{{ $typeoftransaction->transaction_id }}">
-                                        <i class="dropdown icon"></i>
-                                        <div class="default text">Selecciona una transacción</div>
-                                        <div class="menu">
-                                            @foreach($transactions as $transaction)
-                                                <div class="item" data-value="{{ $transaction->id }}">{{ $transaction->observations }}</div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('transaction_id'))
-                                        <span class="ui error message">
-                                            <strong>{{ $errors->first('transaction_id') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <button class="ui submit blue small button" type="submit">Guardar</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

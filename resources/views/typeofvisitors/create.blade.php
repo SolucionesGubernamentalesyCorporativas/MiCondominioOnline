@@ -35,24 +35,6 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="field {{ $errors->has('visitor_id') ? 'error' : '' }}">
-                                <label>Visitante</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" name="visitor_id">
-                                    <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona un visitante</div>
-                                    <div class="menu">
-                                        @foreach($visitors as $visitor)
-                                            <div class="item" data-value="{{ $visitor->id }}">{{ $visitor->name }}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @if ($errors->has('visitor_id'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('visitor_id') }}</strong>
-                                    </span>
-                                @endif  
-                            </div>
                             <button class="ui submit blue button" type="submit">Guardar</button>
                         </form>
                     </div>

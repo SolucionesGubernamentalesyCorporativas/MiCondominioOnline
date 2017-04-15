@@ -92,6 +92,37 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
+                            Editar tipo de visitante
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('visitors.update', $visitor->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="eight wide field {{ $errors->has('type_of_visitor_id') ? 'error' : '' }}">
+                                    <label>Tipo de visitante</label>
+                                    <div class="ui selection dropdown">
+                                        <input type="hidden" name="type_of_visitor_id" value="{{ $visitor->type_of_visitor_id }}">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">Selecciona un tipo de visitante</div>
+                                        <div class="menu">
+                                            @foreach($typeofvisitors as $typeofvisitor)
+                                                <div class="item" data-value="{{ $typeofvisitor->id }}">{{ $typeofvisitor->name }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('type_of_visitor_id'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('type_of_visitor_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
                             Editar vehiculo
                         </div>
                         <div class="content field">

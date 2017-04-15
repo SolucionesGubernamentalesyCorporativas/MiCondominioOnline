@@ -27,7 +27,8 @@ class StoreVisitor extends FormRequest
             'name' => 'required|string',
             'date_arrival' => 'required|date',
             'vehicle' => 'boolean',
-            'user_id' => 'required|numeric'
+            'user_id' => 'required|numeric',
+            'type_of_visitor_id' => 'required|numeric'
         ];
     }
 }

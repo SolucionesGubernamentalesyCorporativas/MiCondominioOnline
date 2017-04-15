@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class TypeOfVisitor extends Model
 {
     protected $fillable = [
-        'name', 'description', 'visitor_id'
+        'name', 'description'
     ];
 
-    public function visitor()
+    public function visitors()
     {
-        return $this->belongsTo('App\Visitor');
+        return $this->hasMany('App\Visitor');
     }
 }
