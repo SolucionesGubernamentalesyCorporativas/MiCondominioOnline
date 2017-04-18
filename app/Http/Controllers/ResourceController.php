@@ -18,7 +18,7 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        $data = Resource::all();
+        $data = Resource::paginate(12);
         return view('resources.index')->with('data', $data);
     }
 

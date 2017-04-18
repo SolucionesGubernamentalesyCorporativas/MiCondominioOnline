@@ -16,7 +16,7 @@ class TypeOfResourceController extends Controller
      */
     public function index()
     {
-        $data = TypeOfResource::all();
+        $data = TypeOfResource::paginate(12);
         return view('typeofresources.index')->with('data', $data);
     }
 

@@ -16,7 +16,7 @@ class TypeOfTransactionController extends Controller
      */
     public function index()
     {
-        $data = TypeOfTransaction::all();
+        $data = TypeOfTransaction::paginate(12);
         return view('typeoftransactions.index')->with('data', $data);
     }
 

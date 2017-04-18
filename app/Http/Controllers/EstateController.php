@@ -17,7 +17,7 @@ class EstateController extends Controller
      */
     public function index()
     {
-        $data = Estate::all();
+        $data = Estate::paginate(12);
         return view('estates.index')->with('data', $data);
     }
 

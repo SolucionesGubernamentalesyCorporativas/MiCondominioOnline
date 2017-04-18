@@ -18,7 +18,7 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        $data = Visitor::all();
+        $data = Visitor::paginate(12);
         return view('visitors.index')->with('data', $data);
     }
 

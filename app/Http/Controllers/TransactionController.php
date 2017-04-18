@@ -17,7 +17,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $data = Transaction::all();
+        $data = Transaction::paginate(12);
         return view('transactions.index')->with('data', $data);
     }
 

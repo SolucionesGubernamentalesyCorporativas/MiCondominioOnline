@@ -17,7 +17,7 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $data = Receipt::all();
+        $data = Receipt::paginate(12);
         return view('receipts.index')->with('data', $data);
     }
 

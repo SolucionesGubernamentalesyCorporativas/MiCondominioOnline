@@ -16,7 +16,7 @@ class TypeOfVisitorController extends Controller
      */
     public function index()
     {
-        $data = TypeOfVisitor::all();
+        $data = TypeOfVisitor::paginate(12);
         return view('typeofvisitors.index')->with('data', $data);
     }
 

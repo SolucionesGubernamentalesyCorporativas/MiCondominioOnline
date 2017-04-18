@@ -17,7 +17,7 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $data = Announcement::all();
+        $data = Announcement::paginate(12);
         return view('announcements.index')->with('data', $data);
     }
 

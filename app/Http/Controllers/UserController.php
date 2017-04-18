@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         // call User model
-        $data = User::all();
+        $data = User::paginate(12);
         // send to view
         return view('users.index')->with('data', $data);
     }
