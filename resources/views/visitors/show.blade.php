@@ -47,7 +47,13 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Fecha de creación</div>
-                            <div class="description">{{ $visitor->created_at }}</div>
+                            <div class="description">{{ $visitor->created_at != NULL ? $visitor->created_at->diffForHumans() : 'No registrado' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Ultima actualización</div>
+                            <div class="description">{{ $visitor->updated_at != NULL ? $visitor->updated_at->diffForHumans() : 'El registro no ha sido actualizado' }}</div>
                         </div>
                     </div>
                 </div>

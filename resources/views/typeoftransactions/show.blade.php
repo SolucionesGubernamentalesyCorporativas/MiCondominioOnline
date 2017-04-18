@@ -46,7 +46,13 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Fecha de creación</div>
-                            <div class="description">{{ $typeoftransaction->created_at }}</div>
+                            <div class="description">{{ $typeoftransaction->created_at != NULL ? $typeoftransaction->created_at->diffForHumans() : 'No registrado' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Ultima actualización</div>
+                            <div class="description">{{ $typeoftransaction->updated_at != NULL ? $typeoftransaction->updated_at->diffForHumans() : 'El registro no ha sido actualizado' }}</div>
                         </div>
                     </div>
                 </div>

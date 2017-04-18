@@ -46,7 +46,13 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Fecha de creación</div>
-                            <div class="description">{{ $role->created_at }}</div>
+                            <div class="description">{{ $role->created_at != NULL ? $role->created_at->diffForHumans() : 'No registrado' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Ultima actualización</div>
+                            <div class="description">{{ $role->updated_at != NULL ? $role->updated_at->diffForHumans() : 'El registro no ha sido actualizado' }}</div>
                         </div>
                     </div>
                 </div>
