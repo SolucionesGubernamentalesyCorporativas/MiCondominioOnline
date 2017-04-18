@@ -15,7 +15,7 @@
             <div class="ui blue segment">
                 <div class="ui centered grid">
                     <div class="ten wide column">
-                        <form class="ui form error" role="form" method="POST" action="{{ route('users.store') }}">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('receipts.store') }}">
                             {{ csrf_field() }}
                             <div class="field {{ $errors->has('date') ? 'error' : '' }}">
                                 <label>Fecha</label>
