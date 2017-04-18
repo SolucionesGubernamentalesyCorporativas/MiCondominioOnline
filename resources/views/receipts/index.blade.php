@@ -25,7 +25,7 @@
                     <tbody>
                         @foreach($data as $row)   
                             <tr>
-                                <td>{{ $row->date }}</td>
+                                <td>{{ $row->date->toFormattedDateString() }}</td>
                                 <td>{{ $row->name_of_img }}</td>
                                 <td>{{ $row->type_of_img }}</td>
                                 <td>

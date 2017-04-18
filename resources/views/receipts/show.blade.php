@@ -17,7 +17,7 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Fecha</div>
-                            <div class="description">{{ $receipt->name }}</div>
+                            <div class="description">{{ $receipt->date->toFormattedDateString() }}</div>
                         </div>
                     </div>
                     <div class="item">

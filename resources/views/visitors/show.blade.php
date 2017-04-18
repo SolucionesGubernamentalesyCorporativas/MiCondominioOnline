@@ -23,7 +23,7 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Fecha de llegada</div>
-                            <div class="description">{{ $visitor->date_arrival }}</div>
+                            <div class="description">{{ $visitor->date_arrival->diffForHumans() }}</div>
                         </div>
                     </div>
                     <div class="item">

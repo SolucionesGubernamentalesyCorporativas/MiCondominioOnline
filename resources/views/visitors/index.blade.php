@@ -26,7 +26,7 @@
                         @foreach($data as $row)   
                             <tr>
                                 <td>{{ $row->name }}</td>
-                                <td>{{ $row->date_arrival }}</td>
+                                <td>{{ $row->date_arrival->diffForHumans() }}</td>
                                 <td>{{ $row->vehicle == 0 ? 'No' : 'Si' }}</td>
                                 <td>
                                     <div class="ui small buttons">
