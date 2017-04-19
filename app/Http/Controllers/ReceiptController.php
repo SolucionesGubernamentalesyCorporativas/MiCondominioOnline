@@ -17,7 +17,13 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $data = Receipt::paginate(12);
+        if (request()->has('sort')) {
+            $data = Receipt::orderBy('date', request('sort'))
+                            ->paginate(12)
+                            ->appends('sort', request('sort'));
+        }
+        else
+            $data = Receipt::paginate(12);
         return view('receipts.index')->with('data', $data);
     }
 

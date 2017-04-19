@@ -16,7 +16,13 @@ class TypeOfTransactionController extends Controller
      */
     public function index()
     {
-        $data = TypeOfTransaction::paginate(12);
+        if (request()->has('income_outcome')) {
+            $data = TypeOfTransaction::where('income_outcome', request('income_outcome'))
+                                        ->paginate(12)
+                                        ->appends('income_outcome', request('income_outcome'));
+        }
+        else
+            $data = TypeOfTransaction::paginate(12);
         return view('typeoftransactions.index')->with('data', $data);
     }
 

@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Visitantes</div>
-                <a class="ui right floated blue button" href="{{ route('visitors.create') }}">Añadir visitante</a>
+                <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ route('typeofvisitors.index') }}">Tipos de visitante</a>
+                    <a class="ui button" href="{{ route('visitors.create') }}">Añadir visitante</a>
+                </div>
             </div>
         </div>
     </div>

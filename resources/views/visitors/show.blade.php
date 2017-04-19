@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Visitante {{ $visitor->name }}</div>
-                <a href="{{ route('visitors.index') }}" class="ui right floated blue button">Atras</a>
+                <a href="{{ route('visitors.index') }}" class="ui right floated blue button">
+                    <i class="angle left icon"></i>
+                    Atras
+                </a>
             </div>
         </div>
     </div>

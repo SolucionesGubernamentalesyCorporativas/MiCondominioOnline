@@ -6,7 +6,13 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de visitante</div>
-                <a class="ui right floated blue button" href="{{ route('typeofvisitors.create') }}">Añadir tipo de visitante</a>
+                <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ route('visitors.index') }}">
+                        <i class="angle left icon"></i>
+                        Atras
+                    </a>
+                    <a class="ui button" href="{{ route('typeofvisitors.create') }}">Añadir tipo de visitante</a>
+                </div>
             </div>
         </div>
     </div>

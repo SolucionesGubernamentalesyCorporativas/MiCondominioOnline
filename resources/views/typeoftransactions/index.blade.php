@@ -5,8 +5,33 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de transacción</div>
-                <a class="ui right floated blue button" href="{{ route('typeoftransactions.create') }}">Añadir tipo de transacción</a>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Tipos de transacciones</div>
+                <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ route('transactions.index') }}">
+                        <i class="left angle icon"></i>
+                        Atras
+                    </a>
+                    <a class="ui right floated blue button" href="{{ route('typeoftransactions.create') }}">Añadir tipo de transacción</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui secondary menu">
+                <div class="header item">Filtrar por</div>
+                <div class="ui dropdown item">
+                    Ingreso o gasto
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="{{ route('typeoftransactions.index', ['income_outcome' => '0']) }}">Ingreso</a>
+                        <a class="item" href="{{ route('typeoftransactions.index', ['income_outcome' => '1']) }}">Gasto</a>
+                    </div>
+                </div>
+                <a href="{{ route('typeoftransactions.index') }}" class="right floated item">
+                    <i class="remove icon"></i>
+                    Eliminar filtros
+                </a>
             </div>
         </div>
     </div>

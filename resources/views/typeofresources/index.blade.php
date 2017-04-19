@@ -6,7 +6,13 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de recursos</div>
-                <a class="ui right floated blue button" href="{{ route('typeofresources.create') }}">Añadir tipo de recurso</a>
+                <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ route('resources.index') }}">
+                        <i class="left angle icon"></i>
+                        Atras
+                    </a>
+                    <a class="ui right floated blue button" href="{{ route('typeofresources.create') }}">Añadir tipo de recurso</a>
+                </div>
             </div>
         </div>
     </div>

@@ -17,7 +17,18 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $data = Transaction::paginate(12);
+        if(request()->has('verified')) {
+            $data = Transaction::where('verified', request('verified'))
+                                ->paginate(12)
+                                ->appends('verified', request('verified'));
+        }
+        elseif(request()->has('sort')) {
+            $data = Transaction::orderBy('ammount', request('sort'))
+                                ->paginate(12)
+                                ->appends('sort', request('sort'));
+        }
+        else
+            $data = Transaction::paginate(12);
         return view('transactions.index')->with('data', $data);
     }
 
