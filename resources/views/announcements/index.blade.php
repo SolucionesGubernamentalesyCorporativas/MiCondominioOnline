@@ -13,34 +13,28 @@
     <div class="row">
         <div class="column">
             @if($data)
-                <table class="ui three column selectable blue table">
-                    <thead>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>URL</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data as $row)   
-                            <tr>
-                                <td>{{ $row->title }}</td>
-                                <td><a href="{{ $row->url_of_content }}">{{ $row->url_of_content }}</a></td>
-                                <td>
-                                    <div class="ui small buttons">
-                                        <a class="ui green button" href="{{ route('announcements.show', $row->id) }}">Info</a>
-                                        <a class="ui blue button" href="{{ route('announcements.edit', $row->id) }}">Editar</a>
-                                        <form method="POST" action="{{ route('announcements.destroy', $row->id) }}" style="display: inline;">
+                <div class="ui blue segment">
+                    <div class="ui two cards">
+                        @foreach($data as $row)
+                            <div class="card">
+                                <div class="content">
+                                    <div class="header">{{ $row->title }}</div>
+                                    <div class="description">{{ $row->content }}</div>
+                                </div>
+                                <div class="extra content">
+                                    <div class="ui two buttons">
+                                        <a class="ui green basic button" href="{{ route('announcements.edit', $row->id) }}">Editar</a>
+                                        <form id="destroy_{{ $row->id }}" method="POST" action="{{ route('announcements.destroy', $row->id) }}">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
-                                            <button type="submit" class="ui red button">Borrar</button>
                                         </form>
+                                        <button form="destroy_{{ $row->id }}" type="submit" class="ui red basic button">Borrar</button>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         @endforeach
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             @endif
         </div>
     </div>

@@ -42,18 +42,18 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar dirección web
+                            Editar contenido
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('announcements.update', $announcement->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="eight wide field {{ $errors->has('url_of_content') ? 'error' : '' }}">
-                                    <label>Dirección web</label>
-                                    <input type="url" name="url_of_content" placeholder="{{ $announcement->url_of_content }}">
-                                    @if ($errors->has('url_of_content'))
+                                <div class="eight wide field {{ $errors->has('content') ? 'error' : '' }}">
+                                    <label>Contenido</label>
+                                    <input type="url" name="content" placeholder="{{ $announcement->content }}">
+                                    @if ($errors->has('content'))
                                         <span class="ui error message">
-                                            <strong>{{ $errors->first('url_of_content') }}</strong>
+                                            <strong>{{ $errors->first('content') }}</strong>
                                         </span>
                                     @endif
                                 </div>
