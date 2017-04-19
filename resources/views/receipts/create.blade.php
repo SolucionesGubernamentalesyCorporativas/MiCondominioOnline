@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Añadir recibo</div>
-                <a class="ui right floated blue button" href="{{ route('receipts.index') }}">Atras</a>
+                <a class="ui right floated blue button" href="{{ route('receipts.index') }}">
+                    <i class="angle left icon"></i>
+                    Atras
+                </a>
             </div>
         </div>
     </div>
@@ -15,7 +18,7 @@
             <div class="ui blue segment">
                 <div class="ui centered grid">
                     <div class="ten wide column">
-                        <form class="ui form error" role="form" method="POST" action="{{ route('users.store') }}">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('receipts.store') }}">
                             {{ csrf_field() }}
                             <div class="field {{ $errors->has('date') ? 'error' : '' }}">
                                 <label>Fecha</label>

@@ -9,6 +9,10 @@ use App\Http\Requests\UpdateCondo;
 
 class CondoController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class CondoController extends Controller
      */
     public function index()
     {
-        $data = Condo::all();
+        $data = Condo::paginate(12);
         return view('condos.index')->with('data', $data);
     }
 

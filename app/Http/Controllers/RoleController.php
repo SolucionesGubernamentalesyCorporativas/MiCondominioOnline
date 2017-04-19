@@ -9,6 +9,10 @@ use App\Http\Requests\UpdateRole;
 
 class RoleController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $data = Role::all();
+        $data = Role::paginate(12);
         return view('roles.index')->with('data', $data);
     }
 

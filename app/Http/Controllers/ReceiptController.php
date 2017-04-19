@@ -10,6 +10,10 @@ use App\Http\Requests\UpdateReceipt;
 
 class ReceiptController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,13 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $data = Receipt::all();
+        if (request()->has('sort')) {
+            $data = Receipt::orderBy('date', request('sort'))
+                            ->paginate(12)
+                            ->appends('sort', request('sort'));
+        }
+        else
+            $data = Receipt::paginate(12);
         return view('receipts.index')->with('data', $data);
     }
 

@@ -26,7 +26,8 @@ class StoreTransaction extends FormRequest
         return [
             'observations' => 'required|string',
             'ammount' => 'required|numeric',
-            'verified' => 'required|boolean'
+            'verified' => 'required|boolean',
+            'type_of_transaction_id' => 'required|numeric'
         ];
     }
 }

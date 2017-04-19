@@ -6,7 +6,32 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Recibos</div>
-                <a class="ui right floated blue button" href="{{ route('receipts.create') }}">Añadir recibo</a>
+                <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ route('transactions.index') }}">
+                        <i class="left angle icon"></i>
+                        Atras
+                    </a>
+                    <a class="ui right floated blue button" href="{{ route('receipts.create') }}">Añadir recibo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui secondary menu">
+                <div class="header item">Ordenar por</div>
+                <div class="ui dropdown item">
+                    Fecha
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="{{ route('receipts.index', ['sort' => 'asc']) }}"><i class="sort numeric ascending icon"></i></a>
+                        <a class="item" href="{{ route('receipts.index', ['sort' => 'desc']) }}"><i class="sort numeric descending icon"></i></a>
+                    </div>
+                </div>
+                <a href="{{ route('receipts.index') }}" class="right floated item">
+                    <i class="remove icon"></i>
+                    Eliminar filtros
+                </a>
             </div>
         </div>
     </div>
@@ -25,7 +50,7 @@
                     <tbody>
                         @foreach($data as $row)   
                             <tr>
-                                <td>{{ $row->date }}</td>
+                                <td>{{ $row->date->toFormattedDateString() }}</td>
                                 <td>{{ $row->name_of_img }}</td>
                                 <td>{{ $row->type_of_img }}</td>
                                 <td>
@@ -46,14 +71,7 @@
             @endif
         </div>
     </div>
-    @if(session('success'))
-        <div class="row">
-            <div class="column">
-                <div class="ui success message">
-                    <p>{{ session('success') }}</p>
-                </div>
-            </div>
-        </div>
-    @endif
+    {{ $data->links() }}
+    @include('layouts._success')
 </div>
 @endsection

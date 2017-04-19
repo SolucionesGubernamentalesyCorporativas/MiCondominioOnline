@@ -3,15 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TypeOfVisitor extends Model
 {
+    use SoftDeletes;
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'name', 'description', 'visitor_id'
+        'name',
+        'description'
     ];
 
-    public function visitor()
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at'
+    ];
+
+    public function visitors()
     {
-        return $this->belongsTo('App\Visitor');
+        return $this->hasMany('App\Visitor');
     }
 }

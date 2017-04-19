@@ -11,6 +11,10 @@ use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +22,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        // call User model
-        $data = User::all();
-        // send to view
-        return view('users.index')->with('data', $data);
+        $roles = Role::all();
+        if (request()->has('sort')) {
+            $data = User::orderBy('name', request('sort'))
+                                ->paginate(12)
+                                ->appends('sort', request('sort'));
+        }
+        elseif (request()->has('role')) {
+            $data = User::where('role_id', request('role'))
+                                ->paginate(12)
+                                ->appends('role', request('role'));
+        }
+        else
+            $data = User::paginate(12);
+        return view('users.index')->with('data', $data)
+                                ->with('roles', $roles);
     }
 
     /**

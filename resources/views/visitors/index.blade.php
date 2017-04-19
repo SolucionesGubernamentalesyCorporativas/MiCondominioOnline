@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Visitantes</div>
-                <a class="ui right floated blue button" href="{{ route('visitors.create') }}">Añadir visitante</a>
+                <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ route('typeofvisitors.index') }}">Tipos de visitante</a>
+                    <a class="ui button" href="{{ route('visitors.create') }}">Añadir visitante</a>
+                </div>
             </div>
         </div>
     </div>
@@ -26,7 +29,7 @@
                         @foreach($data as $row)   
                             <tr>
                                 <td>{{ $row->name }}</td>
-                                <td>{{ $row->date_arrival }}</td>
+                                <td>{{ $row->date_arrival->diffForHumans() }}</td>
                                 <td>{{ $row->vehicle == 0 ? 'No' : 'Si' }}</td>
                                 <td>
                                     <div class="ui small buttons">
@@ -46,14 +49,7 @@
             @endif
         </div>
     </div>
-    @if(session('success'))
-        <div class="row">
-            <div class="column">
-                <div class="ui success message">
-                    <p>{{ session('success') }}</p>
-                </div>
-            </div>
-        </div>
-    @endif
+    {{ $data->links() }}
+    @include('layouts._success')
 </div>
 @endsection

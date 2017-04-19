@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Añadir tipo de transacción</div>
-                <a class="ui right floated blue button" href="{{ route('typeoftransactions.index') }}">Atras</a>
+                <a class="ui right floated blue button" href="{{ route('typeoftransactions.index') }}">
+                    <i class="angle left icon"></i>
+                    Atras
+                </a>
             </div>
         </div>
     </div>
@@ -45,24 +48,6 @@
                                         <strong>{{ $errors->first('income_outcome') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                            <div class="field {{ $errors->has('transaction_id') ? 'error' : '' }}">
-                                <label>Transacción</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" name="transaction_id">
-                                    <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona una transacción</div>
-                                    <div class="menu">
-                                        @foreach($transactions as $transaction)
-                                            <div class="item" data-value="{{ $transaction->id }}">{{ $transaction->observations }}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @if ($errors->has('transaction_id'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('transaction_id') }}</strong>
-                                    </span>
-                                @endif  
                             </div>
                             <button class="ui submit blue button" type="submit">Guardar</button>
                         </form>

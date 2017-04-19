@@ -15,17 +15,10 @@ class CreateTypeOfTransactionsTable extends Migration
     {
         Schema::create('type_of_transactions', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('transaction_id')->nullable();
             $table->text('name');
             $table->boolean('income_outcome')->default(0);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('transaction_id')
-            ->references('id')
-            ->on('transactions')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
         });
     }
 

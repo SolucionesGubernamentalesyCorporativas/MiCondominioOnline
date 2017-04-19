@@ -14,18 +14,15 @@ class TypeOfTransactionsTableSeeder extends Seeder
         DB::table('type_of_transactions')->insert(array(
             array(
                 'name' => 'Mantenimiento',
-                'income_outcome' => '1',
-                'transaction_id' => '1'
+                'income_outcome' => '1'
             ),
             array(
                 'name' => 'Jardinero',
-                'income_outcome' => '0',
-                'transaction_id' => '2'
+                'income_outcome' => '0'
             ),
             array(
                 'name' => 'Seguridad',
-                'income_outcome' => '0',
-                'transaction_id' => '3'
+                'income_outcome' => '0'
             ),
         ));
     }

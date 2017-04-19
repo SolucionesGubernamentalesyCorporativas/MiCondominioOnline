@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Editar usuario {{ $user->name . ' ' . $user->lastname }}</div>
-                <a class="ui right floated blue button" href="{{ route('users.index') }}">Atras</a>
+                <a class="ui right floated blue button" href="{{ route('users.index') }}">
+                    <i class="angle left icon"></i>
+                    Atras
+                </a>
             </div>
         </div>
     </div>

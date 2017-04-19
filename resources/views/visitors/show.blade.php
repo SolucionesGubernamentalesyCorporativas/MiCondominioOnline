@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Visitante {{ $visitor->name }}</div>
-                <a href="{{ route('visitors.index') }}" class="ui right floated blue button">Atras</a>
+                <a href="{{ route('visitors.index') }}" class="ui right floated blue button">
+                    <i class="angle left icon"></i>
+                    Atras
+                </a>
             </div>
         </div>
     </div>
@@ -23,7 +26,7 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Fecha de llegada</div>
-                            <div class="description">{{ $visitor->date_arrival }}</div>
+                            <div class="description">{{ $visitor->date_arrival->diffForHumans() }}</div>
                         </div>
                     </div>
                     <div class="item">
@@ -40,8 +43,20 @@
                     </div>
                     <div class="item">
                         <div class="content">
+                            <div class="header">Tipo de visitante</div>
+                            <div class="description">{{ count($visitor->typeOfVisitor) == 1 ? $visitor->typeOfVisitor->name : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
                             <div class="header">Fecha de creación</div>
-                            <div class="description">{{ $visitor->created_at }}</div>
+                            <div class="description">{{ $visitor->created_at != NULL ? $visitor->created_at->diffForHumans() : 'No registrado' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Ultima actualización</div>
+                            <div class="description">{{ $visitor->updated_at != NULL ? $visitor->updated_at->diffForHumans() : 'El registro no ha sido actualizado' }}</div>
                         </div>
                     </div>
                 </div>

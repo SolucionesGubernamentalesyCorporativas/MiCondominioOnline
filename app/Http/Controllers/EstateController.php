@@ -10,6 +10,10 @@ use App\Http\Requests\UpdateEstate;
 
 class EstateController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,7 @@ class EstateController extends Controller
      */
     public function index()
     {
-        $data = Estate::all();
+        $data = Estate::paginate(12);
         return view('estates.index')->with('data', $data);
     }
 

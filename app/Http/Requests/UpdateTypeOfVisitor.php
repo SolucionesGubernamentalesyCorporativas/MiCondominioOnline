@@ -25,8 +25,7 @@ class UpdateTypeOfVisitor extends FormRequest
     {
         return [
             'name' => 'string',
-            'description' => 'string',
-            'visitor_id' => 'numeric'
+            'description' => 'string'
         ];
     }
 }

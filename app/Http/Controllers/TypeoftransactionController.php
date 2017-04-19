@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\TypeOfTransaction;
-use App\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTypeOfTransaction;
 use App\Http\Requests\UpdateTypeOfTransaction;
 
 class TypeOfTransactionController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +20,13 @@ class TypeOfTransactionController extends Controller
      */
     public function index()
     {
-        $data = TypeOfTransaction::all();
+        if (request()->has('income_outcome')) {
+            $data = TypeOfTransaction::where('income_outcome', request('income_outcome'))
+                                        ->paginate(12)
+                                        ->appends('income_outcome', request('income_outcome'));
+        }
+        else
+            $data = TypeOfTransaction::paginate(12);
         return view('typeoftransactions.index')->with('data', $data);
     }
 
@@ -28,8 +37,7 @@ class TypeOfTransactionController extends Controller
      */
     public function create()
     {
-        $transactions = Transaction::all();
-        return view('typeoftransactions.create')->with('transactions', $transactions);
+        return view('typeoftransactions.create');
     }
 
     /**
@@ -66,9 +74,7 @@ class TypeOfTransactionController extends Controller
     public function edit(TypeOfTransaction $typeoftransaction)
     {
         $typeoftransaction = TypeOfTransaction::find($typeoftransaction->id);
-        $transactions = Transaction::all();
-        return view('typeoftransactions.edit')->with('typeoftransaction' , $typeoftransaction)
-                                            ->with('transactions', $transactions);
+        return view('typeoftransactions.edit')->with('typeoftransaction' , $typeoftransaction);
     }
 
     /**

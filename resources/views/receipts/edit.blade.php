@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Editar {{ $receipt->name_of_img }}</div>
-                <a class="ui right floated blue button" href="{{ route('receipts.index') }}">Atras</a>
+                <a class="ui right floated blue button" href="{{ route('receipts.index') }}">
+                    <i class="angle left icon"></i>
+                    Atras
+                </a>
             </div>
         </div>
     </div>
