@@ -10,5 +10,6 @@
     <a href="{{ route('visitors.index') }}" class="{{ Request::is('visitors*') ? 'item active' : 'item' }}">Visitantes</a>
     <a href="{{ route('announcements.index') }}" class="{{ Request::is('announcements*') ? 'item active' : 'item' }}">Anuncios</a>
     <a href="{{ route('resources.index') }}" class="{{ Request::is('resources*') ? 'item active' : 'item' }}">Recursos</a>
+    <a href="{{ url('/consult') }}" class="{{ Request::is('billingstatements*') ? 'item active' : 'item' }}">Estado de cuenta</a>
 </div>
 
