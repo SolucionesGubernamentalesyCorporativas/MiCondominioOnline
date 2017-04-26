@@ -4,7 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-    <h2>Estado de cuenta</h2>
+    <h1>Estado de cuenta</h1>
+    <h2>{{ $user->name . ' ' . $user->lastname}}</h2>
+    <p><small>{{ $user->email }}</small></p>
+    @foreach($user->estates as $estate)
+        <em>{{ $estate->number }}</em><br>
+    @endforeach
     <hr>
      @if(count($user->transactions) >= 1)
         <table>
