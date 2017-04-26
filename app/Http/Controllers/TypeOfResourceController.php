@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class TypeOfResourceController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     

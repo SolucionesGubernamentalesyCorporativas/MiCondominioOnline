@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEstate extends FormRequest
+class UpdateTypeOfEstate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreEstate extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,11 +24,7 @@ class StoreEstate extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|string',
-            'rented' => 'required|boolean',
-            'number_of_parking_lots' => 'required|numeric',
-            'notes' => 'string',
-            'type_of_estate_id' => 'required|numeric'
+            //
         ];
     }
 }

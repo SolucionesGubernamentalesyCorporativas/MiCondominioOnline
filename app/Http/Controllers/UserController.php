@@ -11,7 +11,8 @@ use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
 {
-    public function __construct() {
+    public function __construct() 
+    {
         $this->middleware('auth');
     }
 
@@ -61,7 +62,7 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {
         User::create([
-            'name' =>$request['name'],
+            'name' => $request['name'],
             'lastname' => $request['lastname'],
             'email' => $request['email'],
             'phone' => $request['phone'],

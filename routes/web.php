@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index');
 Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 Route::resource('condos', 'CondoController');
+Route::resource('typeofestates', 'TypeOfEstateController');
 Route::resource('estates', 'EstateController');
 Route::resource('typeoftransactions', 'TypeOfTransactionController');
 Route::resource('transactions', 'TransactionController');
@@ -32,3 +33,4 @@ Route::resource('typeofvisitors', 'TypeOfVisitorController');
 Route::resource('visitors', 'VisitorController');
 Route::resource('typeofresources', 'TypeOfResourceController');
 Route::resource('resources', 'ResourceController');
+

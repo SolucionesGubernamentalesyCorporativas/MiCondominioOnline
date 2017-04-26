@@ -5,13 +5,13 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Tipos de recursos</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Tipos de casa</div>
                 <div class="ui right floated blue buttons">
-                    <a class="ui button" href="{{ route('resources.index') }}">
+                    <a class="ui button" href="{{ route('estates.index') }}">
                         <i class="left angle icon"></i>
                         Atras
                     </a>
-                    <a class="ui right floated blue button" href="{{ route('typeofresources.create') }}">Añadir tipo de recurso</a>
+                    <a class="ui right floated blue button" href="{{ route('typeofestates.create') }}">Añadir tipo de casa</a>
                 </div>
             </div>
         </div>
@@ -19,10 +19,10 @@
     <div class="row">
         <div class="column">
             @if($data)
-                <table class="ui three column selectable blue table">
+                <table class="ui five column selectable blue table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Numero</th>
                             <th>Descripción</th>
                             <th>Opciones</th>
                         </tr>

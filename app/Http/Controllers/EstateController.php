@@ -10,7 +10,8 @@ use App\Http\Requests\UpdateEstate;
 
 class EstateController extends Controller
 {
-    public function __construct() {
+    public function __construct() 
+    {
         $this->middleware('auth');
     }
     
