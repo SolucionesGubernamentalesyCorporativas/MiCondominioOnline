@@ -25,8 +25,8 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">URL</div>
-                            <div class="description">{{ $announcement->url_of_content }}</div>
+                            <div class="header">Contenido</div>
+                            <div class="description">{{ $announcement->content }}</div>
                         </div>
                     </div>
                     <div class="item">
