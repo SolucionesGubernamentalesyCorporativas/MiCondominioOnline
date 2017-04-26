@@ -17,7 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->text('title');
-            $table->text('content');
+            $table->text('url_of_content');
             $table->timestamps();
             $table->softDeletes();
 
