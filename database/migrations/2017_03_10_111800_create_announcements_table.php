@@ -15,15 +15,15 @@ class CreateAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('estate_id')->nullable();
             $table->text('title');
             $table->text('url_of_content');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')
+            $table->foreign('estate_id')
             ->references('id')
-            ->on('users')
+            ->on('estates')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });

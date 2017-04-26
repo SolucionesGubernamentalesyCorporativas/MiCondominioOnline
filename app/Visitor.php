@@ -37,8 +37,8 @@ class Visitor extends Model
         return $this->belongsTo('App\TypeOfVisitor');
     }
 
-    public function user()
+    public function estate()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Estate');
     }
 }

@@ -63,29 +63,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Condo');
     }
-
-    public function transactions()
-    {
-        return $this->belongsToMany('App\Transaction');
-    }
-
-    public function visitors()
-    {
-        return $this->hasMany('App\Visitor');
-    }
-
-    public function assets()
-    {
-        return $this->hasMany('App\Asset');
-    }
-
-    public function announcements()
-    {
-        return $this->hasMany('App\Announcement');
-    }
-
-    public function resources()
-    {
-        return $this->hasMany('App\Resource');
-    }
 }

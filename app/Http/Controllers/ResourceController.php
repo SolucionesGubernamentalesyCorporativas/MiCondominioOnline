@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Resource;
 use App\TypeOfResource;
-use App\User;
+use App\Estate;
 use App\Http\Requests\StoreResource;
 use App\Http\Requests\UpdateResource;
 use Illuminate\Http\Request;
@@ -34,9 +34,9 @@ class ResourceController extends Controller
     public function create()
     {
         $typeofresources = TypeOfResource::all();
-        $users = User::all();
+        $estates = Estate::all();
         return view('resources.create')->with('typeofresources', $typeofresources)
-                                        ->with('users', $users);
+                                        ->with('estates', $estates);
     }
 
     /**
@@ -74,10 +74,10 @@ class ResourceController extends Controller
     {
         $resource = Resource::find($resource->id);
         $typeofresources = TypeOfResource::all();
-        $users = User::all();
+        $estates = Estate::all();
         return view('resources.edit')->with('resource', $resource)
                                     ->with('typeofresources', $typeofresources)
-                                    ->with('users', $users);
+                                    ->with('estates', $estates);
 
     }
 

@@ -55,9 +55,9 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Condominios</div>
+                            <div class="header">Casas</div>
                             @if(count($user->estates) >= 1)
-                                <div class="description">Condominios asociados al usuario</div>
+                                <div class="description">Casas asociadas al usuario</div>
                                 <div class="list">
                                     @foreach($user->estates as $estate)
                                         <div class="item">
@@ -66,15 +66,15 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun condominio asociado al usuario</div>
+                                <div class="description">Ninguna casa asociada al usuario</div>
                             @endif
                         </div>
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Condominos</div>
+                            <div class="header">Condominios</div>
                             @if(count($user->condos) >= 1)
-                                <div class="description">Condominos asociados al usuario</div>
+                                <div class="description">Condominios asociados al usuario</div>
                                 <div class="list">
                                     @foreach($user->condos as $condo)
                                         <div class="item">
@@ -83,92 +83,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun condomino asociado al usuario</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Transacciones</div>
-                            @if(count($user->transactions) >= 1)
-                                <div class="description">Transacciones asociadas al usuario</div>
-                                <div class="list">
-                                    @foreach($user->transactions as $transaction)
-                                        <div class="item">
-                                            <div class="description">{{ $transaction->typeOfTransaction->name }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ninguna transacción asociada al usuario</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Visitantes</div>
-                            @if(count($user->visitors) >= 1)
-                                <div class="description">Visitantes asociados al usuario</div>
-                                <div class="list">
-                                    @foreach($user->visitors as $visitor)
-                                        <div class="item">
-                                            <div class="description">{{ $visitor->name }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ningun visitante asociado al usuario</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Activos</div>
-                            @if(count($user->assets) >= 1)
-                                <div class="description">Activos asociados al usuario</div>
-                                <div class="list">
-                                    @foreach($user->assets as $asset)
-                                        <div class="item">
-                                            <div class="description">{{ $asset->name }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ningun activo asociado al usuario</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Anuncios</div>
-                            @if(count($user->announcements) >= 1)
-                                <div class="description">Anuncios asociados al usuario</div>
-                                <div class="list">
-                                    @foreach($user->announcements as $announcement)
-                                        <div class="item">
-                                            <div class="description">{{ $announcement->title }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ningun anuncio asociado al usuario</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Recurso</div>
-                            @if(count($user->resources) >= 1)
-                                <div class="description">Recursos asociados al usuario</div>
-                                <div class="list">
-                                    @foreach($user->resources as $resource)
-                                        <div class="item">
-                                            <div class="description">{{ $resource->typeOfResource->name }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ningun recurso asociado al usuario</div>
+                                <div class="description">Ningun condominio asociado al usuario</div>
                             @endif
                         </div>
                     </div>

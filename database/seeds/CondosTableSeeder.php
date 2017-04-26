@@ -13,16 +13,16 @@ class CondosTableSeeder extends Seeder
     {
         DB::table('condos')->insert(array(
             array(
-                'name' => 'Pablo Peña',
+                'name' => 'Mision Mariana',
                 'direction' => 'Camino Real #23'
             ),
             array(
-                'name' => 'Camilo Ortiz',
+                'name' => 'Los Sauces',
                 'direction' => 'Hortalizas #321'
             ),
             array(
-                'name' => 'Maria Velazquez',
-                'direction' => 'Cuatro caminos #45 casa 3'
+                'name' => 'El Roble',
+                'direction' => 'Cuatro caminos #45'
             )
         ));
     }

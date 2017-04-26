@@ -16,7 +16,7 @@ class CreateResourcesTable extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('type_of_resource_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('estate_id')->nullable();
             $table->integer('capacity');
             $table->float('fee');
             $table->timestamps();
@@ -27,9 +27,9 @@ class CreateResourcesTable extends Migration
             ->on('type_of_resources')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreign('user_id')
+            $table->foreign('estate_id')
             ->references('id')
-            ->on('users')
+            ->on('estates')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });

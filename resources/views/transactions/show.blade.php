@@ -49,18 +49,18 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Usuarios</div>
-                            @if(count($transaction->users) >= 1)
-                                <div class="description">Usuarios asociados a la transacción</div>
+                            <div class="header">Casas</div>
+                            @if(count($transaction->estates) >= 1)
+                                <div class="description">Casas asociadas a la transacción</div>
                                 <div class="list">
-                                    @foreach($transaction->users as $user)
+                                    @foreach($transaction->estates as $estate)
                                         <div class="item">
-                                            <div class="description">{{ $user->name . ' ' . $user->lastname }}</div>
+                                            <div class="description">{{ $estate->number }}</div>
                                         </div>
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun usuario asociado a la transacción</div>
+                                <div class="description">Ninguna casa asociada a la transacción</div>
                             @endif
                         </div>
                     </div>

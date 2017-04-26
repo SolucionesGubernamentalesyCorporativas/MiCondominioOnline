@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Visitor;
-use App\User;
+use App\Estate;
 use App\TypeOfVisitor;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVisitor;
@@ -33,9 +33,9 @@ class VisitorController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $estates = Estate::all();
         $typeofvisitors = TypeOfVisitor::all();
-        return view('visitors.create')->with('users', $users)
+        return view('visitors.create')->with('estates', $estates)
                                         ->with('typeofvisitors', $typeofvisitors);
     }
 
@@ -73,10 +73,10 @@ class VisitorController extends Controller
     public function edit(Visitor $visitor)
     {
         $visitor = Visitor::find($visitor->id);
-        $users = User::all();
+        $estates = Estate::all();
         $typeofvisitors = TypeOfVisitor::all();
         return view('visitors.edit')->with('visitor', $visitor)
-                                    ->with('users', $users)
+                                    ->with('estates', $estates)
                                     ->with('typeofvisitors', $typeofvisitors);
     }
 

@@ -15,17 +15,17 @@ class AnnouncementsTableSeeder extends Seeder
             array(
                 'title' => 'Reparación de luminarias',
                 'url_of_content' => '#',
-                'user_id' => '1'
+                'estate_id' => '1'
             ),
             array(
                 'title' => 'Contratación de personas de aseo',
                 'url_of_content' => '#',
-                'user_id' => '2'
+                'estate_id' => '2'
             ),
             array(
                 'title' => 'Venta de garage',
                 'url_of_content' => '#',
-                'user_id' => '3'
+                'estate_id' => '3'
             )
         ));
     }

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Condomino {{ $condo->name }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Condominio {{ $condo->name }}</div>
                 <a href="{{ route('condos.index') }}" class="ui right floated blue button">
                     <i class="angle left icon"></i>
                     Atras
@@ -31,9 +31,9 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Condominios</div>
+                            <div class="header">Casas</div>
                             @if(count($condo->estates) >= 1)
-                                <div class="description">Condominios asociados al condomino</div>
+                                <div class="description">Casas asociadas al condominio</div>
                                 <div class="list">
                                     @foreach($condo->estates as $estate)
                                         <div class="item">
@@ -42,7 +42,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun condominio asociado al condomino</div>
+                                <div class="description">Ninguna casa asociada al condominio</div>
                             @endif
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <div class="content">
                             <div class="header">Usuarios</div>
                             @if(count($condo->users) >= 1)
-                                <div class="description">Usuarios asociados al condomino</div>
+                                <div class="description">Usuarios asociados al condominio</div>
                                 <div class="list">
                                     @foreach($condo->users as $user)
                                         <div class="item">
@@ -59,7 +59,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun usuario asociado al condomino</div>
+                                <div class="description">Ningun usuario asociado al condominio</div>
                             @endif
                         </div>
                     </div>

@@ -15,17 +15,17 @@ class AssetsTableSeeder extends Seeder
             array(
                 'name' => 'Asador',
                 'description' => 'Asador marca Coleman',
-                'user_id' => '1'
+                'estate_id' => '1'
             ),
             array(
                 'name' => 'Tumbling',
                 'description' => 'Brincolin para el area comun',
-                'user_id' => '2'
+                'estate_id' => '2'
             ),
             array(
                 'name' => 'Hidrolavadora',
                 'description' => 'Marca Karcher',
-                'user_id' => '3'
+                'estate_id' => '3'
             )
         ));
     }
