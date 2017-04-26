@@ -29,12 +29,12 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="field {{ $errors->has('content') ? 'error' : '' }}">
-                                <label>Contenido</label>
-                                <input type="url" name="content" value="{{ old('content') }}" placeholder="¿De que trata el anuncio?">
-                                @if ($errors->has('content'))
+                            <div class="field {{ $errors->has('url_of_content') ? 'error' : '' }}">
+                                <label>Dirección web</label>
+                                <input type="url" name="url_of_content" value="{{ old('url_of_content') }}" placeholder="Copia y pega la dirección del anuncio">
+                                @if ($errors->has('url_of_content'))
                                     <span class="ui error message">
-                                        <strong>{{ $errors->first('content') }}</strong>
+                                        <strong>{{ $errors->first('url_of_content') }}</strong>
                                     </span>
                                 @endif
                             </div>
