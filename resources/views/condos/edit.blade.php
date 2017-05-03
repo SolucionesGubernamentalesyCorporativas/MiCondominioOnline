@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Editar condomino {{ $condo->name }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Editar condominio {{ $condo->name }}</div>
                 <a class="ui right floated blue button" href="{{ route('condos.index') }}">
                     <i class="angle left icon"></i>
                     Atras

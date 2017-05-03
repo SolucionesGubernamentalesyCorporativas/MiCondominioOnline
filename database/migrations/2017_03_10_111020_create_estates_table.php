@@ -17,7 +17,7 @@ class CreateEstatesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('type_of_estate_id')->nullable();
             $table->text('number');
-            $table->boolean('rented');
+            $table->boolean('rented')->default(0);
             $table->integer('number_of_parking_lots');
             $table->text('notes');
             $table->timestamps();

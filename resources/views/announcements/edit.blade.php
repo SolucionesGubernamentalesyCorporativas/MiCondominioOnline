@@ -42,18 +42,18 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar contenido
+                            Editar dirección web
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('announcements.update', $announcement->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="eight wide field {{ $errors->has('content') ? 'error' : '' }}">
-                                    <label>Contenido</label>
-                                    <input type="url" name="content" placeholder="{{ $announcement->content }}">
-                                    @if ($errors->has('content'))
+                                <div class="eight wide field {{ $errors->has('url_of_content') ? 'error' : '' }}">
+                                    <label>Dirección web</label>
+                                    <input type="url" name="url_of_content" placeholder="{{ $announcement->url_of_content }}">
+                                    @if ($errors->has('url_of_content'))
                                         <span class="ui error message">
-                                            <strong>{{ $errors->first('content') }}</strong>
+                                            <strong>{{ $errors->first('url_of_content') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -71,7 +71,7 @@
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('user_id') ? 'error' : '' }}">
-                                    <label>Usuario propietario del anuncio</label>
+                                    <label>Usuario</label>
                                     <div class="ui selection dropdown">
                                         <input type="hidden" name="user_id" value="{{ $announcement->user_id }}">
                                         <i class="dropdown icon"></i>

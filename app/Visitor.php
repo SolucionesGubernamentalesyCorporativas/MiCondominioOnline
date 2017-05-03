@@ -18,7 +18,7 @@ class Visitor extends Model
         'name',
         'date_arrival',
         'vehicle',
-        'user_id',
+        'estate_id',
         'type_of_visitor_id'
     ];
 
@@ -37,8 +37,8 @@ class Visitor extends Model
         return $this->belongsTo('App\TypeOfVisitor');
     }
 
-    public function user()
+    public function estate()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Estate');
     }
 }

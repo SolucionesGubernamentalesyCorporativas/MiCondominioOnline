@@ -27,7 +27,7 @@ class UpdateResource extends FormRequest
             'capacity' => 'numeric',
             'fee' => 'numeric',
             'type_of_resource_id' => 'numeric',
-            'user_id' => 'numeric'
+            'estate_id' => 'numeric'
         ];
     }
 }
