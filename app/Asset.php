@@ -18,8 +18,8 @@ class Asset extends Model
         'deleted_at'
     ];
     
-    public function user()
+    public function estate()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Estate');
     }
 }

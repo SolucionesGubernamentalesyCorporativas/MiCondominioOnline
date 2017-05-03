@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionUserTable extends Migration
+class CreateEstateTransactionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateTransactionUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_user', function (Blueprint $table) {
+        Schema::create('estate_transaction', function (Blueprint $table) {
+            $table->unsignedBigInteger('estate_id')->nullable();
             $table->unsignedBigInteger('transaction_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
 
+            $table->foreign('estate_id')
+            ->references('id')
+            ->on('estates')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->foreign('transaction_id')
             ->references('id')
             ->on('transactions')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });
@@ -37,6 +37,6 @@ class CreateTransactionUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_user');
+        Schema::dropIfExists('estate_transaction');
     }
 }

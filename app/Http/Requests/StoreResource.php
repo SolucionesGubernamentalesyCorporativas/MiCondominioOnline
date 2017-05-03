@@ -27,7 +27,7 @@ class StoreResource extends FormRequest
             'capacity' => 'required|numeric',
             'fee' => 'required|numeric',
             'type_of_resource_id' => 'required|numeric',
-            'user_id' => 'required|numeric'
+            'estate_id' => 'required|numeric'
         ];
     }
 }

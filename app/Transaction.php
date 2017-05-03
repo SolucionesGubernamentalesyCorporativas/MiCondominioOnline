@@ -40,8 +40,8 @@ class Transaction extends Model
         return $this->hasOne('App\Receipt');
     }
 
-    public function users()
+    public function estates()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\Estate');
     }
 }

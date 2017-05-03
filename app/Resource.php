@@ -18,7 +18,7 @@ class Resource extends Model
         'capacity',
         'fee',
         'type_of_resource_id',
-        'user_id'
+        'estate_id'
     ];
 
     /**
@@ -35,8 +35,8 @@ class Resource extends Model
         return $this->belongsTo('App\TypeOfResource');
     }
 
-    public function user()
+    public function estate()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Estate');
     }
 }

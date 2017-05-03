@@ -71,7 +71,7 @@
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('user_id') ? 'error' : '' }}">
-                                    <label>Usuario propietario del anuncio</label>
+                                    <label>Usuario</label>
                                     <div class="ui selection dropdown">
                                         <input type="hidden" name="user_id" value="{{ $announcement->user_id }}">
                                         <i class="dropdown icon"></i>

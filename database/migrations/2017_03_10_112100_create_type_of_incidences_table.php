@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssetsTable extends Migration
+class CreateTypeOfIncidencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,12 @@ class CreateAssetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assets', function (Blueprint $table) {
+        Schema::create('type_of_incidences', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->text('name');
             $table->text('description');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
         });
     }
 
@@ -36,6 +29,6 @@ class CreateAssetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets');
+        Schema::dropIfExists('type_of_incidences');
     }
 }

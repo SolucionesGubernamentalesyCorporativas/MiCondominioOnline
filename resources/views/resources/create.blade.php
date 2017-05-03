@@ -56,21 +56,21 @@
                                     </span>
                                 @endif  
                             </div>
-                            <div class="field {{ $errors->has('user_id') ? 'error' : '' }}">
-                                <label>Usuario asociado al recurso</label>
+                            <div class="field {{ $errors->has('estate_id') ? 'error' : '' }}">
+                                <label>Casa asociada al recurso</label>
                                 <div class="ui selection dropdown">
-                                    <input type="hidden" name="user_id" value="{{ old('user_id') }}">
+                                    <input type="hidden" name="estate_id" value="{{ old('estate_id') }}">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona un usuario</div>
+                                    <div class="default text">Selecciona una casa</div>
                                     <div class="menu">
-                                        @foreach($users as $user)
-                                            <div class="item" data-value="{{ $user->id }}">{{ $user->name . ' ' . $user->lastname }}</div>
+                                        @foreach($estates as $estate)
+                                            <div class="item" data-value="{{ $estate->id }}">{{ $estate->number }}</div>
                                         @endforeach
                                     </div>
                                 </div>
-                                @if ($errors->has('user_id'))
+                                @if ($errors->has('estate_id'))
                                     <span class="ui error message">
-                                        <strong>{{ $errors->first('user_id') }}</strong>
+                                        <strong>{{ $errors->first('estate_id') }}</strong>
                                     </span>
                                 @endif  
                             </div>

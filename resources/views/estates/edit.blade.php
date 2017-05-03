@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Editar condominio {{ $estate->number }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Editar casa {{ $estate->number }}</div>
                 <a class="ui right floated blue button" href="{{ route('estates.index') }}">
                     <i class="angle left icon"></i>
                     Atras
@@ -119,18 +119,18 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar tipo de condominio
+                            Editar tipo de casa
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('estates.update', $estate->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('type_of_estate_id') ? 'error' : '' }}">
-                                    <label>Tipo de condominio</label>
+                                    <label>Tipo de casa</label>
                                     <div class="ui selection dropdown">
                                         <input type="hidden" name="type_of_estate_id" value="{{ $estate->type_of_estate_id }}">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">Selecciona un tipo de condominio</div>
+                                        <div class="default text">Selecciona un tipo de casa</div>
                                         <div class="menu">
                                             @foreach($typeofestates as $typeofestate)
                                                 <div class="item" data-value="{{ $typeofestate->id }}">{{ $typeofestate->name }}</div>

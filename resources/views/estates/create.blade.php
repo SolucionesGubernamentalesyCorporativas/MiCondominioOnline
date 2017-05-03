@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir condominio</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir casa</div>
                 <a class="ui right floated blue button" href="{{ route('estates.index') }}">
                     <i class="angle left icon"></i>
                     Atras
@@ -22,7 +22,7 @@
                             {{ csrf_field() }}
                             <div class="field {{ $errors->has('number') ? 'error' : '' }}">
                                 <label>Numero</label>
-                                <input type="text" name="number" value="{{ old('number') }}" placeholder="Ejemplo: Blvd. Centro Sur #120">
+                                <input type="text" name="number" value="{{ old('number') }}" placeholder="Ejemplo: casa 2, depto 33">
                                 @if ($errors->has('number'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('number') }}</strong>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="field {{ $errors->has('notes') ? 'error' : '' }}">
                                 <label>Notas</label>
-                                <input type="text" name="notes" value="{{ old('notes') }}" placeholder="Referentes al condominio">
+                                <input type="text" name="notes" value="{{ old('notes') }}" placeholder="Referentes a la casa">
                                 @if ($errors->has('notes'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('notes') }}</strong>
@@ -59,11 +59,11 @@
                                 @endif
                             </div>
                             <div class="field {{ $errors->has('type_of_estate_id') ? 'error' : '' }}">
-                                <label>Tipo de condominio asociado</label>
+                                <label>Tipo de casa asociado</label>
                                 <div class="ui selection dropdown">
                                     <input type="hidden" name="type_of_estate_id" value="{{ old('type_of_estate_id') }}">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona un tipo de condominio</div>
+                                    <div class="default text">Selecciona un tipo de casa</div>
                                     <div class="menu">
                                         @foreach($typeofestates as $typeofestate)
                                             <div class="item" data-value="{{ $typeofestate->id }}">{{ $typeofestate->name }}</div>

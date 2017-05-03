@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de recursos</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Tipos de recursos</div>
                 <div class="ui right floated blue buttons">
                     <a class="ui button" href="{{ route('resources.index') }}">
                         <i class="left angle icon"></i>
