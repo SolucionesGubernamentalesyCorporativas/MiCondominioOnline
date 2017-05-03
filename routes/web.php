@@ -19,6 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+//Billing statement
+Route::get('/billing/consult', 'BillingStatementController@consult');
+Route::get('/billing/consult/pdf', 'BillingStatementController@pdf');
+
+//Financial statement
+Route::get('/financial/consult', 'FinancialStatementController@consult');
+Route::get('/financial/consult/pdf', 'FinancialStatementController@pdf');
+
 //CRUD routes
 Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
