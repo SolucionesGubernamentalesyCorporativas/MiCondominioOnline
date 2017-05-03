@@ -42,7 +42,10 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = ['created_at','deleted_at'];
+    protected $dates = [
+        'created_at',
+        'deleted_at'
+    ];
 
     public function membership()
     {
@@ -62,5 +65,10 @@ class User extends Authenticatable
     public function condos()
     {
         return $this->belongsToMany('App\Condo');
+    }
+
+    public function announcements()
+    {
+        return $this->hasMany('App\Announcement');
     }
 }

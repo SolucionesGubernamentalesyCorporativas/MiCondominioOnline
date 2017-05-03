@@ -134,23 +134,6 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Anuncios</div>
-                            @if(count($estate->announcements) >= 1)
-                                <div class="description">Anuncios asociados a la casa</div>
-                                <div class="list">
-                                    @foreach($estate->announcements as $announcement)
-                                        <div class="item">
-                                            <div class="description">{{ $announcement->title }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ningun anuncio asociado a la casa</div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
                             <div class="header">Recurso</div>
                             @if(count($estate->resources) >= 1)
                                 <div class="description">Recursos asociados a la casa</div>

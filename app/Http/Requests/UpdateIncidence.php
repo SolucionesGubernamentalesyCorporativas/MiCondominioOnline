@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTypeOfEstate extends FormRequest
+class UpdateIncidence extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreTypeOfEstate extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,8 +24,11 @@ class StoreTypeOfEstate extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'description' => 'required|string'
+            'description' => 'string',
+            'file1' => 'file',
+            'file2' => 'file',
+            'type_of_incidence' => 'numeric',
+            'estate_id' => 'numeric'
         ];
     }
 }

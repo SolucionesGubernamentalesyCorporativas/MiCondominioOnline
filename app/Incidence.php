@@ -5,18 +5,21 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Announcement extends Model
+class Incidence extends Model
 {
-    use SoftDeletes;
+    use softDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title',
-        'url_of_content',
-        'user_id'
+        'description',
+        'file1',
+        'file2',
+        'type_of_incidence_id',
+        'estate_id'
     ];
 
     /**
@@ -28,8 +31,13 @@ class Announcement extends Model
         'deleted_at'
     ];
 
-    public function user()
+    public function typeOfIncidence()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\TypeOfIncidence');
+    }
+
+    public function estate()
+    {
+        return $this->belongsTo('App\Estate');
     }
 }

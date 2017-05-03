@@ -89,6 +89,23 @@
                     </div>
                     <div class="item">
                         <div class="content">
+                            <div class="header">Anuncios</div>
+                            @if(count($user->announcements) >= 1)
+                                <div class="description">Anuncios asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->announcements as $announcement)
+                                        <div class="item">
+                                            <div class="description">{{ $announcement->title }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun anuncio asociado al usuario</div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
                             <div class="header">Fecha de creación</div>
                             <div class="description">{{ $user->created_at != NULL ? $user->created_at->diffForHumans() : 'No registrado' }}</div>
                         </div>

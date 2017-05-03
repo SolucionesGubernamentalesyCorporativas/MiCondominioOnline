@@ -33,4 +33,7 @@ Route::resource('typeofvisitors', 'TypeOfVisitorController');
 Route::resource('visitors', 'VisitorController');
 Route::resource('typeofresources', 'TypeOfResourceController');
 Route::resource('resources', 'ResourceController');
+Route::resource('incidences', 'IncidenceController');
+Route::resource('typeofincidences', 'TypeOfIncidenceController');
+
 

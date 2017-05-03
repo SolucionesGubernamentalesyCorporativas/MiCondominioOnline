@@ -5,13 +5,13 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Tipos de casa</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Tipos de incidencia</div>
                 <div class="ui right floated blue buttons">
-                    <a class="ui button" href="{{ route('estates.index') }}">
+                    <a class="ui button" href="{{ route('incidences.index') }}">
                         <i class="left angle icon"></i>
                         Atras
                     </a>
-                    <a class="ui right floated blue button" href="{{ route('typeofestates.create') }}">Añadir tipo de casa</a>
+                    <a class="ui right floated blue button" href="{{ route('typeofincidences.create') }}">Añadir tipo de incidencia</a>
                 </div>
             </div>
         </div>
@@ -34,9 +34,9 @@
                                 <td>{{ $row->description }}</td>
                                 <td>
                                     <div class="ui small buttons">
-                                        <a class="ui green button" href="{{ route('typeofestates.show', $row->id) }}">Info</a>
-                                        <a class="ui blue button" href="{{ route('typeofestates.edit', $row->id) }}">Editar</a>
-                                        <form method="POST" action="{{ route('typeofestates.destroy', $row->id) }}" style="display: inline;">
+                                        <a class="ui green button" href="{{ route('typeofincidences.show', $row->id) }}">Info</a>
+                                        <a class="ui blue button" href="{{ route('typeofincidences.edit', $row->id) }}">Editar</a>
+                                        <form method="POST" action="{{ route('typeofincidences.destroy', $row->id) }}" style="display: inline;">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
                                             <button type="submit" class="ui red button">Borrar</button>

@@ -18,7 +18,7 @@ class Resource extends Model
         'capacity',
         'fee',
         'type_of_resource_id',
-        'user_id'
+        'estate_id'
     ];
 
     /**

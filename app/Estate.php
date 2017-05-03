@@ -62,11 +62,6 @@ class Estate extends Model
         return $this->hasMany('App\Asset');
     }
 
-    public function announcements()
-    {
-        return $this->hasMany('App\Announcement');
-    }
-
     public function resources()
     {
         return $this->hasMany('App\Resource');

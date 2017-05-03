@@ -18,7 +18,7 @@ class Visitor extends Model
         'name',
         'date_arrival',
         'vehicle',
-        'user_id',
+        'estate_id',
         'type_of_visitor_id'
     ];
 

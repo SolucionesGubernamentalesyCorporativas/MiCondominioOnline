@@ -64,27 +64,27 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar casa
+                            Editar usuario
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('announcements.update', $announcement->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="eight wide field {{ $errors->has('estate_id') ? 'error' : '' }}">
-                                    <label>Casa</label>
+                                <div class="eight wide field {{ $errors->has('user_id') ? 'error' : '' }}">
+                                    <label>Usuario</label>
                                     <div class="ui selection dropdown">
-                                        <input type="hidden" name="estate_id" value="{{ $announcement->estate_id }}">
+                                        <input type="hidden" name="user_id" value="{{ $announcement->user_id }}">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">Selecciona la casa propietaria del anuncio</div>
+                                        <div class="default text">Selecciona al usuario propietario del anuncio</div>
                                         <div class="menu">
-                                            @foreach($estates as $estate)
-                                                <div class="item" data-value="{{ $estate->id }}">{{ $estate->number }}</div>
+                                            @foreach($users as $user)
+                                                <div class="item" data-value="{{ $user->id }}">{{ $user->name . ' ' . $user->lastname }}</div>
                                             @endforeach
                                         </div>
                                     </div>
-                                    @if ($errors->has('estate_id'))
+                                    @if ($errors->has('user_id'))
                                         <span class="ui error message">
-                                            <strong>{{ $errors->first('estate_id') }}</strong>
+                                            <strong>{{ $errors->first('user_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>

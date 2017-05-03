@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Announcement;
-use App\Estate;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAnnouncement;
 use App\Http\Requests\UpdateAnnouncement;
@@ -33,8 +33,8 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        $estates = Estate::all();
-        return view('announcements.create')->with('estates', $estates);
+        $users = User::all();
+        return view('announcements.create')->with('users', $users);
     }
 
     /**
@@ -71,9 +71,9 @@ class AnnouncementController extends Controller
     public function edit(Announcement $announcement)
     {
         $announcement = Announcement::find($announcement->id);
-        $estates = Estate::all();
+        $users = User::all();
         return view('announcements.edit')->with('announcement', $announcement)
-                                        ->with('estates', $estates);
+                                        ->with('users', $users);
     }
 
     /**
