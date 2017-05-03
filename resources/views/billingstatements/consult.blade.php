@@ -6,7 +6,7 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Estado de cuenta</div>
-                <a class="ui right floated blue button" href="{{ url('consult/pdf') }}">Generar PDF</a>
+                <a class="ui right floated blue button" href="{{ url('/billing/consult/pdf') }}">Generar PDF</a>
             </div>
         </div>
     </div>
