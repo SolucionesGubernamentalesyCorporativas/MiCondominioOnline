@@ -41,6 +41,7 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
+     * Validates the data and returns messages in case of not being able to perform the action
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -56,6 +57,7 @@ class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
+     * Database action
      *
      * @param  array  $data
      * @return User
@@ -64,8 +66,12 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'lastname' => $data['lastname'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            //password hashing for security resons
+            'password' => bcrypt($data['password']
+            ),
         ]);
     }
 }
