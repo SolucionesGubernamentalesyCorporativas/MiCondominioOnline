@@ -77,7 +77,7 @@ class IncidenceController extends Controller
         $estates = Estate::all();
         return view('incidences.edit')->with('incidence', $incidence)
                                     ->with('typeofincidences', $typeofincidences)
-                                    ->with('estates'. $estates);
+                                    ->with('estates', $estates);
     }
 
     /**

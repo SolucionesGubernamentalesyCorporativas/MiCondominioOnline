@@ -31,7 +31,7 @@
                             </div>
                             <div class="field {{ $errors->has('file1') ? 'error' : '' }}">
                                 <label>Sube fotos de lo que paso (opcional)</label>
-                                <input type="file" name="photo1">
+                                <input type="file" name="file1">
                                 @if ($errors->has('file1'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('file1') }}</strong>
@@ -39,7 +39,7 @@
                                 @endif
                             </div>
                             <div class="field {{ $errors->has('file2') ? 'error' : '' }}">
-                                <input type="file" name="photo2">
+                                <input type="file" name="file2">
                                 @if ($errors->has('file2'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('file2') }}</strong>

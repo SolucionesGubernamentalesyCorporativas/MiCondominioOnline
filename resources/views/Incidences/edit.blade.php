@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('description') ? 'error' : '' }}">
                                     <label>Descripción</label>
-                                    <textarea rows="2" name="description" placeholder="{{ $incidence->description }}">
+                                    <textarea rows="2" name="description" placeholder="{{ $incidence->description }}"></textarea>
                                     @if ($errors->has('description'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('description') }}</strong>
