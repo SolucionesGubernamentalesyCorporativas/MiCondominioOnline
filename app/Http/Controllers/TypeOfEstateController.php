@@ -22,7 +22,7 @@ class TypeOfEstateController extends Controller
     public function index()
     {
         $data = TypeOfEstate::paginate(12);
-        return view('typeofestate.index')->with('data', $data);
+        return view('typeofestates.index')->with('data', $data);
     }
 
     /**
@@ -32,7 +32,7 @@ class TypeOfEstateController extends Controller
      */
     public function create()
     {
-        return view('typeofestate.create');
+        return view('typeofestates.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class TypeOfEstateController extends Controller
     public function store(StoreTypeOfEstate $request)
     {
         TypeOfEstate::create($request->all());
-        return redirect()->route('typeofestate.index')
+        return redirect()->route('typeofestates.index')
                         ->with('success', 'Tipo de casa creado satisfactoriamente');
     }
 
@@ -57,7 +57,7 @@ class TypeOfEstateController extends Controller
     public function show(TypeOfEstate $typeofestate)
     {
         $typeofestate = TypeOfEstate::find($typeofestate->id);
-        return view('typeofestate.show')->with('typeofestate', $typeofestate);
+        return view('typeofestates.show')->with('typeofestate', $typeofestate);
     }
 
     /**
@@ -69,7 +69,7 @@ class TypeOfEstateController extends Controller
     public function edit(TypeOfEstate $typeofestate)
     {
         $typeofestate = TypeOfEstate::find($typeofestate->id);
-        return view('typeofestate.index')->with('typeofestate', $typeofestate);
+        return view('typeofestates.index')->with('typeofestate', $typeofestate);
     }
 
     /**
@@ -82,7 +82,7 @@ class TypeOfEstateController extends Controller
     public function update(UpdateTypeOfEstate $request, TypeOfEstate $typeofestate)
     {
         TypeOFEstate::find($typeofestate->id)->update($request->all());
-        return redirect()->route('typeofestate.index')
+        return redirect()->route('typeofestates.index')
                         ->with('success', 'Tipo de casa actualizado satisfactoriamente');
     }
 
@@ -95,7 +95,7 @@ class TypeOfEstateController extends Controller
     public function destroy(TypeOfEstate $typeofestate)
     {
         TypeOfEstate::find($typeofestate->id)->delete();
-        return redirect()->route('typeofestate.index')
+        return redirect()->route('typeofestates.index')
                         ->with('success', 'Tipo de casa eliminado satisfactoriamente');
     }
 }
