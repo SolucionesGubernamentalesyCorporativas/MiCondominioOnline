@@ -37,36 +37,37 @@
     </div>
     <div class="row">
         <div class="column">
-            @if($data)
-                <table class="ui four column selectable blue table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Foto</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data as $row)
-                            <tr>
-                                <td>{{ $row->date->toFormattedDateString() }}</td>
-                                <td><img src="{{ $urls[$row->id] }}" alt="foto recibo" class="ui small image"></td>
-                                <td>
-                                    <div class="ui small buttons">
-                                        <a class="ui green button" href="{{ route('receipts.show', $row->id) }}">Info</a>
-                                        <a class="ui blue button" href="{{ route('receipts.edit', $row->id) }}">Editar</a>
-                                        <form method="POST" action="{{ route('receipts.destroy', $row->id) }}" style="display: inline;">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="ui red button">Borrar</button>
-                                        </form>
+            <div class="ui blue segment">
+                @if ($data)
+                    <div class="ui divided items">
+                        @foreach ($data as $row)
+                            <div class="item">
+                                <div class="image">
+                                    <img src="{{ $urls[$row->id] }}" alt="foto-recibo-{{ $row->transaction->observations }}">
+                                </div>
+                                <div class="content">
+                                    <a href="{{ route('receipts.show', $row->id) }}">
+                                        <div class="header">{{ $row->transaction->typeOfTransaction->name }} - {{ $row->date->format('Y-m-d') }}</div>
+                                    </a>
+                                    <div class="description">
+                                        {{ $row->transaction->observations }}
                                     </div>
-                                </td>
-                            </tr>
+                                    <div class="extra">
+                                        <div class="ui buttons">
+                                            <a class="ui blue button" href="{{ route('receipts.edit', $row->id) }}">Editar</a>
+                                            <form method="POST" action="{{ route('receipts.destroy', $row->id) }}" style="display: inline;">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="ui red button">Borrar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
-                    </tbody>
-                </table>
-            @endif
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
     {{ $data->links() }}

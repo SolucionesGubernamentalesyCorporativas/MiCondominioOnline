@@ -22,7 +22,7 @@
                             {{ csrf_field() }}
                             <div class="field {{ $errors->has('date') ? 'error' : '' }}">
                                 <label>Fecha</label>
-                                <input type="date" name="date" value="{{ old('date') }}">
+                                <input type="date" name="date" max="{{ date('Y-m-d') }}">
                                 @if ($errors->has('date'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('date') }}</strong>

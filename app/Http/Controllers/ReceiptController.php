@@ -30,8 +30,12 @@ class ReceiptController extends Controller
         } else {
             $data = Receipt::paginate(12);
         }
-        foreach($data as $row) {
-            $urls[$row->id] = Storage::url($row->name_of_img);
+        if (count($data) >= 1) {
+            foreach($data as $row) {
+                $urls[$row->id] = Storage::url($row->name_of_img);
+            }
+        } else {
+            $urls = NULL;
         }
         return view('receipts.index')->with('data', $data)
                                     ->with('urls', $urls);
@@ -56,15 +60,14 @@ class ReceiptController extends Controller
      */
     public function store(StoreReceipt $request)
     {
-        $url = $request->photo->store('public/receipts');
         Receipt::create([
             'date' => $request->date,
-            'name_of_img' => Storage::url($url),
+            'name_of_img' => $request->photo->store('public/receipts'),
             'type_of_img' => $request->photo->getClientMimeType(),
             'transaction_id' => $request->transaction_id
         ]);
         return redirect()->route('receipts.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Recibo creado satisfactoriamente');
     }
 
     /**
@@ -116,7 +119,7 @@ class ReceiptController extends Controller
             Receipt::find($receipt->id)->update($request->all());
         }
         return redirect()->route('receipts.index')
-                        ->with('success', 'Item updated successfully');
+                        ->with('success', 'Recibo actualizado satisfactoriamente');
     }
 
     /**
@@ -130,6 +133,6 @@ class ReceiptController extends Controller
         Storage::delete($receipt->name_of_img);
         Receipt::find($receipt->id)->delete();
         return redirect()->route('receipts.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Recibo eliminado satisfactoriamente');
     }
 }
