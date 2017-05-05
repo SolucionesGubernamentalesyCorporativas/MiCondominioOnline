@@ -42,17 +42,15 @@
                     <thead>
                         <tr>
                             <th>Fecha</th>
-                            <th>Nombre de imagen</th>
-                            <th>Tipo de imagen</th>
+                            <th>Foto</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $row)   
+                        @foreach($data as $row)
                             <tr>
                                 <td>{{ $row->date->toFormattedDateString() }}</td>
-                                <td>{{ $row->name_of_img }}</td>
-                                <td>{{ $row->type_of_img }}</td>
+                                <td><img src="{{ $urls[$row->id] }}" alt="foto recibo" class="ui small image"></td>
                                 <td>
                                     <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('receipts.show', $row->id) }}">Info</a>

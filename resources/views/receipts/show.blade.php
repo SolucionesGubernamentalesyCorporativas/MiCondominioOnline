@@ -25,14 +25,8 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Nombre de la imagen</div>
-                            <div class="description">{{ $receipt->name_of_img }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Tipo de la imagen</div>
-                            <div class="description">{{ $receipt->type_of_img }}</div>
+                            <div class="header">Foto del recibo</div>
+                            <img src="{{ $url }}" alt="Imagen del recibo" class="ui small image">
                         </div>
                     </div>
                     <div class="item">
