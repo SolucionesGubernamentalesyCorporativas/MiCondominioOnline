@@ -58,7 +58,7 @@
                         @foreach($data as $row)   
                             <tr>
                                 <td>{{ $row->observations }}</td>
-                                <td>{{ $row->ammount }}</td>
+                                <td>${{ number_format($row->ammount, 2) }}</td>
                                 <td class="{{ $row->verified == 0 ? 'warning' : 'positive ' }}">{{ $row->verified == 0 ? 'No' : 'Si' }}</td>
                                 <td>
                                     <div class="ui small buttons">

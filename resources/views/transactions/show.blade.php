@@ -32,7 +32,7 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Cantidad</div>
-                            <div class="description">{{ $transaction->ammount }}</div>
+                            <div class="description">${{ number_format($transaction->ammount, 2) }}</div>
                         </div>
                     </div>
                     <div class="item">
