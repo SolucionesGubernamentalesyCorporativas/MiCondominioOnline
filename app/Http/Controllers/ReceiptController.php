@@ -32,7 +32,7 @@ class ReceiptController extends Controller
         }
         if (count($data) >= 1) {
             foreach($data as $row) {
-                $urls[$row->id] = Storage::url($row->name_of_img);
+                $urls[$row->id] = Storage::url($row->url_of_img);
             }
         } else {
             $urls = NULL;
@@ -62,7 +62,7 @@ class ReceiptController extends Controller
     {
         Receipt::create([
             'date' => $request->date,
-            'name_of_img' => $request->photo->store('public/receipts'),
+            'url_of_img' => $request->photo->store('public/receipts'),
             'type_of_img' => $request->photo->getClientMimeType(),
             'transaction_id' => $request->transaction_id
         ]);
@@ -79,7 +79,7 @@ class ReceiptController extends Controller
     public function show(Receipt $receipt)
     {
         $receipt = Receipt::find($receipt->id);
-        $url = Storage::url($receipt->name_of_img);
+        $url = Storage::url($receipt->url_of_img);
         return view('receipts.show')->with('receipt', $receipt)
                                     ->with('url', $url);
     }
@@ -93,7 +93,7 @@ class ReceiptController extends Controller
     public function edit(Receipt $receipt)
     {
         $receipt = Receipt::find($receipt->id);
-        $url = Storage::url($receipt->name_of_img);
+        $url = Storage::url($receipt->url_of_img);
         $transactions = Transaction::all();
         return view('receipts.edit')->with('receipt', $receipt)
                                     ->with('transactions', $transactions)
@@ -110,9 +110,9 @@ class ReceiptController extends Controller
     public function update(UpdateReceipt $request, Receipt $receipt)
     {
         if($request->photo != NULL) {
-            Storage::delete($receipt->name_of_img);
+            Storage::delete($receipt->url_of_img);
             Receipt::find($receipt->id)->update([
-                'name_of_img' => $request->photo->store('public/receipts'),
+                'url_of_img' => $request->photo->store('public/receipts'),
                 'type_of_img' => $request->photo->getClientMimeType()
             ]);
         } else {
@@ -130,7 +130,7 @@ class ReceiptController extends Controller
      */
     public function destroy(Receipt $receipt)
     {
-        Storage::delete($receipt->name_of_img);
+        Storage::delete($receipt->url_of_img);
         Receipt::find($receipt->id)->delete();
         return redirect()->route('receipts.index')
                         ->with('success', 'Recibo eliminado satisfactoriamente');

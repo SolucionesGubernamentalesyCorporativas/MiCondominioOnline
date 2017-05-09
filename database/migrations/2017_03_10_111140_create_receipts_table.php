@@ -17,7 +17,7 @@ class CreateReceiptsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id')->nullable();
             $table->date('date');
-            $table->text('name_of_img');
+            $table->text('url_of_img');
             $table->text('type_of_img');
             $table->timestamps();
             $table->softDeletes();

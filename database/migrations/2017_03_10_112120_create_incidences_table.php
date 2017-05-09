@@ -18,8 +18,10 @@ class CreateIncidencesTable extends Migration
             $table->unsignedBigInteger('type_of_incidence_id')->nullable();
             $table->unsignedBigInteger('estate_id')->nullable();
             $table->text('description');
-            $table->string('file1')->nullable();
-            $table->string('file2')->nullable();
+            $table->string('url_of_img_1')->nullable();
+            $table->string('type_of_img_1')->nullable();
+            $table->string('url_of_img_2')->nullable();
+            $table->string('type_of_img_2')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
