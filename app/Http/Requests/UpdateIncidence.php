@@ -13,7 +13,7 @@ class UpdateIncidence extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,9 @@ class UpdateIncidence extends FormRequest
     public function rules()
     {
         return [
+            'date' => 'date',
             'description' => 'string',
-            'file1' => 'file',
-            'file2' => 'file',
+            'photo' => 'image|mimes:jpeg,bmp,png',
             'type_of_incidence' => 'numeric',
             'estate_id' => 'numeric'
         ];

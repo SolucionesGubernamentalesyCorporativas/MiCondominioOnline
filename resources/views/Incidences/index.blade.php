@@ -15,34 +15,37 @@
     </div>
     <div class="row">
         <div class="column">
-            @if($data)
-                <table class="ui three column selectable blue table">
-                    <thead>
-                        <tr>
-                            <th>Descripción</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data as $row)
-                            <tr>
-                                <td>{{ $row->description }}</td>
-                                <td>
-                                    <div class="ui small buttons">
-                                        <a class="ui green button" href="{{ route('incidences.show', $row->id) }}">Info</a>
-                                        <a class="ui blue button" href="{{ route('incidences.edit', $row->id) }}">Editar</a>
-                                        <form method="POST" action="{{ route('incidences.destroy', $row->id) }}" style="display: inline;">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="ui red button">Borrar</button>
-                                        </form>
+            <div class="ui blue segment">
+                @if ($data)
+                    <div class="ui divided items">
+                        @foreach ($data as $row)
+                            <div class="item">
+                                <div class="image">
+                                    <img src="{{ $urls[$row->id] }}" alt="foto {{ $row->typeOfIncidence->name }}">
+                                </div>
+                                <div class="content">
+                                    <a href="{{ route('incidences.show', $row->id) }}">
+                                        <div class="header">{{ $row->typeOfIncidence->name }} - {{ $row->date->format('Y-m-d') }}</div>
+                                    </a>
+                                    <div class="description">
+                                        {{ $row->description }}
                                     </div>
-                                </td>
-                            </tr>
+                                    <div class="extra">
+                                        <div class="ui buttons">
+                                            <a href="{{ route('incidences.edit', $row->id) }}" class="ui blue button">Editar</a>
+                                            <form action="{{ route('incidences.destroy', $row->id) }}" method="POST" style="display: inline">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="ui red button">Borrar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
-                    </tbody>
-                </table>
-            @endif
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
     {{ $data->links() }}

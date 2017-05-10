@@ -19,11 +19,22 @@
                 <div class="ui relaxed divided list">
                     <div class="item">
                         <div class="content">
+                            <div class="header">Fecha del incidente</div>
+                            <div class="description">{{ $incidence->date->format('Y-m-d') }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
                             <div class="header">Descripción</div>
                             <div class="description">{{ $incidence->description }}</div>
                         </div>
                     </div>
-                    
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Foto de la incidencia</div>
+                            <img src="{{ $url }}" alt="foto incidencia {{ $incidence->typeOfIncidence->name }}" class="ui small image">
+                        </div>
+                    </div>
                     <div class="item">
                         <div class="content">
                             <div class="header">Tipo de incidencia</div>

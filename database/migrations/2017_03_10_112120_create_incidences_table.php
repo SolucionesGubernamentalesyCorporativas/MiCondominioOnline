@@ -17,11 +17,10 @@ class CreateIncidencesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('type_of_incidence_id')->nullable();
             $table->unsignedBigInteger('estate_id')->nullable();
+            $table->date('date');
             $table->text('description');
-            $table->string('url_of_img_1')->nullable();
-            $table->string('type_of_img_1')->nullable();
-            $table->string('url_of_img_2')->nullable();
-            $table->string('type_of_img_2')->nullable();
+            $table->string('url_of_img')->nullable();
+            $table->string('type_of_img')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

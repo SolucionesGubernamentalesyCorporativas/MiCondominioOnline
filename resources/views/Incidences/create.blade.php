@@ -18,31 +18,32 @@
             <div class="ui blue segment">
                 <div class="ui centered grid">
                     <div class="ten wide column">
-                        <form class="ui form error" role="form" method="POST" action="{{ route('incidences.store') }}">
+                        <form class="ui form error" role="form" method="POST" action="{{ route('incidences.store') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            <div class="field {{ $errors->has('date') ? 'error' : '' }}">
+                                <label>Fecha</label>
+                                <input type="date" name="date" value="{{ old('date') }}" max="{{ date('Y-m-d') }}">
+                                @if ($errors->has('date'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                             <div class="field {{ $errors->has('description') ? 'error' : '' }}">
                                 <label>Descripción</label>
-                                <textarea rows="2" name="description" value="{{ old('description') }}" placeholder="Describe la incidencia"></textarea>
+                                <textarea rows="2" name="description" placeholder="Describe la incidencia">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                            <div class="field {{ $errors->has('file1') ? 'error' : '' }}">
-                                <label>Sube fotos de lo que paso (opcional)</label>
-                                <input type="file" name="file1">
-                                @if ($errors->has('file1'))
+                            <div class="field {{ $errors->has('photo') ? 'error' : '' }}">
+                                <label>Sube una foto de lo que paso (opcional)</label>
+                                <input type="file" name="photo">
+                                @if ($errors->has('photo'))
                                     <span class="ui error message">
-                                        <strong>{{ $errors->first('file1') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="field {{ $errors->has('file2') ? 'error' : '' }}">
-                                <input type="file" name="file2">
-                                @if ($errors->has('file2'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('file2') }}</strong>
+                                        <strong>{{ $errors->first('photo') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -65,7 +66,7 @@
                                 @endif
                             </div>
                             <div class="field {{ $errors->has('estate_id') ? 'error' : '' }}">
-                                <label>Casa asociada al recurso</label>
+                                <label>Casa asociada al incidente</label>
                                 <div class="ui selection dropdown">
                                     <input type="hidden" name="estate_id" value="{{ old('estate_id') }}">
                                     <i class="dropdown icon"></i>

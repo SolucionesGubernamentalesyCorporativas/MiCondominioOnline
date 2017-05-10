@@ -33,6 +33,5 @@ class DatabaseSeeder extends Seeder
         $this->call(CondoUserTableSeeder::class);
         $this->call(EstateTransactionTableSeeder::class);
         $this->call(TypeOfIncidencesTableSeeder::class);
-        $this->call(IncidencesTableSeeder::class);
     }
 }

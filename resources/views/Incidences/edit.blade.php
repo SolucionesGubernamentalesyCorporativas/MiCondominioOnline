@@ -20,6 +20,28 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
+                            Editar fecha
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('incidences.update', $incidence->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="eight wide field {{ $errors->has('date') ? 'error' : '' }}">
+                                    <label>Fecha</label>
+                                    <input type="date" name="date" value="{{ $incidence->date->format('Y-m-d') }}" max="{{ date('Y-m-d') }}">
+                                    @if ($errors->has('date'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('date') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
                             Editar descripción
                         </div>
                         <div class="content field">
@@ -32,6 +54,28 @@
                                     @if ($errors->has('description'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
+                            Cambiar foto del incidente
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('incidences.update', $incidence->id) }}" enctype="multipart/form-data">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="eight wide field {{ $errors->has('photo') ? 'error' : '' }}">
+                                    <label>Sube una nueva foto</label>
+                                    <input type="file" name="photo">
+                                    @if ($errors->has('photo'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('photo') }}</strong>
                                         </span>
                                     @endif
                                 </div>

@@ -24,10 +24,10 @@ class StoreIncidence extends FormRequest
     public function rules()
     {
         return [
+            'date' => 'required|date',
             'description' => 'required|string',
-            'file1' => 'file',
-            'file2' => 'file',
-            'type_of_incidence' => 'required|numeric',
+            'photo' => 'image|mimes:jpeg,bmp,png',
+            'type_of_incidence_id' => 'required|numeric',
             'estate_id' => 'required|numeric'
         ];
     }
