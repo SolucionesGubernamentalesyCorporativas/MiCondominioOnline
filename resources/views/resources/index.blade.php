@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $row)   
+                        @foreach($data as $row)
                             <tr>
                                 <td>{{ $row->capacity }}</td>
                                 <td>{{ $row->fee }}</td>

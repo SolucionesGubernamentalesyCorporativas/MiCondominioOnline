@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Recibo {{ $receipt->name_of_img }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Recibo de la transacción "{{ $receipt->transaction->observations }}"</div>
                 <a href="{{ route('receipts.index') }}" class="ui right floated blue button">
                     <i class="angle left icon"></i>
                     Atras
@@ -25,14 +25,8 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Nombre de la imagen</div>
-                            <div class="description">{{ $receipt->name_of_img }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Tipo de la imagen</div>
-                            <div class="description">{{ $receipt->type_of_img }}</div>
+                            <div class="header">Foto del recibo</div>
+                            <img src="{{ $url }}" alt="Imagen del recibo" class="ui small image">
                         </div>
                     </div>
                     <div class="item">

@@ -6,7 +6,10 @@
         <div class="column">
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Casas</div>
-                <a class="ui right floated blue button" href="{{ route('estates.create') }}">Añadir casa</a>
+                <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ route('typeofestates.index') }}">Tipos de casa</a>
+                    <a class="ui button" href="{{ route('estates.create') }}">Añadir casa</a>
+                </div>
             </div>
         </div>
     </div>

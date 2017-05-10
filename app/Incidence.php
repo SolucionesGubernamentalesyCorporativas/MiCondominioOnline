@@ -15,9 +15,10 @@ class Incidence extends Model
      * @var array
      */
     protected $fillable = [
+        'date',
         'description',
-        'file1',
-        'file2',
+        'url_of_img',
+        'type_of_img',
         'type_of_incidence_id',
         'estate_id'
     ];
@@ -28,6 +29,7 @@ class Incidence extends Model
      * @var array
      */
     protected $dates = [
+        'date',
         'deleted_at'
     ];
 

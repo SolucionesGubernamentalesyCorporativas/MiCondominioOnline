@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Receipt;
 use App\Transaction;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreReceipt;
 use App\Http\Requests\UpdateReceipt;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ReceiptController extends Controller
 {
@@ -26,10 +27,18 @@ class ReceiptController extends Controller
             $data = Receipt::orderBy('date', request('sort'))
                             ->paginate(12)
                             ->appends('sort', request('sort'));
-        }
-        else
+        } else {
             $data = Receipt::paginate(12);
-        return view('receipts.index')->with('data', $data);
+        }
+        if (count($data) >= 1) {
+            foreach($data as $row) {
+                $urls[$row->id] = Storage::url($row->url_of_img);
+            }
+        } else {
+            $urls = NULL;
+        }
+        return view('receipts.index')->with('data', $data)
+                                    ->with('urls', $urls);
     }
 
     /**
@@ -51,9 +60,14 @@ class ReceiptController extends Controller
      */
     public function store(StoreReceipt $request)
     {
-        Receipt::create($request->all());
+        Receipt::create([
+            'date' => $request->date,
+            'url_of_img' => $request->photo->store('public/receipts'),
+            'type_of_img' => $request->photo->getClientMimeType(),
+            'transaction_id' => $request->transaction_id
+        ]);
         return redirect()->route('receipts.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Recibo creado satisfactoriamente');
     }
 
     /**
@@ -65,7 +79,9 @@ class ReceiptController extends Controller
     public function show(Receipt $receipt)
     {
         $receipt = Receipt::find($receipt->id);
-        return view('receipts.show')->with('receipt', $receipt);
+        $url = Storage::url($receipt->url_of_img);
+        return view('receipts.show')->with('receipt', $receipt)
+                                    ->with('url', $url);
     }
 
     /**
@@ -77,9 +93,11 @@ class ReceiptController extends Controller
     public function edit(Receipt $receipt)
     {
         $receipt = Receipt::find($receipt->id);
+        $url = Storage::url($receipt->url_of_img);
         $transactions = Transaction::all();
         return view('receipts.edit')->with('receipt', $receipt)
-                                    ->with('transactions', $transactions);
+                                    ->with('transactions', $transactions)
+                                    ->with('url', $url);
     }
 
     /**
@@ -91,9 +109,17 @@ class ReceiptController extends Controller
      */
     public function update(UpdateReceipt $request, Receipt $receipt)
     {
-        Receipt::find($receipt->id)->update($request->all());
+        if($request->photo != NULL) {
+            Storage::delete($receipt->url_of_img);
+            Receipt::find($receipt->id)->update([
+                'url_of_img' => $request->photo->store('public/receipts'),
+                'type_of_img' => $request->photo->getClientMimeType()
+            ]);
+        } else {
+            Receipt::find($receipt->id)->update($request->all());
+        }
         return redirect()->route('receipts.index')
-                        ->with('success', 'Item updated successfully');
+                        ->with('success', 'Recibo actualizado satisfactoriamente');
     }
 
     /**
@@ -104,8 +130,9 @@ class ReceiptController extends Controller
      */
     public function destroy(Receipt $receipt)
     {
+        Storage::delete($receipt->url_of_img);
         Receipt::find($receipt->id)->delete();
         return redirect()->route('receipts.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Recibo eliminado satisfactoriamente');
     }
 }

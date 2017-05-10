@@ -50,7 +50,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('ammount') ? 'error' : '' }}">
                                     <label>Cantidad</label>
-                                    <input type="text" name="ammount" placeholder="{{ $transaction->ammount }}">
+                                    <input type="text" name="ammount" placeholder="${{ number_format($transaction->ammount, 2) }}">
                                     @if ($errors->has('ammount'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('ammount') }}</strong>
