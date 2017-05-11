@@ -12,6 +12,13 @@
     </div>
     <div class="row">
         <div class="column">
+            <div class="ui blue segment">
+                <div class="header">Pago esperado : ${{ $debt }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
             @if(count($user->transactions) >= 1)
                 <table class="ui six column selectable blue table">
                     <thead>
@@ -40,7 +47,9 @@
                     </tbody>
                 </table>
             @else
-                <h3>Ninguna transacción relacionada con el usuario</h3>
+                <div class="ui blue segment">
+                    <div class="header">No hay transacciones asociadas con el usuario</div>
+                </div>
             @endif
         </div>
     </div>

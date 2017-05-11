@@ -13,8 +13,17 @@ class BillingStatementController extends Controller
     public function consult()
     {
         $user = User::find(Auth::id());
+        $debt = 0;
+        foreach ($user->estates as $estate) {
+            foreach ($estate->transactions as $transaction) {
+                if ($transaction->verified == 0 && $transaction->typeOfTransaction->income_outcome == 0) {
+                    $debt += $transaction->ammount;
+                }
+            }
+        }
         
-        return view('billingstatements.consult')->with('user', $user);
+        return view('billingstatements.consult')->with('user', $user)
+                                                ->with('debt', $debt);
     }
 
     public function pdf()
