@@ -16,8 +16,6 @@ class Receipt extends Model
      */
     protected $fillable = [
         'date',
-        'url_of_img',
-        'type_of_img',
         'transaction_id'
     ];
 
@@ -34,5 +32,10 @@ class Receipt extends Model
     public function transaction()
     {
         return $this->belongsTo('App\Transaction');
+    }
+
+    public function receiptImage()
+    {
+        return $this->hasOne('App\ReceiptImage');
     }
 }

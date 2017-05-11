@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReceiptsTable extends Migration
+class CreateIncidenceImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,13 @@ class CreateReceiptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('receipts', function(Blueprint $table) {
+        Schema::create('incidence_images', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('transaction_id')->nullable();
-            $table->date('date');
+            $table->unsignedBigInteger('incidence_id');
+            $table->text('url_of_img');
+            $table->text('type_of_img');
             $table->timestamps();
             $table->softDeletes();
-
-             $table->foreign('transaction_id')
-            ->references('id')
-            ->on('transactions')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
         });
     }
 
@@ -35,6 +30,6 @@ class CreateReceiptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receipts');
+        Schema::dropIfExists('incidence_images');
     }
 }
