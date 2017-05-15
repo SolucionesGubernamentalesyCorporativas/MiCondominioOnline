@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Membership;
 use App\Role;
+use App\Estate;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
@@ -49,8 +50,10 @@ class UserController extends Controller
     {
         $memberships = Membership::all();
         $roles = Role::all();
+        $estates = Estate::all();
         return view('users.create')->with('memberships', $memberships)
-                                    ->with('roles', $roles);
+                                    ->with('roles', $roles)
+                                    ->with('estates', $estates);
     }
 
     /**
@@ -61,15 +64,19 @@ class UserController extends Controller
      */
     public function store(StoreUser $request)
     {
-        User::create([
-            'name' => $request['name'],
-            'lastname' => $request['lastname'],
-            'email' => $request['email'],
-            'phone' => $request['phone'],
-            'password' => bcrypt($request['password']),
-            'membership_id' => $request['membership_id'],
-            'role_id' => $request['role_id']
-        ]);
+        $user = new User;
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->password = bcrypt($request->password);
+        $user->membership()->associate('membership_id');
+        $user->role()->associate('role_id');
+        if ($request->estate_id != NULL) {
+            $user->estates()->attach('estate_ids');
+        }
+        $user->save();
+        
         return redirect()->route('users.index')
                         ->with('success','Usuario creaado satisfactoriamente');
     }
