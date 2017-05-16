@@ -55,7 +55,7 @@
                                 <div class="list">
                                     @foreach($transaction->estates as $estate)
                                         <div class="item">
-                                            <div class="description">{{ $estate->number }}</div>
+                                            <div class="description">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
                                         </div>
                                     @endforeach
                                 </div>
