@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-@else
+@elseif (session('error'))
     <div class="row">
         <div class="column">
             <div class="ui error message">
@@ -16,4 +16,5 @@
             </div>
         </div>
     </div>
+@else
 @endif
