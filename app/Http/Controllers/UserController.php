@@ -78,9 +78,7 @@ class UserController extends Controller
 
         $user->save();
 
-        $user = User::latest()->first();
-
-        if ($request->estates_ids != NULL) {
+        if ($request->estate_ids != NULL) {
             $ids = explode(",", $request->estate_ids);
         
             foreach ($ids as $id) {
@@ -88,6 +86,8 @@ class UserController extends Controller
                 $user->estates()->attach($estate);
             }
         }
+
+        $user->save();
 
         return redirect()->route('users.index')
                         ->with('success','Usuario creado satisfactoriamente');
