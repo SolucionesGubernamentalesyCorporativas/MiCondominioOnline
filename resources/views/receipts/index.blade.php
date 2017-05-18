@@ -28,6 +28,15 @@
                         <a class="item" href="{{ route('receipts.index', ['sort' => 'desc']) }}"><i class="sort numeric descending icon"></i></a>
                     </div>
                 </div>
+                <div class="header item">Filtrar por</div>
+                <div class="ui dropdown item">
+                    Verificación
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="{{ route('receipts.index', ['verified' => 0]) }}">No verificadas</a>
+                        <a class="item" href="{{ route('receipts.index', ['verified' => 1]) }}">Verificadas</a>
+                    </div>
+                </div>
                 <a href="{{ route('receipts.index') }}" class="right floated item">
                     <i class="remove icon"></i>
                     Eliminar filtros
@@ -53,6 +62,7 @@
                                         {{ $row->transaction->observations }}
                                     </div>
                                     <div class="extra">
+                                        <span>Recibo verificado: {{ $row->verified == 0 ? 'No' : 'Si' }}</span>
                                         <div class="ui buttons">
                                             <a class="ui blue button" href="{{ route('receipts.edit', $row->id) }}">Editar</a>
                                             <form method="POST" action="{{ route('receipts.destroy', $row->id) }}" style="display: inline;">

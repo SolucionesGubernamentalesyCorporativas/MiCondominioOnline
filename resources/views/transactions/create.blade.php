@@ -38,20 +38,6 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
-                                <label>Verificada</label>
-                                <div class="field">
-                                    <div class="ui toggle checkbox">
-                                        <input type="checkbox" name="verified" value="1">
-                                        <label>Si</label>
-                                    </div>
-                                </div>
-                                @if ($errors->has('verified'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('verified') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                             <div class="field {{ $errors->has('type_of_transaction_id') ? 'error' : '' }}">
                                 <label>Tipo de transacción</label>
                                 <div class="ui selection dropdown">

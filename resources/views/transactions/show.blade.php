@@ -37,12 +37,6 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Verificada</div>
-                            <div class="description">{{ $transaction->verified == 0 ? 'No' : 'Si' }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
                             <div class="header">Recibo</div>
                             <div class="description">{{ count($transaction->receipt) == 1 ? $transaction->receipt->name_of_img : 'Ninguno' }}</div>
                         </div>

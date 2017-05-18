@@ -27,9 +27,14 @@ class ReceiptController extends Controller
             $data = Receipt::orderBy('date', request('sort'))
                             ->paginate(12)
                             ->appends('sort', request('sort'));
+        } elseif (request()->has('verified')) {
+            $data = Receipt::where('verified', request('verified'))
+                                ->paginate(12)
+                                ->appends('verified', request('verified'));
         } else {
             $data = Receipt::paginate(12);
         }
+
         if (count($data) >= 1) {
             foreach($data as $row) {
                 $urls[$row->id] = Storage::url($row->url_of_img);
@@ -60,12 +65,17 @@ class ReceiptController extends Controller
      */
     public function store(StoreReceipt $request)
     {
-        Receipt::create([
-            'date' => $request->date,
-            'url_of_img' => $request->photo->store('public/receipts'),
-            'type_of_img' => $request->photo->getClientMimeType(),
-            'transaction_id' => $request->transaction_id
-        ]);
+        $receipt = new Receipt;
+        $receipt->date = $request->date;
+        $request->verified == 1 ? $receipt->verified = 1 : $receipt->verified = 0;
+        $receipt->url_of_img = $request->photo->store('public/receipts');
+        $receipt->type_of_img = $request->photo->getClientMimeType();
+
+        $transaction = Transaction::find($request->transaction_id);
+        $receipt->transaction()->associate($transaction);
+
+        $receipt->save();
+
         return redirect()->route('receipts.index')
                         ->with('success', 'Recibo creado satisfactoriamente');
     }

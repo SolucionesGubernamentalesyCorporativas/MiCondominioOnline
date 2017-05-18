@@ -16,6 +16,7 @@ class Receipt extends Model
      */
     protected $fillable = [
         'date',
+        'verified',
         'url_of_img',
         'type_of_img',
         'transaction_id'
