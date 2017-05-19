@@ -64,39 +64,6 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar verificación
-                        </div>
-                        <div class="content field">
-                            <form class="ui form error" role="form" method="POST" action="{{ route('transactions.update', $transaction->id) }}">
-                                {{ method_field('PUT') }}
-                                {{ csrf_field() }}
-                                <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
-                                    <label>Verificada</label>
-                                    <div class="field">
-                                        <div class="ui toggle checkbox">
-                                            <input type="radio" name="verified" value="0" checked>
-                                            <label>No</label>
-                                        </div>
-                                    </div>
-                                    <div class="field">
-                                        <div class="ui toggle checkbox">
-                                            <input type="radio" name="verified" value="1">
-                                            <label>Si</label>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('verified'))
-                                        <span class="ui error message">
-                                            <strong>{{ $errors->first('verified') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                                <button class="ui submit blue small button" type="submit">Guardar</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="title">
-                            <i class="icon dropdown"></i>
                             Editar tipo de transacción
                         </div>
                         <div class="content field">
@@ -118,6 +85,37 @@
                                     @if ($errors->has('type_of_transaction_id'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('type_of_transaction_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
+                            Editar casas asociadas a la transacción
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('transactions.update', $transaction->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="eight wide field {{ $errors->has('estate_ids') ? 'error' : '' }}">
+                                    <label>Casas</label>
+                                    <div class="ui multiple selection dropdown">
+                                        <input type="hidden" name="estate_ids" value="{{ $ids }}">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">Selecciona las casas asociadas a la transacción</div>
+                                        <div class="menu">
+                                            @foreach($estates as $estate)
+                                                <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('estate_ids'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('estate_ids') }}</strong>
                                         </span>
                                     @endif
                                 </div>

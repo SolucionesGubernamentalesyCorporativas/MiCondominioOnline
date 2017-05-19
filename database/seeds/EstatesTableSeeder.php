@@ -13,21 +13,21 @@ class EstatesTableSeeder extends Seeder
     {
         DB::table('estates')->insert(array(
             array(
-                'number' => 'casa 15',
+                'number' => '15',
                 'rented' => '1',
                 'number_of_parking_lots' => '2',
                 'notes' => 'Jardin frontal',
                 'type_of_estate_id' => '1'
             ),
             array(
-                'number' => 'departamento 16',
+                'number' => '16',
                 'rented' => '0',
                 'number_of_parking_lots' => '1',
                 'notes' => 'cuarto piso',
                 'type_of_estate_id' => '2'
             ),
             array(
-                'number' => 'casa 2',
+                'number' => '2',
                 'rented' => '1',
                 'number_of_parking_lots' => '2',
                 'notes' => 'Patio de servicio descubierto',

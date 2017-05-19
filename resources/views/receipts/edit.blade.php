@@ -66,6 +66,39 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
+                            Editar verificación
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('receipts.update', $receipt->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
+                                    <label>¿Recibo verificado por un administrador?</label>
+                                    <div class="field">
+                                        <div class="ui toggle checkbox">
+                                            <input type="radio" name="verified" value="0" checked>
+                                            <label>No</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui toggle checkbox">
+                                            <input type="radio" name="verified" value="1">
+                                            <label>Si</label>
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('verified'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('verified') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
                             Editar transacción asociada
                         </div>
                         <div class="content field">

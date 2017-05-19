@@ -92,6 +92,24 @@
                                     </span>
                                 @endif  
                             </div>
+                            <div class="field {{ $errors->has('estate_ids') ? 'error' : '' }}">
+                                <label>Casa</label>
+                                <div class="ui multiple selection dropdown">
+                                    <input type="hidden" name="estate_ids" value="{{ old('estate_ids') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Si el usuario posee una o mas casas seleccionalas</div>
+                                    <div class="menu">
+                                        @foreach($estates as $estate)
+                                            <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('estate_ids'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('estate_ids') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
                             <div class="field {{ $errors->has('password') ? 'error' : '' }}">
                                 <label>Contraseña</label>
                                 <input type="password" name="password">

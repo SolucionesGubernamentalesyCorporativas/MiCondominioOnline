@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Editar casa {{ $estate->number }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Editar casa {{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
                 <a class="ui right floated blue button" href="{{ route('estates.index') }}">
                     <i class="angle left icon"></i>
                     Atras

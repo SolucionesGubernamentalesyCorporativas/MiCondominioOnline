@@ -56,6 +56,20 @@
                                     </span>
                                 @endif  
                             </div>
+                            <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
+                                <label>¿El recibo fue verificado por un administrador?</label>
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input type="checkbox" name="verified" value="1">
+                                        <label>Si</label>
+                                    </div>
+                                </div>
+                                @if ($errors->has('verified'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('verified') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                             <button class="ui submit blue button" type="submit">Guardar</button>
                         </form>
                     </div>
