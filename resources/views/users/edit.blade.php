@@ -179,7 +179,7 @@
                                 <div class="eight wide field {{ $errors->has('estate_ids') ? 'error' : '' }}">
                                     <label>Casas</label>
                                     <div class="ui multiple selection dropdown">
-                                        <input type="hidden" name="estate_ids">
+                                        <input type="hidden" name="estate_ids" value="{{ $ids }}">
                                         <i class="dropdown icon"></i>
                                         <div class="default text">Selecciona todas las casas relacionadas con el usuario</div>
                                         <div class="menu">

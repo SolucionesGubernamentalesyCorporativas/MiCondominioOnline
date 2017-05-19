@@ -119,10 +119,17 @@ class UserController extends Controller
         $roles = Role::all();
         $estates = Estate::all();
 
+        $ids = NULL;
+
+        foreach ($user->estates as $estate) {
+            $ids .= strval($estate->id) . ",";
+        }
+
         return view('users.edit')->with('user', $user)
                                 ->with('memberships', $memberships)
                                 ->with('roles', $roles)
-                                ->with('estates', $estates);
+                                ->with('estates', $estates)
+                                ->with('ids', $ids);
     }
 
     /**
@@ -134,6 +141,8 @@ class UserController extends Controller
      */
     public function update(UpdateUser $request, User $user)
     {
+        $user = User::find($user->id);
+        
         if ($request->name != NULL) {
             $user->name = $request->name;
         } elseif ($request->lastname != NULL) {
