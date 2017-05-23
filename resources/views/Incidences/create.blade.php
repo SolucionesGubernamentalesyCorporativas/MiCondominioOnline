@@ -38,12 +38,12 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="field {{ $errors->has('photo') ? 'error' : '' }}">
-                                <label>Sube una foto de lo que paso (opcional)</label>
-                                <input type="file" name="photo">
-                                @if ($errors->has('photo'))
+                            <div class="field {{ $errors->has('photos') ? 'error' : '' }}">
+                                <label>Sube hasta 3 fotos de lo que paso (opcional)</label>
+                                <input type="file" name="photos[]" multiple>
+                                @if ($errors->has('photos'))
                                     <span class="ui error message">
-                                        <strong>{{ $errors->first('photo') }}</strong>
+                                        <strong>{{ $errors->first('photos') }}</strong>
                                     </span>
                                 @endif
                             </div>

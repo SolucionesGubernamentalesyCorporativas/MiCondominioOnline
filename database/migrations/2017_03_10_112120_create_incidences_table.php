@@ -19,8 +19,6 @@ class CreateIncidencesTable extends Migration
             $table->unsignedBigInteger('estate_id')->nullable();
             $table->date('date');
             $table->text('description');
-            $table->string('url_of_img')->nullable();
-            $table->string('type_of_img')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

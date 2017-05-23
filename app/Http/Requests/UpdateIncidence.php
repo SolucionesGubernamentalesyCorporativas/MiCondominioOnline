@@ -23,12 +23,21 @@ class UpdateIncidence extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'date' => 'date',
             'description' => 'string',
-            'photo' => 'image|mimes:jpeg,bmp,png',
-            'type_of_incidence' => 'numeric',
-            'estate_id' => 'numeric'
+            'type_of_incidence_id' => 'numeric',
+            'estate_id' => 'numeric',
+            'ids' => 'numeric'
         ];
+        $photos = count($this->input('photos'));
+        foreach (range(0, $photos) as $index) {
+            $rules['photos.' . $index] = 'image|mimes:jpeg,bmp,png';
+        }
+        $ids = count($this->input('id_photos'));
+        foreach (range(0, $ids) as $index) {
+            $rules['ids.' . $index] = 'numeric';
+        }
+        return $rules;
     }
 }

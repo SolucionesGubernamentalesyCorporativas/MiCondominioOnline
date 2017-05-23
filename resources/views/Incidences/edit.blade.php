@@ -71,6 +71,10 @@
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('photo') ? 'error' : '' }}">
+                                    <label>Selecciona la foto que quieras cambiar</label>
+                                    @foreach ($urls as $url)
+                                        <img src="{{ $url }}" alt="foto-recibo-{{ $incidence->typeOfIncidence->name }}" class="ui small image">
+                                    @endforeach
                                     <label>Sube una nueva foto</label>
                                     <input type="file" name="photo">
                                     @if ($errors->has('photo'))

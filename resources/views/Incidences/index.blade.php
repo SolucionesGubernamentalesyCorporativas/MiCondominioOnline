@@ -21,7 +21,7 @@
                         @foreach ($data as $row)
                             <div class="item">
                                 <div class="image">
-                                    <img src="{{ $urls[$row->id] }}" alt="foto {{ $row->typeOfIncidence->name }}">
+                                    <img src="{{ $urls[$row->id][0] }}" alt="foto {{ $row->typeOfIncidence->name }}">
                                 </div>
                                 <div class="content">
                                     <a href="{{ route('incidences.show', $row->id) }}">

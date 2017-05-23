@@ -17,8 +17,6 @@ class Incidence extends Model
     protected $fillable = [
         'date',
         'description',
-        'url_of_img',
-        'type_of_img',
         'type_of_incidence_id',
         'estate_id'
     ];
@@ -41,5 +39,10 @@ class Incidence extends Model
     public function estate()
     {
         return $this->belongsTo('App\Estate');
+    }
+
+    public function incidenceImages()
+    {
+        return $this->hasMany('App\IncidenceImage');
     }
 }
