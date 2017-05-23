@@ -26,7 +26,6 @@ class UpdateTransaction extends FormRequest
         return [
             'observations' => 'string',
             'ammount' => 'numeric',
-            'verified' => 'boolean',
             'type_of_transaction_id' => 'numeric'
         ];
     }

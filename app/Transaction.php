@@ -17,7 +17,6 @@ class Transaction extends Model
     protected $fillable =[
         'observations',
         'ammount',
-        'verified',
         'type_of_transaction_id'
     ];
 

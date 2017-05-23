@@ -28,9 +28,14 @@ class ReceiptController extends Controller
             $data = Receipt::orderBy('date', request('sort'))
                             ->paginate(12)
                             ->appends('sort', request('sort'));
+        } elseif (request()->has('verified')) {
+            $data = Receipt::where('verified', request('verified'))
+                                ->paginate(12)
+                                ->appends('verified', request('verified'));
         } else {
             $data = Receipt::paginate(12);
         }
+
         if (count($data) >= 1) {
             foreach($data as $row) {
                 $urls[$row->id] = Storage::url($row->receiptImage->url_of_img);
@@ -63,11 +68,11 @@ class ReceiptController extends Controller
     {
         $receipt = new Receipt;
         $receipt->date = $request->date;
-        $receipt->transaction_id = $request->transaction_id;
+        $request->verified == 1 ? $receipt->verified = 1 : $receipt->verified = 0;
+        $transaction = Transaction::find($request->transaction_id);
+        $receipt->transaction()->associate($transaction);
         $receipt->save();
-
-        $receipt = Receipt::latest()->first();
-        
+      
         $image = new ReceiptImage;
         $image->receipt()->associate($receipt);
         $image->url_of_img = $request->photo->store('public/receipts');

@@ -37,12 +37,6 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Verificada</div>
-                            <div class="description">{{ $transaction->verified == 0 ? 'No' : 'Si' }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
                             <div class="header">Recibo</div>
                             <div class="description">{{ count($transaction->receipt) == 1 ? $transaction->receipt->name_of_img : 'Ninguno' }}</div>
                         </div>
@@ -55,7 +49,7 @@
                                 <div class="list">
                                     @foreach($transaction->estates as $estate)
                                         <div class="item">
-                                            <div class="description">{{ $estate->number }}</div>
+                                            <div class="description">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
                                         </div>
                                     @endforeach
                                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use App\TypeOfTransaction;
+use App\Estate;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTransaction;
 use App\Http\Requests\UpdateTransaction;
@@ -22,12 +23,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        if(request()->has('verified')) {
-            $data = Transaction::where('verified', request('verified'))
-                                ->paginate(12)
-                                ->appends('verified', request('verified'));
-        }
-        elseif(request()->has('sort')) {
+        if(request()->has('sort')) {
             $data = Transaction::orderBy('ammount', request('sort'))
                                 ->paginate(12)
                                 ->appends('sort', request('sort'));
@@ -45,7 +41,9 @@ class TransactionController extends Controller
     public function create()
     {
         $typeoftransactions = TypeOfTransaction::all();
-        return view('transactions.create')->with('typeoftransactions', $typeoftransactions);
+        $estates = Estate::all();
+        return view('transactions.create')->with('typeoftransactions', $typeoftransactions)
+                                        ->with('estates', $estates);
     }
 
     /**
@@ -56,9 +54,28 @@ class TransactionController extends Controller
      */
     public function store(StoreTransaction $request)
     {
-        Transaction::create($request->all());
+        $transaction = new Transaction;
+        $transaction->observations = $request->observations;
+        $transaction->ammount = $request->ammount;
+
+        $typeOfTransaction = TypeOfTransaction::find($request->type_of_transaction_id);
+        $transaction->typeOfTransaction()->associate($typeOfTransaction);
+
+        $transaction->save();
+
+        if ($request->estate_ids != NULL) {
+            $ids = explode(",", $request->estate_ids);
+
+            foreach ($ids as $id) {
+                $estate = Estate::find($id);
+                $transaction->estates()->attach($estate);
+            }
+        }
+        
+        $transaction->save();
+
         return redirect()->route('transactions.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Transacción creada satisfactoriamente');
     }
 
     /**
@@ -82,9 +99,20 @@ class TransactionController extends Controller
     public function edit(Transaction $transaction)
     {
         $transaction = Transaction::Find($transaction->id);
+
         $typeoftransactions = TypeOfTransaction::all();
+        $estates = Estate::all();
+
+        $ids = NULL;
+
+        foreach ($transaction->estates as $estate) {
+            $ids .= strval($estate->id) . ",";
+        }
+
         return view('transactions.edit')->with('transaction', $transaction)
-                                        ->with('typeoftransactions', $typeoftransactions);
+                                        ->with('typeoftransactions', $typeoftransactions)
+                                        ->with('estates', $estates)
+                                        ->with('ids', $ids);
     }
 
     /**
@@ -96,9 +124,30 @@ class TransactionController extends Controller
      */
     public function update(UpdateTransaction $request, Transaction $transaction)
     {
-        Transaction::find($transaction->id)->update($request->all());
+        $transaction = Transaction::find($transaction->id);
+
+        if ($request->observations != NULL) {
+            $transaction->observations = $request->observations;
+        } elseif ($request->ammount != NULL) {
+            $transaction->ammount = $request->ammount;
+        } elseif ($request->type_of_transaction_id != NULL) {
+            $transaction->typeOfTransaction()->dissociate();
+            $typeOfTransaction = TypeOfTransaction::find($request->type_of_transaction_id);
+            $transaction->typeOfTransaction->associate($typeOfTransaction);
+        } elseif ($request->estate_ids != NULL) {
+            $transaction->estates()->detach();
+            $ids = explode(",", $request->estate_ids);
+
+            foreach ($ids as $id) {
+                $estate = Estate::find($id);
+                $transaction->estates()->attach($estate);
+            }
+        } else {
+            return redirect()->route('transactions.index')
+                            ->with('error', 'Hubo un problema para actualizar la transacción, intente de nuevo');
+        }
         return redirect()->route('transactions.index')
-                        ->with('success', 'Item updated successfully');
+                        ->with('success', 'Transacción actualizada satisfactoriamente');
     }
 
     /**
@@ -111,6 +160,6 @@ class TransactionController extends Controller
     {
         Transaction::find($transaction->id)->delete();
         return redirect()->route('transactions.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Transacción eliminada satisfactoriamente');
     }
 }

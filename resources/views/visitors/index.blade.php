@@ -50,6 +50,6 @@
         </div>
     </div>
     {{ $data->links() }}
-    @include('layouts._success')
+    @include('layouts._message')
 </div>
 @endsection

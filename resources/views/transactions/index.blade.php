@@ -26,15 +26,6 @@
                         <a class="item" href="{{ route('transactions.index', ['sort' => 'desc']) }}"><i class="sort numeric descending icon"></i></a>
                     </div>
                 </div>
-                <div class="header item">Filtrar por</div>
-                <div class="ui dropdown item">
-                    Verificación
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a class="item" href="{{ route('transactions.index', ['verified' => 0]) }}">No verificadas</a>
-                        <a class="item" href="{{ route('transactions.index', ['verified' => 1]) }}">Verificadas</a>
-                    </div>
-                </div>
                 <a href="{{ route('transactions.index') }}" class="right floated item">
                     <i class="remove icon"></i>
                     Eliminar filtros
@@ -50,7 +41,6 @@
                         <tr>
                             <th>Observaciones</th>
                             <th>Cantidad</th>
-                            <th>Verificada</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -59,7 +49,6 @@
                             <tr>
                                 <td>{{ $row->observations }}</td>
                                 <td>${{ number_format($row->ammount, 2) }}</td>
-                                <td class="{{ $row->verified == 0 ? 'warning' : 'positive ' }}">{{ $row->verified == 0 ? 'No' : 'Si' }}</td>
                                 <td>
                                     <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('transactions.show', $row->id) }}">Info</a>
@@ -79,6 +68,6 @@
         </div>
     </div>
     {{ $data->links() }}
-    @include('layouts._success')
+    @include('layouts._message')
 </div>
 @endsection

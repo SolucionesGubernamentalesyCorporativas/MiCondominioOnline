@@ -135,7 +135,7 @@
                                         <div class="default text">Selecciona una casa</div>
                                         <div class="menu">
                                             @foreach($estates as $estate)
-                                                <div class="item" data-value="{{ $estate->id }}">{{ $estate->number }}</div>
+                                                <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
                                             @endforeach
                                         </div>
                                     </div>

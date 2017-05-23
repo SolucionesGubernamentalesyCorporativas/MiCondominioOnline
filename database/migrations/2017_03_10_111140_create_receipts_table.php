@@ -17,6 +17,7 @@ class CreateReceiptsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id')->nullable();
             $table->date('date');
+            $table->boolean('verified')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

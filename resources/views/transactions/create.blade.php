@@ -38,20 +38,6 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
-                                <label>Verificada</label>
-                                <div class="field">
-                                    <div class="ui toggle checkbox">
-                                        <input type="checkbox" name="verified" value="1">
-                                        <label>Si</label>
-                                    </div>
-                                </div>
-                                @if ($errors->has('verified'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('verified') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                             <div class="field {{ $errors->has('type_of_transaction_id') ? 'error' : '' }}">
                                 <label>Tipo de transacción</label>
                                 <div class="ui selection dropdown">
@@ -67,6 +53,24 @@
                                 @if ($errors->has('type_of_transaction_id'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('type_of_transaction_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <div class="field {{ $errors->has('estate_ids') ? 'error' : '' }}">
+                                <label>Casas asociadas a la transacción</label>
+                                <div class="ui multiple selection dropdown">
+                                    <input type="hidden" name="estate_ids" value="{{ old('estate_ids') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona las casas asociadas a la transacción</div>
+                                    <div class="menu">
+                                        @foreach($estates as $estate)
+                                            <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('estate_ids'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('estate_ids') }}</strong>
                                     </span>
                                 @endif  
                             </div>

@@ -29,7 +29,7 @@
                     <tbody>
                         @foreach($data as $row)   
                             <tr>
-                                <td>{{ $row->number }}</td>
+                                <td>{{ $row->typeOfEstate->name . ' ' . $row->number }}</td>
                                 <td>{{ $row->rented == 0 ? 'No' : 'Si' }}</td>
                                 <td>{{ $row->number_of_parking_lots }}</td>
                                 <td>{{ $row->notes }}</td>
@@ -52,6 +52,6 @@
         </div>
     </div>
     {{ $data->links() }}
-    @include('layouts._success')
+    @include('layouts._message')
 </div>
 @endsection

@@ -12,7 +12,14 @@
     </div>
     <div class="row">
         <div class="column">
-            @if(count($user->transactions) >= 1)
+            <div class="ui blue segment">
+                <div class="header">Pago esperado : ${{ $debt }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            @if (count($user->estates) >= 1)
                 <table class="ui six column selectable blue table">
                     <thead>
                         <tr>
@@ -25,22 +32,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($user->transactions as $transaction)
-                            @if($transaction->verified == 1)
+                        @foreach ($user->estates as $estate)
+                            @foreach ($estate->transactions as $transaction)
                                 <tr>
                                     <td>{{ $transaction->observations }}</td>
                                     <td>${{ number_format($transaction->ammount, 2) }}</td>
-                                    <td>{{ $transaction->verified == 0 ? 'No' : 'Si' }}</td>
+                                    <td>{{ $transaction->receipt->verified == 0 ? 'No' : 'Si' }}</td>
                                     <td>{{ $transaction->typeoftransaction->name }}</td>
                                     <td>{{ $transaction->typeoftransaction->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</td>
-                                    <td>{{ $transaction->receipt->name_of_img }}</td>
+                                    <td><img src="{{ $urls[$transaction->receipt->id] }}" alt="foto-recibo-{{ $transaction->observations }}" class="ui small image"></td>
                                 </tr>
-                            @endif
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>
             @else
-                <h3>Ninguna transacción relacionada con el usuario</h3>
+                <div class="ui blue segment">
+                    <div class="header">No hay transacciones asociadas con el usuario</div>
+                </div>
             @endif
         </div>
     </div>
