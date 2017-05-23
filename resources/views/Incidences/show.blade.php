@@ -31,8 +31,10 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Foto de la incidencia</div>
-                            <img src="{{ $url }}" alt="foto incidencia {{ $incidence->typeOfIncidence->name }}" class="ui small image">
+                            <div class="header">Fotos de la incidencia</div>
+                            @foreach ($urls as $url)
+                                <img src="{{ $url }}" alt="foto incidencia {{ $incidence->typeOfIncidence->name }}" class="ui small image">
+                            @endforeach
                         </div>
                     </div>
                     <div class="item">

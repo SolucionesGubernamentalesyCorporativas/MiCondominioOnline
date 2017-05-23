@@ -23,12 +23,16 @@ class StoreIncidence extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'date' => 'required|date',
             'description' => 'required|string',
-            'photo' => 'image|mimes:jpeg,bmp,png',
             'type_of_incidence_id' => 'required|numeric',
-            'estate_id' => 'required|numeric'
+            'estate_id' => 'required|numeric',
         ];
+        $photos = count($this->input('photos'));
+        foreach (range(0, $photos) as $index) {
+            $rules['photos.' . $index] = 'image|mimes:jpeg,bmp,png';
+        }
+        return $rules;
     }
 }
