@@ -37,9 +37,9 @@ class Estate extends Model
         return $this->belongsTo('App\TypeOfEstate');
     }
 
-    public function condos()
+    public function condo()
     {
-        return $this->belongsToMany('App\Condo');
+        return $this->belongsTo('App\Condo');
     }
 
     public function users()

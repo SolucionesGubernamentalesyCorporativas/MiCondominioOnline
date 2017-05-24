@@ -33,8 +33,8 @@
                     Verificación
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a class="item" href="{{ route('receipts.index', ['verified' => 0]) }}">No verificadas</a>
-                        <a class="item" href="{{ route('receipts.index', ['verified' => 1]) }}">Verificadas</a>
+                        <a class="{{ request()->verified == 0 ? 'item active' : 'item' }}" href="{{ route('receipts.index', ['verified' => 0]) }}">No verificadas</a>
+                        <a class="{{ request()->verified == 1 ? 'item active' : 'item' }}" href="{{ route('receipts.index', ['verified' => 1]) }}">Verificadas</a>
                     </div>
                 </div>
                 <a href="{{ route('receipts.index') }}" class="right floated item">

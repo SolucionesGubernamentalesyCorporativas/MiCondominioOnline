@@ -31,7 +31,7 @@ class Condo extends Model
     
     public function estates()
     {
-        return $this->belongsToMany('App\Estate');
+        return $this->hasMany('App\Estate');
     }
 
     public function users()

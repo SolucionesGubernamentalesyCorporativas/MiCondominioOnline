@@ -45,8 +45,8 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Casa</div>
-                            <div class="description">{{ count($incidence->estate) == 1 ? $incidence->estate->typeOfEstate->name . ' ' . $incidence->estate->number : 'Ninguno' }}</div>
+                            <div class="header">Unidad privativa</div>
+                            <div class="description">{{ count($incidence->estate) == 1 ? $incidence->estate->typeOfEstate->name . ' ' . $incidence->estate->number : 'Ninguna' }}</div>
                         </div>
                     </div>
                     <div class="item">

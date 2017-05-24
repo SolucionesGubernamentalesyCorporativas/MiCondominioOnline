@@ -43,9 +43,9 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Casas</div>
+                            <div class="header">Unidades privativas</div>
                             @if(count($transaction->estates) >= 1)
-                                <div class="description">Casas asociadas a la transacción</div>
+                                <div class="description">Unidades privativas asociadas a la transacción</div>
                                 <div class="list">
                                     @foreach($transaction->estates as $estate)
                                         <div class="item">
@@ -54,7 +54,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ninguna casa asociada a la transacción</div>
+                                <div class="description">Ninguna unidad privativa asociada a la transacción</div>
                             @endif
                         </div>
                     </div>

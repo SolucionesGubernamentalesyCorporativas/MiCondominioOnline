@@ -16,6 +16,7 @@ class CreateEstatesTable extends Migration
         Schema::create('estates', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('type_of_estate_id')->nullable();
+            $table->unsignedBigInteger('condo_id')->nullable();
             $table->text('number');
             $table->boolean('rented')->default(0);
             $table->integer('number_of_parking_lots');
@@ -26,6 +27,11 @@ class CreateEstatesTable extends Migration
             $table->foreign('type_of_estate_id')
             ->references('id')
             ->on('type_of_estates')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreign('condo_id')
+            ->references('id')
+            ->on('condos')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });

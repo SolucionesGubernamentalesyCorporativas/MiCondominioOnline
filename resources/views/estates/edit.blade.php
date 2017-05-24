@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Editar casa {{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Editar unidad privativa {{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
                 <a class="ui right floated blue button" href="{{ route('estates.index') }}">
                     <i class="angle left icon"></i>
                     Atras
@@ -119,18 +119,18 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar tipo de casa
+                            Editar tipo de unidad privativa
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('estates.update', $estate->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('type_of_estate_id') ? 'error' : '' }}">
-                                    <label>Tipo de casa</label>
+                                    <label>Tipo de unidad privativa</label>
                                     <div class="ui selection dropdown">
                                         <input type="hidden" name="type_of_estate_id" value="{{ $estate->type_of_estate_id }}">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">Selecciona un tipo de casa</div>
+                                        <div class="default text">Selecciona un tipo de unidad privativa</div>
                                         <div class="menu">
                                             @foreach($typeofestates as $typeofestate)
                                                 <div class="item" data-value="{{ $typeofestate->id }}">{{ $typeofestate->name }}</div>
@@ -140,6 +140,37 @@
                                     @if ($errors->has('type_of_estate_id'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('type_of_estate_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
+                            Editar condominio
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('estates.update', $estate->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="eight wide field {{ $errors->has('condo_id') ? 'error' : '' }}">
+                                    <label>Condominio asociado a la unidad privativa</label>
+                                    <div class="ui selection dropdown">
+                                        <input type="hidden" name="condo_id" value="{{ $estate->condo->id }}">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">Selecciona el condominio asociado</div>
+                                        <div class="menu">
+                                            @foreach($condos as $condo)
+                                                <div class="item" data-value="{{ $condo->id }}">{{ $condo->name }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('condo_id'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('condo_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>

@@ -5,11 +5,31 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Casas</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Unidades privativas</div>
                 <div class="ui right floated blue buttons">
-                    <a class="ui button" href="{{ route('typeofestates.index') }}">Tipos de casa</a>
-                    <a class="ui button" href="{{ route('estates.create') }}">Añadir casa</a>
+                    <a class="ui button" href="{{ route('typeofestates.index') }}">Tipos de unidad privativa</a>
+                    <a class="ui button" href="{{ route('estates.create') }}">Añadir unidad privativa</a>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="ui secondary menu">
+                <div class="header item">Filtrar por</div>
+                <div class="ui dropdown item">
+                    Condominio
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        @foreach ($condos as $condo)
+                            <a href="{{ route('estates.index', ['condo' => $condo->id]) }}" class="{{ $condo->id == request()->condo ? 'item active' : 'item' }}">{{ $condo->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
+                <a href="{{ route('estates.index') }}" class="right floated item">
+                    <i class="remove icon"></i>
+                    Eliminar filtros
+                </a>
             </div>
         </div>
     </div>

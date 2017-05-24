@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir tipo de casa</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Añadir tipo de unidad privativa</div>
                 <a class="ui right floated blue button" href="{{ route('typeofestates.index') }}">
                     <i class="angle left icon"></i>
                     Atras
@@ -22,7 +22,7 @@
                             {{ csrf_field() }}
                                 <div class="field {{ $errors->has('name') ? 'error' : '' }}">
                                 <label>Nombre</label>
-                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Nombre del tipo de casa" autofocus>
+                                <input type="text" name="name" value="{{ old('name') }}" placeholder="Nombre del tipo de unidad privativa" autofocus>
                                 @if ($errors->has('name'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="field {{ $errors->has('description') ? 'error' : '' }}">
                                 <label>Descripción</label>
-                                <input type="text" name="description" value="{{ old('description') }}" placeholder="Describe el tipo de casa">
+                                <input type="text" name="description" value="{{ old('description') }}" placeholder="Describe el tipo de unidad privativa">
                                 @if ($errors->has('description'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('description') }}</strong>

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Casa {{ $estate->name }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Unidad privativa {{ $estate->name }}</div>
                 <a href="{{ route('estates.index') }}" class="ui right floated blue button">
                     <i class="angle left icon"></i>
                     Atras
@@ -43,32 +43,21 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Tipo de casa</div>
+                            <div class="header">Tipo de unidad privativa</div>
                             <div class="description">{{  count($estate->typeOfEstate) == 1 ? $estate->typeOfEstate->name : 'Ninguno' }}</div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Condominios</div>
-                            @if(count($estate->condos) >= 1)
-                                <div class="description">Condominios asociados a la casa</div>
-                                <div class="list">
-                                    @foreach($estate->condos as $condo)
-                                        <div class="item">
-                                            <div class="description">{{ $condo->name }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ningun condominio asociado a la casa</div>
-                            @endif
+                            <div class="header">Condominio</div>
+                            <div class="description">{{ count($estate->condo) == 1 ? $estate->condo->name : 'Ninguno' }}</div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="content">
                             <div class="header">Usuarios</div>
                             @if(count($estate->users) >= 1)
-                                <div class="description">Usuarios asociados a la casa</div>
+                                <div class="description">Usuarios asociados a la unidad privativa</div>
                                 <div class="list">
                                     @foreach($estate->users as $user)
                                         <div class="item">
@@ -77,7 +66,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun usuario asociado a la casa</div>
+                                <div class="description">Ningun usuario asociado a la unidad privativa</div>
                             @endif
                         </div>
                     </div>
@@ -85,7 +74,7 @@
                         <div class="content">
                             <div class="header">Transacciones</div>
                             @if(count($estate->transactions) >= 1)
-                                <div class="description">Transacciones asociadas a la casa</div>
+                                <div class="description">Transacciones asociadas a la unidad privativa</div>
                                 <div class="list">
                                     @foreach($estate->transactions as $transaction)
                                         <div class="item">
@@ -94,7 +83,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ninguna transacción asociada a la casa</div>
+                                <div class="description">Ninguna transacción asociada a la unidad privativa</div>
                             @endif
                         </div>
                     </div>
@@ -102,7 +91,7 @@
                         <div class="content">
                             <div class="header">Visitantes</div>
                             @if(count($estate->visitors) >= 1)
-                                <div class="description">Visitantes asociados a la casa</div>
+                                <div class="description">Visitantes asociados a la unidad privativa</div>
                                 <div class="list">
                                     @foreach($estate->visitors as $visitor)
                                         <div class="item">
@@ -111,7 +100,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun visitante asociado a la casa</div>
+                                <div class="description">Ningun visitante asociado a la unidad privativa</div>
                             @endif
                         </div>
                     </div>
@@ -119,7 +108,7 @@
                         <div class="content">
                             <div class="header">Activos</div>
                             @if(count($estate->assets) >= 1)
-                                <div class="description">Activos asociados a la casa</div>
+                                <div class="description">Activos asociados a la unidad privativa</div>
                                 <div class="list">
                                     @foreach($estate->assets as $asset)
                                         <div class="item">
@@ -128,7 +117,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun activo asociado a la casa</div>
+                                <div class="description">Ningun activo asociado a la unidad privativa</div>
                             @endif
                         </div>
                     </div>
@@ -136,7 +125,7 @@
                         <div class="content">
                             <div class="header">Recurso</div>
                             @if(count($estate->resources) >= 1)
-                                <div class="description">Recursos asociados a la casa</div>
+                                <div class="description">Recursos asociados a la unidad privativa</div>
                                 <div class="list">
                                     @foreach($estate->resources as $resource)
                                         <div class="item">
@@ -145,7 +134,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun recurso asociado a la casa</div>
+                                <div class="description">Ningun recurso asociado a la unidad privativa</div>
                             @endif
                         </div>
                     </div>

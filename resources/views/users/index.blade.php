@@ -31,7 +31,7 @@
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         @foreach($roles as $role)
-                            <a class="item" href="{{ route('users.index', ['role' => $role->id]) }}">{{ $role->name }}</a>
+                            <a class="{{ request()->role == $role->id ? 'item active' : 'item' }}" href="{{ route('users.index', ['role' => $role->id]) }}">{{ $role->name }}</a>
                         @endforeach
                     </div>
                 </div>

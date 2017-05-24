@@ -24,11 +24,12 @@ class UpdateEstate extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'string',
+            'number' => 'numeric',
             'rented' => 'boolean',
             'number_of_parking_lots' => 'numeric',
             'notes' => 'string',
-            'type_of_estate_id' => 'numeric'
+            'type_of_estate_id' => 'numeric',
+            'condo_id' => 'numeric'
         ];
     }
 }

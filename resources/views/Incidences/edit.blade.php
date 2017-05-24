@@ -121,18 +121,18 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar casa
+                            Editar unidad privativa
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('incidences.update', $incidence->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('estate_id') ? 'error' : '' }}">
-                                    <label>Casa</label>
+                                    <label>Unidad privativa relacionada al incidente</label>
                                     <div class="ui selection dropdown">
                                         <input type="hidden" name="estate_id" value="{{ $incidence->estate_id }}">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">Selecciona una casa</div>
+                                        <div class="default text">Selecciona una unidad privativa</div>
                                         <div class="menu">
                                             @foreach($estates as $estate)
                                                 <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>

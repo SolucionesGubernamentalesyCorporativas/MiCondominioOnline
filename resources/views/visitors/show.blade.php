@@ -37,7 +37,7 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Casa que visita</div>
+                            <div class="header">Unidad privativa que visita</div>
                             <div class="description">{{ count($visitor->estate) == 1 ? $visitor->estate->typeOfEstate->name . ' ' . $visitor->estate->number : 'Ninguno' }}</div>
                         </div>
                     </div>

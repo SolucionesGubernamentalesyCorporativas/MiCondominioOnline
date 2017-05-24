@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Estate;
 use App\TypeOfEstate;
+use App\Condo;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEstate;
 use App\Http\Requests\UpdateEstate;
@@ -22,8 +23,18 @@ class EstateController extends Controller
      */
     public function index()
     {
-        $data = Estate::paginate(12);
-        return view('estates.index')->with('data', $data);
+        $condos = Condo::all();
+
+        if (request()->has('condo')) {
+            $data = Estate::where('condo_id', request('condo'))
+            ->paginate(12)
+            ->appends('condo', request('condo'));
+        } else {
+            $data = Estate::paginate(12);
+        }
+        
+        return view('estates.index')->with('data', $data)
+                                    ->with('condos', $condos);
     }
 
     /**
@@ -34,7 +45,10 @@ class EstateController extends Controller
     public function create()
     {
         $typeofestates = TypeOfEstate::all();
-        return view('estates.create')->with('typeofestates', $typeofestates);
+        $condos = Condo::all();
+
+        return view('estates.create')->with('typeofestates', $typeofestates)
+                                    ->with('condos', $condos);
     }
 
     /**
@@ -45,9 +59,22 @@ class EstateController extends Controller
      */
     public function store(StoreEstate $request)
     {
-        Estate::create($request->all());
+        $estate = new Estate;
+
+        $estate->number = $request->number;
+        $estate->rented = $request->rented;
+        $estate->number_of_parking_lots = $request->number_of_parking_lots;
+        $estate->notes = $request->notes;
+
+        $typeOfEstate = TypeOfEstate::find($request->type_of_estate_id);
+        $estate->typeOfEstate()->associate($typeOfEstate);
+        $condo = Condo::find($request->condo_id);
+        $estate->condo()->associate($condo);
+
+        $estate->save();
+
         return redirect()->route('estates.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Unidad privativa creada satisfactoriamente');
     }
 
     /**
@@ -71,9 +98,13 @@ class EstateController extends Controller
     public function edit(Estate $estate)
     {
         $estate = Estate::find($estate->id);
+
         $typeofestates = TypeOFEstate::all();
+        $condos = Condo::all();
+
         return view('estates.edit')->with('estate', $estate)
-                                    ->with('typeofestates', $typeofestates);
+                                    ->with('typeofestates', $typeofestates)
+                                    ->with('condos', $condos);
     }
 
     /**
@@ -85,9 +116,33 @@ class EstateController extends Controller
      */
     public function update(UpdateEstate $request, Estate $estate)
     {
-        Estate::update($request->all());
+        $estate = Estate::find($estate->id);
+
+        if ($request->number != NULL) {
+            $estate->number = $request->number;
+        } elseif ($request->rented != NULL) {
+            $estate->rented = $request->rented;
+        } elseif ($request->number_of_parking_lots != NULL) {
+            $estate->number_of_parking_lots = $request->number_of_parking_lots;
+        } elseif ($request->notes != NULL) {
+            $estate->notes = $request->notes;
+        } elseif ($request->type_of_estate_id != NULL) {
+            $estate->typeOfEstate()->dissociate();
+            $typeOfEstate = TypeOfEstate::find($request->type_of_estate_id);
+            $estate->typeOfEstate()->associate($typeOfEstate);
+        } elseif ($request->condo_id != NULL) {
+            $estate->condo()->dissociate();
+            $condo = Condo::find($request->condo_id);
+            $estate->condo()->associate($condo);
+        } else {
+            return redirect()->route('estates.index')
+                            ->with('error', 'Hubo un problema al actualizar la unidad privativa, intente de nuevo');
+        }
+
+        $estate->save();
+        
         return redirect()->route('estates.index')
-                        ->with('success', 'Item updated successfully');
+                        ->with('success', 'Unidad privativa actualizada satisfactoriamente');
     }
 
     /**
@@ -100,6 +155,6 @@ class EstateController extends Controller
     {
         Estate::find($estate->id)->delete();
         return redirect()->route('estates.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Unidad privativa eliminada satisfactoriamente');
     }
 }

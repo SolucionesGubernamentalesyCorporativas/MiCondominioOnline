@@ -24,11 +24,12 @@ class StoreEstate extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|string',
+            'number' => 'required|numeric',
             'rented' => 'required|boolean',
             'number_of_parking_lots' => 'required|numeric',
             'notes' => 'string',
-            'type_of_estate_id' => 'required|numeric'
+            'type_of_estate_id' => 'required|numeric',
+            'condo_id' => 'required|numeric'
         ];
     }
 }

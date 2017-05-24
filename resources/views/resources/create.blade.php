@@ -57,11 +57,11 @@
                                 @endif  
                             </div>
                             <div class="field {{ $errors->has('estate_id') ? 'error' : '' }}">
-                                <label>Casa asociada al recurso</label>
+                                <label>Unidad privativa asociada al recurso</label>
                                 <div class="ui selection dropdown">
                                     <input type="hidden" name="estate_id" value="{{ old('estate_id') }}">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona una casa</div>
+                                    <div class="default text">Selecciona una unidad privativa</div>
                                     <div class="menu">
                                         @foreach($estates as $estate)
                                             <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>

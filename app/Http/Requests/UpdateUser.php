@@ -29,7 +29,8 @@ class UpdateUser extends FormRequest
             'email' => 'email|unique:users',
             'phone' => 'numeric',
             'membership_id' => "numeric",
-            'role_id' => 'numeric'
+            'role_id' => 'numeric',
+            'condo_ids' => 'numeric'
         ];
     }
 }

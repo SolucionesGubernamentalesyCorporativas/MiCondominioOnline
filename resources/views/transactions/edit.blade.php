@@ -95,18 +95,18 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar casas asociadas a la transacción
+                            Editar unidades privativas asociadas a la transacción
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('transactions.update', $transaction->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('estate_ids') ? 'error' : '' }}">
-                                    <label>Casas</label>
+                                    <label>Unidades privativas</label>
                                     <div class="ui multiple selection dropdown">
                                         <input type="hidden" name="estate_ids" value="{{ $ids }}">
                                         <i class="dropdown icon"></i>
-                                        <div class="default text">Selecciona las casas asociadas a la transacción</div>
+                                        <div class="default text">Selecciona las unidades privativas asociadas a la transacción</div>
                                         <div class="menu">
                                             @foreach($estates as $estate)
                                                 <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>

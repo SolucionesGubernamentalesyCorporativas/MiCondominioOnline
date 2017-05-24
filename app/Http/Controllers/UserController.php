@@ -6,6 +6,7 @@ use App\User;
 use App\Membership;
 use App\Role;
 use App\Estate;
+use App\Condo;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
@@ -37,6 +38,7 @@ class UserController extends Controller
         }
         else
             $data = User::paginate(12);
+
         return view('users.index')->with('data', $data)
                                 ->with('roles', $roles);
     }
@@ -51,9 +53,12 @@ class UserController extends Controller
         $memberships = Membership::all();
         $roles = Role::all();
         $estates = Estate::all();
+        $condos = Condo::all();
+
         return view('users.create')->with('memberships', $memberships)
                                     ->with('roles', $roles)
-                                    ->with('estates', $estates);
+                                    ->with('estates', $estates)
+                                    ->with('condos', $condos);
     }
 
     /**
@@ -87,7 +92,14 @@ class UserController extends Controller
             }
         }
 
-        $user->save();
+        if ($request->condo_ids != NULL) {
+            $ids = explode(",", $request->condo_ids);
+
+            foreach ($ids as $id) {
+                $condo = Condo::find($id);
+                $user->condos()->attach($condo);
+            }
+        }
 
         return redirect()->route('users.index')
                         ->with('success','Usuario creado satisfactoriamente');
@@ -118,18 +130,26 @@ class UserController extends Controller
         $memberships = Membership::all();
         $roles = Role::all();
         $estates = Estate::all();
+        $condos = Condo::all();
 
-        $ids = NULL;
+        $idsestates = NULL;
+        $idscondos = NULL;
 
         foreach ($user->estates as $estate) {
-            $ids .= strval($estate->id) . ",";
+            $idsestates .= strval($estate->id) . ",";
+        }
+
+        foreach ($user->condos as $condo) {
+            $idscondos .= strval($condo->id) . ",";
         }
 
         return view('users.edit')->with('user', $user)
                                 ->with('memberships', $memberships)
                                 ->with('roles', $roles)
                                 ->with('estates', $estates)
-                                ->with('ids', $ids);
+                                ->with('condos', $condos)
+                                ->with('idsestates', $idsestates)
+                                ->with('idscondos', $idscondos);
     }
 
     /**
@@ -166,6 +186,14 @@ class UserController extends Controller
             foreach ($ids as $id) {
                 $estate = Estate::find($id);
                 $user->estates()->attach($estate);
+            }
+        } elseif ($request->condo_ids != NULL) {
+            $user->condos()->detach();
+            $ids = explode(",", $request->condo_ids);
+
+            foreach ($ids as $id) {
+                $condo = Condo::find($id);
+                $user->condos()->attach($condo);
             }
         } else {
             return redirect()->route('users.index')

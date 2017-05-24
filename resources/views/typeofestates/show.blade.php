@@ -5,7 +5,7 @@
     <div class="row">
         <div class="column">
             <div class="ui clearing blue segment">
-                <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de casa {{ $typeofestate->name }}</div>
+                <div style="position: relative; top: 8px;" class="ui left floated header">Tipo de unidad privativa {{ $typeofestate->name }}</div>
                 <a href="{{ route('typeofestates.index') }}" class="ui right floated blue button">
                     <i class="angle left icon"></i>
                     Atras
