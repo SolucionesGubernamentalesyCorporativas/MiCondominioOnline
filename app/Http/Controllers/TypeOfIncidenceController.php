@@ -44,7 +44,7 @@ class TypeOfIncidenceController extends Controller
     {
         TypeOfIncidence::create($request->all());
         return redirect()->route('typeofincidences.index')
-                        ->with('success', 'Tipo de incidencia creado satisfactoriamente');
+                        ->with('success', 'Tipo de incidencia creada satisfactoriamente');
     }
 
     /**
@@ -82,7 +82,7 @@ class TypeOfIncidenceController extends Controller
     {
         TypeOfIncidence::find($typeofincidence->id)->update($request->all());
         return redirect()->route('typeofincidences.index')
-                        ->with('success', 'Tipo de incidencia actualizado correctamente');
+                        ->with('success', 'Tipo de incidencia actualizada correctamente');
     }
 
     /**
@@ -95,6 +95,6 @@ class TypeOfIncidenceController extends Controller
     {
         TypeOfIncidence::find($typeofincidence->id)->delete();
         return redirect()->route('typeofincidences.index')
-                        ->with('success', 'Tipo de incidencia eliminado satisfactoriamente');
+                        ->with('success', 'Tipo de incidencia eliminada satisfactoriamente');
     }
 }

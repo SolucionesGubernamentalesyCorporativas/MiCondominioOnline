@@ -35,6 +35,15 @@
                         @endforeach
                     </div>
                 </div>
+                <div class="ui dropdown item">
+                    Condominio
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        @foreach($condos as $condo)
+                            <a class="{{ request()->condo == $condo->id ? 'item active' : 'item' }}" href="{{ route('users.index', ['condo' => $condo->id]) }}">{{ $condo->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
                 <a href="{{ route('users.index') }}" class="right floated item">
                     <i class="remove icon"></i>
                     Eliminar filtros

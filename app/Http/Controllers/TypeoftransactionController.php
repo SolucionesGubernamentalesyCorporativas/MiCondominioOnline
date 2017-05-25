@@ -51,7 +51,7 @@ class TypeOfTransactionController extends Controller
     {
         TypeOfTransaction::create($request->all());
         return redirect()->route('typeoftransactions.index')
-                            ->with('success', 'Item created successfully');
+                            ->with('success', 'Tipo de transacción creado satisfactoriamente');
     }
 
     /**
@@ -89,7 +89,7 @@ class TypeOfTransactionController extends Controller
     {
         TypeOfTransaction::find($typeoftransaction->id)->update($request->all());
         return redirect()->route('typeoftransactions.index')
-                            ->with('success', 'Item created successfully');
+                            ->with('success', 'Tipo de transacción actualizado satisfactoriamente');
     }
 
     /**
@@ -102,6 +102,6 @@ class TypeOfTransactionController extends Controller
     {
         TypeOfTransaction::find($typeoftransaction->id)->delete();
         return redirect()->route('typeoftransactions.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Tipo de transacción eliminado satisfactoriamente');
     }
 }

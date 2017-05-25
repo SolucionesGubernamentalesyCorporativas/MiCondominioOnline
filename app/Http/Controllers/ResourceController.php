@@ -50,7 +50,7 @@ class ResourceController extends Controller
     {
         Resource::create($request->all());
         return redirect()->route('resources.index')
-                        ->with('success', 'Recurso guardado satisfactoriamente');
+                        ->with('success', 'Recurso creado satisfactoriamente');
     }
 
     /**

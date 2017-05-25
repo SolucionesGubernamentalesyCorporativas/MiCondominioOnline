@@ -45,7 +45,7 @@ class TypeOfEstateController extends Controller
     {
         TypeOfEstate::create($request->all());
         return redirect()->route('typeofestates.index')
-                        ->with('success', 'Tipo de casa creado satisfactoriamente');
+                        ->with('success', 'Tipo de unidad privativa creada satisfactoriamente');
     }
 
     /**
@@ -83,7 +83,7 @@ class TypeOfEstateController extends Controller
     {
         TypeOFEstate::find($typeofestate->id)->update($request->all());
         return redirect()->route('typeofestates.index')
-                        ->with('success', 'Tipo de casa actualizado satisfactoriamente');
+                        ->with('success', 'Tipo de unidad privativa actualizada satisfactoriamente');
     }
 
     /**
@@ -96,6 +96,6 @@ class TypeOfEstateController extends Controller
     {
         TypeOfEstate::find($typeofestate->id)->delete();
         return redirect()->route('typeofestates.index')
-                        ->with('success', 'Tipo de casa eliminado satisfactoriamente');
+                        ->with('success', 'Tipo de unidad privativa eliminada satisfactoriamente');
     }
 }

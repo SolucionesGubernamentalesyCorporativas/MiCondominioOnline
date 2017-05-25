@@ -31,8 +31,8 @@ class StoreUser extends FormRequest
             'password' => 'required|confirmed|alpha_dash|min:8',
             'membership_id' => 'required|numeric',
             'role_id' => 'required|numeric',
-            'estate_id' => 'numeric',
-            'condo_ids' => 'numeric'
+            'estate_id' => 'string|nullable',
+            'condo_ids' => 'string|nullable'
         ];
     }
 }

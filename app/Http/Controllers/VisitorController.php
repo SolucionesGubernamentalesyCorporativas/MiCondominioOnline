@@ -50,7 +50,7 @@ class VisitorController extends Controller
     {
         Visitor::create($request->all());
         return redirect()->route('visitors.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Visitante creado satisfactoriamente');
     }
 
     /**
@@ -92,7 +92,7 @@ class VisitorController extends Controller
     {
         Visitor::find($visitor->id)->update($request->all());
         return redirect()->route('visitors.index')
-                        ->with('success', 'Item updated successfully');
+                        ->with('success', 'Visitante actualizado satisfactoriamente');
     }
 
     /**
@@ -105,6 +105,6 @@ class VisitorController extends Controller
     {
         Visitor::find($visitor->id)->delete();
         return redirect()->route('visitors.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Visitante eliminado satisfactoriamente');
     }
 }

@@ -45,7 +45,7 @@ class TypeOfVisitorController extends Controller
     {
         TypeOfVisitor::create($request->all());
         return redirect()->route('typeofvisitors.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Tipo de visitante creado satisfactoriamente');
     }
 
     /**
@@ -83,7 +83,7 @@ class TypeOfVisitorController extends Controller
     {
         TypeOfVisitor::find($typeofvisitor->id)->update($request->all());
         return redirect()->route('typeofvisitors.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Tipo de visitante actualizado satisfactoriamente');
     }
 
     /**
@@ -96,6 +96,6 @@ class TypeOfVisitorController extends Controller
     {
         TypeOfVisitor::find($typeofvisitor->id)->delete();
         return redirect()->route('typeofvisitors.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Tipo de visitante eliminado satisfactoriamente');
     }
 }

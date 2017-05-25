@@ -45,7 +45,7 @@ class CondoController extends Controller
     {
         Condo::create($request->all());
         return redirect()->route('condos.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Condominio creado satisfactoriamente');
     }
 
     /**
@@ -83,7 +83,7 @@ class CondoController extends Controller
     {
         Condo::find($condo->id)->update($request->all());
         return redirect()->route('condos.index')
-                        ->with('success', 'Item updated successfully');
+                        ->with('success', 'Condominio actualizado satisfactoriamente');
     }
 
     /**
@@ -96,6 +96,6 @@ class CondoController extends Controller
     {
         Condo::find($condo->id)->delete();
         return redirect()->route('condos.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Condominio eliminado satisfactoriamente');
     }
 }

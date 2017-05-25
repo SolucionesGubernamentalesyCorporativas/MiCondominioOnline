@@ -35,6 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="observations">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -57,6 +58,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="ammount">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -88,6 +90,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="typeoftransaction">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -119,6 +122,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="estate">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>

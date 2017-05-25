@@ -126,26 +126,49 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::find($transaction->id);
 
-        if ($request->observations != NULL) {
-            $transaction->observations = $request->observations;
-        } elseif ($request->ammount != NULL) {
-            $transaction->ammount = $request->ammount;
-        } elseif ($request->type_of_transaction_id != NULL) {
-            $transaction->typeOfTransaction()->dissociate();
-            $typeOfTransaction = TypeOfTransaction::find($request->type_of_transaction_id);
-            $transaction->typeOfTransaction->associate($typeOfTransaction);
-        } elseif ($request->estate_ids != NULL) {
-            $transaction->estates()->detach();
-            $ids = explode(",", $request->estate_ids);
+        switch ($request->area) {
+            case 'observations':
+                if ($request->observations != NULL) {
+                    $transaction->observations == $request->observations;
+                }
+                break;
 
-            foreach ($ids as $id) {
-                $estate = Estate::find($id);
-                $transaction->estates()->attach($estate);
-            }
-        } else {
-            return redirect()->route('transactions.index')
+            case 'ammount':
+                if ($request->ammount != NULL) {
+                    $transaction->ammount == $request->ammount;
+                }
+                break;
+            
+            case 'typeoftransaction':
+                if ($request->type_of_transaction_id != NULL) {
+                    $transaction->typeOfTransaction()->dissociate();
+                    $typeOfTransaction = TypeOfTransaction::find($request->type_of_transaction_id);
+                    $transaction->typeOfTransaction->associate($typeOfTransaction);
+                }
+                break;
+
+            case 'estate':
+                if ($request->estate_ids != NULL) {
+                    $transaction->estates()->detach();
+                    $ids = explode(",", $request->estate_ids);
+
+                    foreach ($ids as $id) {
+                        $estate = Estate::find($id);
+                        $transaction->estates()->attach($estate);
+                    }
+                } else {
+                    $transaction->estates()->detach();
+                }
+                break;
+
+            default:
+                return redirect()->route('transactions.index')
                             ->with('error', 'Hubo un problema para actualizar la transacción, intente de nuevo');
+                break;
         }
+
+        $transaction->save();
+
         return redirect()->route('transactions.index')
                         ->with('success', 'Transacción actualizada satisfactoriamente');
     }

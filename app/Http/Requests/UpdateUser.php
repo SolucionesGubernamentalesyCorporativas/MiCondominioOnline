@@ -28,9 +28,10 @@ class UpdateUser extends FormRequest
             'lastname' => 'alpha',
             'email' => 'email|unique:users',
             'phone' => 'numeric',
-            'membership_id' => "numeric",
+            'membership_id' => 'numeric',
             'role_id' => 'numeric',
-            'condo_ids' => 'numeric'
+            'estate_ids' => 'string|nullable',
+            'condo_ids' => 'string|nullable'
         ];
     }
 }

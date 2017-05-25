@@ -47,7 +47,7 @@ class AnnouncementController extends Controller
     {
         Announcement::create($request->all());
         return redirect()->route('announcements.index')
-                        ->with('success', 'Item created successfully');
+                        ->with('success', 'Anuncio creado satisfactoriamente');
     }
 
     /**
@@ -87,7 +87,7 @@ class AnnouncementController extends Controller
     {
         Announcement::find($announcement->id)->update($request->all());
         return redirect()->route('announcements.index')
-                        ->with('success', 'Item updated successfully');
+                        ->with('success', 'Anuncio actualizado satisfactoriamente');
     }
 
     /**
@@ -100,6 +100,6 @@ class AnnouncementController extends Controller
     {
         Announcement::find($announcement->id)->delete();
         return redirect()->route('announcements.index')
-                        ->with('success', 'Item deleted successfully');
+                        ->with('success', 'Anuncio eliminado satisfactoriamente');
     }
 }

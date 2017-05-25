@@ -118,25 +118,51 @@ class EstateController extends Controller
     {
         $estate = Estate::find($estate->id);
 
-        if ($request->number != NULL) {
-            $estate->number = $request->number;
-        } elseif ($request->rented != NULL) {
-            $estate->rented = $request->rented;
-        } elseif ($request->number_of_parking_lots != NULL) {
-            $estate->number_of_parking_lots = $request->number_of_parking_lots;
-        } elseif ($request->notes != NULL) {
-            $estate->notes = $request->notes;
-        } elseif ($request->type_of_estate_id != NULL) {
-            $estate->typeOfEstate()->dissociate();
-            $typeOfEstate = TypeOfEstate::find($request->type_of_estate_id);
-            $estate->typeOfEstate()->associate($typeOfEstate);
-        } elseif ($request->condo_id != NULL) {
-            $estate->condo()->dissociate();
-            $condo = Condo::find($request->condo_id);
-            $estate->condo()->associate($condo);
-        } else {
-            return redirect()->route('estates.index')
+        switch ($request->area) {
+            case 'number':
+                if ($request->number != NULL) {
+                    $estate->number = $request->number;
+                }
+                break;
+            
+            case 'rented':
+                if ($request->rented != NULL) {
+                    $estate->rented = $request->rented;
+                }
+                break;
+
+            case 'number_of_parking_lots':
+                if ($request->number_of_parking_lots != NULL) {
+                    $estate->number_of_parking_lots = $request->number_of_parking_lots;
+                }
+                break;
+
+            case 'notes':
+                if ($request->notes != NULL) {
+                    $estate->notes = $request->notes;
+                }
+                break;
+
+            case 'typeofestate':
+                if ($request->type_of_estate_id != NULL) {
+                    $estate->typeOfEstate()->dissociate();
+                    $typeOfEstate = TypeOfEstate::find($request->type_of_estate_id);
+                    $estate->typeOfEstate()->associate($typeOfEstate);
+                }
+                break;
+            
+            case 'condo':
+                if ($request->condo_id != NULL) {
+                    $estate->condo()->dissociate();
+                    $condo = Condo::find($request->condo_id);
+                    $estate->condo()->associate($condo);
+                }
+                break;
+
+            default:
+                return redirect()->route('estates.index')
                             ->with('error', 'Hubo un problema al actualizar la unidad privativa, intente de nuevo');
+                break;
         }
 
         $estate->save();
