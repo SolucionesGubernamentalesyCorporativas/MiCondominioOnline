@@ -68,6 +68,7 @@ class ReceiptController extends Controller
     {
         $receipt = new Receipt;
         $receipt->date = $request->date;
+        $receipt->ammount = $request->ammount;
         $request->verified == 1 ? $receipt->verified = 1 : $receipt->verified = 0;
         $transaction = Transaction::find($request->transaction_id);
         $receipt->transaction()->associate($transaction);

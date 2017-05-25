@@ -25,6 +25,12 @@
                     </div>
                     <div class="item">
                         <div class="content">
+                            <div class="header">Monto</div>
+                            <div class="description">${{ number_format($receipt->ammount, 2) }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
                             <div class="header">Foto del recibo</div>
                             <img src="{{ $url }}" alt="Imagen del recibo" class="ui small image">
                         </div>

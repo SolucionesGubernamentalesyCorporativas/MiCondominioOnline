@@ -26,6 +26,7 @@ class UpdateReceipt extends FormRequest
         return [
             'date' => 'date',
             'verified' => 'boolean',
+            'ammount' => 'numeric',
             'photo' => 'image|mimes:jpeg,bmp,png',
             'transaction_id' => 'numeric'
         ];

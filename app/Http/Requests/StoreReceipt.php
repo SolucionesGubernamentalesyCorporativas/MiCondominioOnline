@@ -26,6 +26,7 @@ class StoreReceipt extends FormRequest
         return [
             'date' => 'required|date',
             'verified' => 'boolean',
+            'ammount' => 'required|numeric',
             'photo' => 'required|image|mimes:jpeg,bmp,png',
             'transaction_id' => 'required|numeric'
         ];

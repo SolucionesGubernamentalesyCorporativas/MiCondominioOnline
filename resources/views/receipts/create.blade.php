@@ -29,6 +29,15 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="field {{ $errors->has('ammount') ? 'error' : '' }}">
+                                <label>Monto</label>
+                                <input type="text" name="ammount" placeholder="Digita el total del recibo">
+                                @if ($errors->has('ammount'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('ammount') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                             <div class="field {{ $errors->has('photo') ? 'error' : '' }}">
                                 <label>Sube una foto del recibo</label>
                                 <input type="file" name="photo">

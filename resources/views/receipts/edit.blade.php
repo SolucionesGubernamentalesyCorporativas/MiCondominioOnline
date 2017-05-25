@@ -42,6 +42,28 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
+                            Editar monto
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('receipts.update', $receipt->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="eight wide field {{ $errors->has('ammount') ? 'error' : '' }}">
+                                    <label>Monto</label>
+                                    <input type="text" name="ammount" value="{{ $receipt->ammount }}">
+                                    @if ($errors->has('ammount'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('ammount') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
                             Cambiar foto del recibo
                         </div>
                         <div class="content field">

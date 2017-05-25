@@ -59,7 +59,8 @@
                                         <div class="header">{{ $row->transaction->typeOfTransaction->name }} - {{ $row->date->format('Y-m-d') }}</div>
                                     </a>
                                     <div class="description">
-                                        {{ $row->transaction->observations }}
+                                        <p>{{ $row->transaction->observations }}</p>
+                                        <p>Pago: ${{ number_format($row->ammount, 2)}}</p>
                                     </div>
                                     <div class="extra">
                                         <span>Recibo verificado: {{ $row->verified == 0 ? 'No' : 'Si' }}</span>

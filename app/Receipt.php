@@ -17,6 +17,7 @@ class Receipt extends Model
     protected $fillable = [
         'date',
         'verified',
+        'ammount',
         'transaction_id'
     ];
 
