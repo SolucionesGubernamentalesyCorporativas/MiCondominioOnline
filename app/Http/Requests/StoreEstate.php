@@ -25,7 +25,7 @@ class StoreEstate extends FormRequest
     {
         return [
             'number' => 'required|numeric',
-            'rented' => 'required|boolean',
+            'rented' => 'boolean',
             'number_of_parking_lots' => 'required|numeric',
             'notes' => 'string',
             'type_of_estate_id' => 'required|numeric',

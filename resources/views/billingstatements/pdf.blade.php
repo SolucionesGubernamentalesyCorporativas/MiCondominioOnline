@@ -8,38 +8,36 @@
     <h2>{{ $user->name . ' ' . $user->lastname}}</h2>
     <p><small>{{ $user->email }}</small></p>
     @foreach($user->estates as $estate)
-        <em>{{ $estate->number }}</em><br>
+        <span>{{ $estate->condo->name }}</span>
+        <em>{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</em><br>
     @endforeach
     <hr>
-     @if(count($user->transactions) >= 1)
+     @if(count($user->estates) >= 1)
         <table>
             <thead>
                 <tr>
                     <th>Transacción</th>
                     <th>Cantidad</th>
-                    <th>Pago verificado</th>
                     <th>Tipo de transacción</th>
                     <th>Ingreso o gasto</th>
-                    <th>Recibo</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($user->transactions as $transaction)
-                    @if($transaction->verified == 1)
+                @foreach($user->estates as $estate)
+                    @foreach ($estate->transactions as $transaction)
                         <tr>
                             <td>{{ $transaction->observations }}</td>
                             <td>${{ number_format($transaction->ammount, 2) }}</td>
-                            <td>{{ $transaction->verified == 0 ? 'No' : 'Si' }}</td>
                             <td>{{ $transaction->typeoftransaction->name }}</td>
                             <td>{{ $transaction->typeoftransaction->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</td>
-                            <td>{{ $transaction->receipt->name_of_img }}</td>
                         </tr>
-                    @endif
+                    @endforeach
                 @endforeach
             </tbody>
         </table>
     @else
         <h3>Ninguna transacción relacionada con el usuario</h3>
     @endif
+    <h3>Pago esperado: ${{ $debt }}</h3>
 </body>
 </html>

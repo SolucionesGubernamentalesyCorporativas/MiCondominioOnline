@@ -36,7 +36,7 @@ class Transaction extends Model
 
     public function receipt()
     {
-        return $this->hasOne('App\Receipt');
+        return $this->hasMany('App\Receipt');
     }
 
     public function estates()

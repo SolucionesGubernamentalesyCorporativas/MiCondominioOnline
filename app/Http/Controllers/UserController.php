@@ -37,10 +37,11 @@ class UserController extends Controller
                                 ->paginate(12)
                                 ->appends('role', request('role'));
         } elseif (request()->has('condo')) {
-            $data = User::with('condos')
-                        ->whereId(request('condo'))
-                        ->paginate(12)
-                        ->appends('condo', request('condo'));
+            $condo = request('condo');
+            $data = User::whereHas('condos', function ($query) {
+                $query->where('id', request('condo'));
+            })->paginate(12)
+            ->appends('condo', request('condo'));
         }
         else
             $data = User::paginate(12);

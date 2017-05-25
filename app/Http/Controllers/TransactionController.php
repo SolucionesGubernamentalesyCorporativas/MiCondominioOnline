@@ -129,13 +129,13 @@ class TransactionController extends Controller
         switch ($request->area) {
             case 'observations':
                 if ($request->observations != NULL) {
-                    $transaction->observations == $request->observations;
+                    $transaction->observations = $request->observations;
                 }
                 break;
 
             case 'ammount':
                 if ($request->ammount != NULL) {
-                    $transaction->ammount == $request->ammount;
+                    $transaction->ammount = $request->ammount;
                 }
                 break;
             

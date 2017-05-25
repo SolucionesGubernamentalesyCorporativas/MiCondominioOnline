@@ -37,8 +37,15 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Recibo</div>
-                            <div class="description">{{ count($transaction->receipt) == 1 ? $transaction->receipt->name_of_img : 'Ninguno' }}</div>
+                            <div class="header">Recibos</div>
+                            <div class="description">Recibos asociados a la transacción</div>
+                            <div class="list">
+                                @foreach ($transaction->receipt as $receipt)
+                                    <div class="item">
+                                        <div class="description">Monto de pago: ${{ number_format($receipt->ammount) }}</div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="item">
