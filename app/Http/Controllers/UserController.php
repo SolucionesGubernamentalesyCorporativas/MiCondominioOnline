@@ -27,6 +27,9 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $condos = Condo::all();
+        request('condo') != NULL ? $condorequest = Condo::find(request('condo')) : $condorequest = NULL;
+        request('role') != NULL ? $rolerequest = Condo::find(request('role')) : $rolerequest = NULL;
+
 
         if (request()->has('sort')) {
             $data = User::orderBy('name', request('sort'))
@@ -48,7 +51,9 @@ class UserController extends Controller
 
         return view('users.index')->with('data', $data)
                                 ->with('roles', $roles)
-                                ->with('condos', $condos);
+                                ->with('condos', $condos)
+                                ->with('condorequest', $condorequest)
+                                ->with('rolerequest', $rolerequest);
     }
 
     /**

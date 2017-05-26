@@ -27,7 +27,11 @@
                 </div>
                 <div class="header item">Filtrar por</div>
                 <div class="ui dropdown item">
-                    Rol
+                    @if ($rolerequest != NULL)
+                        {{ $rolerequest->name }}
+                    @else
+                        Rol
+                    @endif
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         @foreach($roles as $role)
@@ -36,7 +40,11 @@
                     </div>
                 </div>
                 <div class="ui dropdown item">
-                    Condominio
+                    @if ($condorequest != NULL)
+                        {{ $condorequest->name }}
+                    @else
+                        Condominio
+                    @endif
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         @foreach($condos as $condo)
