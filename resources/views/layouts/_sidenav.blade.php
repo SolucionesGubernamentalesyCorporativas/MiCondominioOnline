@@ -10,6 +10,7 @@
     <a href="{{ route('visitors.index') }}" class="{{ Request::is('visitors*') ? 'item active' : 'item' }}">Visitantes</a>
     <a href="{{ route('announcements.index') }}" class="{{ Request::is('announcements*') ? 'item active' : 'item' }}">Anuncios</a>
     <a href="{{ route('resources.index') }}" class="{{ Request::is('resources*') ? 'item active' : 'item' }}">Recursos</a>
+    <a href="{{ route('assets.index') }}" class="{{ Request::is('assets*') ? 'item active' : 'item' }}">Activos</a>
     <a href="{{ route('incidences.index') }}" class="{{ Request::is('incidences*') ? 'item active' : 'item' }}">Incidencias</a>
     <a href="{{ url('billing/consult') }}" class="{{ Request::is('billingstatements*') ? 'item active' : 'item' }}">Estado de cuenta</a>
     <a href="{{ url('financial/consult') }}" class="{{ Request::is('financialstatements*') ? 'item active' : 'item' }}">Estado financiero</a>

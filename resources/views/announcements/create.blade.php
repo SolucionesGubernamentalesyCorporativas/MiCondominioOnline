@@ -38,7 +38,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="field {{ $errors->has('estate_id') ? 'error' : '' }}">
+                            <div class="field {{ $errors->has('user_id') ? 'error' : '' }}">
                                 <label>Usuario</label>
                                 <div class="ui selection dropdown">
                                     <input type="hidden" name="user_id" value="{{ old('user_id') }}">

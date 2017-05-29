@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Announcement extends Model
 {
     use SoftDeletes;
+    
     /**
      * The attributes that are mass assignable.
      *
