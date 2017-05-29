@@ -35,6 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="title"> 
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -42,21 +43,22 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Editar dirección web
+                            Editar descripción
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('announcements.update', $announcement->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="eight wide field {{ $errors->has('url_of_content') ? 'error' : '' }}">
-                                    <label>Dirección web</label>
-                                    <input type="url" name="url_of_content" placeholder="{{ $announcement->url_of_content }}">
-                                    @if ($errors->has('url_of_content'))
+                                <div class="eight wide field {{ $errors->has('description') ? 'error' : '' }}">
+                                    <label>Descripción</label>
+                                    <input type="text" name="description" placeholder="{{ $announcement->description }}">
+                                    @if ($errors->has('description'))
                                         <span class="ui error message">
-                                            <strong>{{ $errors->first('url_of_content') }}</strong>
+                                            <strong>{{ $errors->first('description') }}</strong>
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="description">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -88,6 +90,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="user">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>

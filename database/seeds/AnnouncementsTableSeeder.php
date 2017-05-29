@@ -14,17 +14,17 @@ class AnnouncementsTableSeeder extends Seeder
         DB::table('announcements')->insert(array(
             array(
                 'title' => 'Reparación de luminarias',
-                'url_of_content' => '#',
+                'description' => 'Se repararan los focos de la entrada el proximo martes',
                 'user_id' => '1'
             ),
             array(
                 'title' => 'Contratación de personas de aseo',
-                'url_of_content' => '#',
+                'description' => 'Se busca persona del aseo para casa 3',
                 'user_id' => '2'
             ),
             array(
                 'title' => 'Venta de garage',
-                'url_of_content' => '#',
+                'description' => 'Fabulosos precios!',
                 'user_id' => '3'
             )
         ));

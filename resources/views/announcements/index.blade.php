@@ -12,36 +12,30 @@
     </div>
     <div class="row">
         <div class="column">
-            @if($data)
-                <table class="ui three column selectable blue table">
-                    <thead>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>URL</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data as $row)   
-                            <tr>
-                                <td>{{ $row->title }}</td>
-                                <td><a href="{{ $row->url_of_content }}">{{ $row->url_of_content }}</a></td>
-                                <td>
-                                    <div class="ui small buttons">
-                                        <a class="ui green button" href="{{ route('announcements.show', $row->id) }}">Info</a>
-                                        <a class="ui blue button" href="{{ route('announcements.edit', $row->id) }}">Editar</a>
-                                        <form method="POST" action="{{ route('announcements.destroy', $row->id) }}" style="display: inline;">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="ui red button">Borrar</button>
-                                        </form>
+            <div class="ui blue segment">
+                @if($data)
+                    <div class="ui divided items">
+                        @foreach($data as $row)
+                            <div class="item">
+                                <div class="content">
+                                    <div class="header"><a href="{{ route('announcements.show', $row->id) }} ">{{ $row->title }}</a></div>
+                                    <div class="description">{{ $row->description }}</div>
+                                    <div class="extra">
+                                        <div class="ui small buttons">
+                                            <a class="ui blue button" href="{{ route('announcements.edit', $row->id) }}">Editar</a>
+                                            <form method="POST" action="{{ route('announcements.destroy', $row->id) }}" style="display: inline;">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="ui red button">Borrar</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         @endforeach
-                    </tbody>
-                </table>
-            @endif
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
     {{ $data->links() }}

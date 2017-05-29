@@ -45,7 +45,16 @@ class AnnouncementController extends Controller
      */
     public function store(StoreAnnouncement $request)
     {
-        Announcement::create($request->all());
+        $announcement = new Announcement;
+
+        $announcement->title = $request->title;
+        $announcement->description = $request->description;
+
+        $user = User::find($request->user_id);
+        $announcement->user()->associate($user);
+
+        $announcement->save();
+
         return redirect()->route('announcements.index')
                         ->with('success', 'Anuncio creado satisfactoriamente');
     }
@@ -85,7 +94,31 @@ class AnnouncementController extends Controller
      */
     public function update(UpdateAnnouncement $request, Announcement $announcement)
     {
-        Announcement::find($announcement->id)->update($request->all());
+        $announcement = Announcement::find($announcement->id);
+
+        switch ($request->area) {
+            case 'title':
+                $announcement->title = $request->title;
+                break;
+            
+            case 'description':
+                $announcement->description = $request->description;
+                break;
+
+            case 'user':
+                $announcement->user()->dissociate();
+                $user = User::find($request->user_id);
+                $announcement->user()->associate($user);
+                break;
+
+            default:
+                return redirect()->route('announcements.index')
+                                ->with('error', 'Hubo un problema al actualizar el anuncio, intente de nuevo');
+                break;
+        }
+
+        $announcement->save();
+
         return redirect()->route('announcements.index')
                         ->with('success', 'Anuncio actualizado satisfactoriamente');
     }

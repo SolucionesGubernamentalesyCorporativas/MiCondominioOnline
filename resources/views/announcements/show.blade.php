@@ -25,14 +25,14 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">URL</div>
-                            <div class="description">{{ $announcement->url_of_content }}</div>
+                            <div class="header">Descripción</div>
+                            <div class="description">{{ $announcement->description }}</div>
                         </div>
                     </div>
                     <div class="item">
                         <div class="content">
                             <div class="header">Usuario propietario del anuncio</div>
-                            <div class="description">{{ count($announcement->user) == 1 ? $announcement->user->name . ' ' $announcement->user->lastname : 'Ninguno' }}</div>
+                            <div class="description">{{ count($announcement->user) == 1 ? $announcement->user->name . ' ' . $announcement->user->lastname : 'Ninguno' }}</div>
                         </div>
                     </div>
                     <div class="item">
