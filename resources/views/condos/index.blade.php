@@ -25,7 +25,7 @@
                         @foreach($data as $row)   
                             <tr>
                                 <td>{{ $row->name }}</td>
-                                <td>{{ $row->direction }}</td>
+                                <td>{{ $row->address }}</td>
                                 <td>
                                     <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('condos.show', $row->id) }}">Info</a>

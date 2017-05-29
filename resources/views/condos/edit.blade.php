@@ -35,6 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden", name="area" value="name">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -48,15 +49,16 @@
                             <form class="ui form error" role="form" method="POST" action="{{ route('condos.update', $condo->id) }}">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
-                                <div class="eight wide field {{ $errors->has('direction') ? 'error' : '' }}">
+                                <div class="eight wide field {{ $errors->has('address') ? 'error' : '' }}">
                                     <label>Dirección</label>
-                                    <input type="text" name="direction" placeholder="{{ $condo->direction }}">
-                                    @if ($errors->has('direction'))
+                                    <input type="text" name="address" placeholder="{{ $condo->address }}">
+                                    @if ($errors->has('address'))
                                         <span class="ui error message">
-                                            <strong>{{ $errors->first('direction') }}</strong>
+                                            <strong>{{ $errors->first('address') }}</strong>
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden", name="area" value="address">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>

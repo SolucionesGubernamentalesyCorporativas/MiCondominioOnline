@@ -14,15 +14,15 @@ class CondosTableSeeder extends Seeder
         DB::table('condos')->insert(array(
             array(
                 'name' => 'Mision Mariana',
-                'direction' => 'Camino Real #23'
+                'address' => 'Camino Real #23'
             ),
             array(
                 'name' => 'Los Sauces',
-                'direction' => 'Hortalizas #321'
+                'address' => 'Hortalizas #321'
             ),
             array(
                 'name' => 'El Roble',
-                'direction' => 'Cuatro caminos #45'
+                'address' => 'Cuatro caminos #45'
             )
         ));
     }

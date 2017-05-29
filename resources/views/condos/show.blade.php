@@ -26,7 +26,7 @@
                     <div class="item">
                         <div class="content">
                             <div class="header">Dirección</div>
-                            <div class="description">{{ $condo->direction }}</div>
+                            <div class="description">{{ $condo->address }}</div>
                         </div>
                     </div>
                     <div class="item">

@@ -25,7 +25,7 @@ class UpdateCondo extends FormRequest
     {
         return [
             'name' => 'string',
-            'direction' => 'string'
+            'address' => 'string'
         ];
     }
 }

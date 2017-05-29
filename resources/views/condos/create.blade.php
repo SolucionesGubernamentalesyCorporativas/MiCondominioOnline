@@ -29,12 +29,12 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="field {{ $errors->has('direction') ? 'error' : '' }}">
+                            <div class="field {{ $errors->has('address') ? 'error' : '' }}">
                                 <label>Dirección</label>
-                                <input type="text" name="direction" value="{{ old('direction') }}" placeholder="Dirección del condomino">
-                                @if ($errors->has('direction'))
+                                <input type="text" name="address" value="{{ old('address') }}" placeholder="Dirección del condomino">
+                                @if ($errors->has('address'))
                                     <span class="ui error message">
-                                        <strong>{{ $errors->first('direction') }}</strong>
+                                        <strong>{{ $errors->first('address') }}</strong>
                                     </span>
                                 @endif
                             </div>

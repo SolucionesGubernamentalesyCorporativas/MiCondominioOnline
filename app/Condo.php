@@ -17,7 +17,7 @@ class Condo extends Model
      */
     protected $fillable = [
         'name',
-        'direction'
+        'address'
     ];
 
     /**

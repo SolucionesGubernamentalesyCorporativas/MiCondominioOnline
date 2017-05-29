@@ -25,7 +25,7 @@ class StoreCondo extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'direction' => 'required|string'
+            'address' => 'required|string'
         ];
     }
 }
