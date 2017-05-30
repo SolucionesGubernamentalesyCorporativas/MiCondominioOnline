@@ -56,10 +56,10 @@
                                     </span>
                                 @endif  
                             </div>
-                            <div class="field {{ $errors->has('estate_ids') ? 'error' : '' }}">
+                            <div class="field clear restore {{ $errors->has('estate_ids') ? 'error' : '' }}">
                                 <label>Unidades privativas asociadas a la transacción</label>
                                 <div class="ui multiple selection dropdown">
-                                    <input type="hidden" name="estate_ids" value="{{ old('estate_ids') }}">
+                                    <input type="hidden" name="estate_ids" value="{{ $ids }}">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Selecciona las unidades privativas asociadas a la transacción</div>
                                     <div class="menu">
@@ -68,6 +68,8 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                <div class="ui blue clear button">Limpiar</div>
+                                <div class="ui blue restore button">Todos</div>
                                 @if ($errors->has('estate_ids'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('estate_ids') }}</strong>

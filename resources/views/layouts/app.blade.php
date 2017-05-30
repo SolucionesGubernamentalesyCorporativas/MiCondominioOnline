@@ -71,6 +71,20 @@
         $('.ui.dropdown')
         .dropdown()
         ;
+        $('.clear .clear.button')
+        .on('click', function() {
+            $('.clear .ui.dropdown')
+            .dropdown('clear')
+            ;
+        })
+        ;
+        $('.restore .restore.button')
+        .on('click', function() {
+            $('.restore .ui.dropdown')
+            .dropdown('restore defaults')
+            ;
+        })
+        ;
         $('.ui.checkbox')
          .checkbox()
         ;

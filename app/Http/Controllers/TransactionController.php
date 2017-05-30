@@ -44,8 +44,15 @@ class TransactionController extends Controller
         $typeoftransactions = TypeOfTransaction::all();
         $estates = Estate::all();
 
+        $ids = NULL;
+        
+        foreach ($estates as $estate) {
+            $ids .= strval($estate->id) . ",";
+        }
+
         return view('transactions.create')->with('typeoftransactions', $typeoftransactions)
-                                        ->with('estates', $estates);
+                                        ->with('estates', $estates)
+                                        ->with('ids', $ids);
     }
 
     /**
