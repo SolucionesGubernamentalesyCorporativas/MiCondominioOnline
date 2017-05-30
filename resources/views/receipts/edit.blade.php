@@ -35,6 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="date">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -57,6 +58,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="ammount">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -81,6 +83,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="photo">
                                 <button class="ui submit blue small button" type="submit">Cambiar</button>
                             </form>
                         </div>
@@ -98,14 +101,7 @@
                                     <label>¿Recibo verificado por un administrador?</label>
                                     <div class="field">
                                         <div class="ui toggle checkbox">
-                                            <input type="radio" name="verified" value="0" checked>
-                                            <label>No</label>
-                                        </div>
-                                    </div>
-                                    <div class="field">
-                                        <div class="ui toggle checkbox">
-                                            <input type="radio" name="verified" value="1">
-                                            <label>Si</label>
+                                            <input type="checkbox" name="verified" value="1">
                                         </div>
                                     </div>
                                     @if ($errors->has('verified'))
@@ -114,6 +110,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="verified">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -145,6 +142,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="transaction">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>

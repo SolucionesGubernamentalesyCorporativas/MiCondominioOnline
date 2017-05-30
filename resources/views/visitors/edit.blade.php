@@ -35,6 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="name">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -57,6 +58,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="date_arrival">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -88,6 +90,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="estate">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -119,6 +122,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="typeofvisitor">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -136,14 +140,7 @@
                                     <label>Vehiculo</label>
                                     <div class="field">
                                         <div class="ui toggle checkbox">
-                                            <input type="radio" name="vehicle" value="0" checked>
-                                            <label>No</label>
-                                        </div>
-                                    </div>
-                                    <div class="field">
-                                        <div class="ui toggle checkbox">
                                             <input type="radio" name="vehicle" value="1">
-                                            <label>Si</label>
                                         </div>
                                     </div>
                                     @if ($errors->has('vehicle'))
@@ -152,6 +149,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="vehicle">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>

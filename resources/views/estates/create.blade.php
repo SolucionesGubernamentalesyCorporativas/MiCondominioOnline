@@ -20,6 +20,42 @@
                     <div class="ten wide column">
                         <form class="ui form error" role="form" method="POST" action="{{ route('estates.store') }}">
                             {{ csrf_field() }}
+                            <div class="field {{ $errors->has('condo_id') ? 'error' : '' }}">
+                                <label>Condominio</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="condo_id" value="{{ old('condo_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona el condominio al que pertenece la unidad privativa</div>
+                                    <div class="menu">
+                                        @foreach($condos as $condo)
+                                            <div class="item" data-value="{{ $condo->id }}">{{ $condo->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('condo_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('condo_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <div class="field {{ $errors->has('type_of_estate_id') ? 'error' : '' }}">
+                                <label>Tipo de unidad privativa</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="type_of_estate_id" value="{{ old('type_of_estate_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona el tipo de unidad privativa que corresponde a esta unidad</div>
+                                    <div class="menu">
+                                        @foreach($typeofestates as $typeofestate)
+                                            <div class="item" data-value="{{ $typeofestate->id }}">{{ $typeofestate->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('type_of_estate_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('type_of_estate_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
                             <div class="field {{ $errors->has('number') ? 'error' : '' }}">
                                 <label>Numero</label>
                                 <input type="text" name="number" value="{{ old('number') }}" placeholder="El numero de la unidad privativa">
@@ -41,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="field {{ $errors->has('number_of_parking_lots') ? 'error' : '' }}">
-                                <label>Numero</label>
+                                <label>Lugares de estacionamiento</label>
                                 <input type="text" name="number_of_parking_lots" value="{{ old('number_of_parking_lots') }}" placeholder="Numero de lugares de estacionamiento">
                                 @if ($errors->has('number_of_parking_lots'))
                                     <span class="ui error message">
@@ -51,48 +87,12 @@
                             </div>
                             <div class="field {{ $errors->has('notes') ? 'error' : '' }}">
                                 <label>Notas</label>
-                                <input type="text" name="notes" value="{{ old('notes') }}" placeholder="Referentes a la casa">
+                                <input type="text" name="notes" value="{{ old('notes') }}" placeholder="Referentes a la unidad privativa">
                                 @if ($errors->has('notes'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('notes') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                            <div class="field {{ $errors->has('type_of_estate_id') ? 'error' : '' }}">
-                                <label>Tipo de unidad privativa asociado</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" name="type_of_estate_id" value="{{ old('type_of_estate_id') }}">
-                                    <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona un tipo de unidad privativa</div>
-                                    <div class="menu">
-                                        @foreach($typeofestates as $typeofestate)
-                                            <div class="item" data-value="{{ $typeofestate->id }}">{{ $typeofestate->name }}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @if ($errors->has('type_of_estate_id'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('type_of_estate_id') }}</strong>
-                                    </span>
-                                @endif  
-                            </div>
-                            <div class="field {{ $errors->has('condo_id') ? 'error' : '' }}">
-                                <label>Condominio asociado</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" name="condo_id" value="{{ old('condo_id') }}">
-                                    <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona el condominio asociado</div>
-                                    <div class="menu">
-                                        @foreach($condos as $condo)
-                                            <div class="item" data-value="{{ $condo->id }}">{{ $condo->name }}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @if ($errors->has('condo_id'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('condo_id') }}</strong>
-                                    </span>
-                                @endif  
                             </div>
                             <button class="ui submit blue button" type="submit">Guardar</button>
                         </form>

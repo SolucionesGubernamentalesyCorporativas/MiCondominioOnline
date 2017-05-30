@@ -25,6 +25,7 @@ class IncidenceController extends Controller
     public function index()
     {
         $data = Incidence::paginate(12);
+
         if (count($data) >= 1) {
             foreach ($data as $row) {
                 $i = 0;
@@ -36,6 +37,7 @@ class IncidenceController extends Controller
         } else {
             $urls = NULL;
         }
+
         return view('incidences.index')->with('data', $data)
                                         ->with('urls', $urls);
     }
@@ -49,6 +51,7 @@ class IncidenceController extends Controller
     {
         $typeofincidences = TypeOfIncidence::all();
         $estates = Estate::all();
+
         return view('incidences.create')->with('typeofincidences', $typeofincidences)
                                         ->with('estates', $estates);
     }
@@ -62,6 +65,7 @@ class IncidenceController extends Controller
     public function store(StoreIncidence $request)
     {
         $incidence = new Incidence;
+
         $incidence->date = $request->date;
         $incidence->description = $request->description;
 
@@ -75,9 +79,12 @@ class IncidenceController extends Controller
         if ($request->hasFile('photos')) {
             foreach ($request->photos as $photo) {
                 $image = new IncidenceImage;
-                $image->incidence()->associate($incidence);
+
                 $image->url_of_img = $photo->store('public/Incidences');
                 $image->type_of_img = $photo->getClientMimeType();
+                
+                $image->incidence()->associate($incidence);
+
                 $image->save();
             }
         }
@@ -95,9 +102,11 @@ class IncidenceController extends Controller
     public function show(Incidence $incidence)
     {
         $incidence = Incidence::find($incidence->id);
+
         foreach ($incidence->incidenceImages as $image) {
             $urls[$image->id] = Storage::url($image->url_of_img);
         }
+
         return view('incidences.show')->with('incidence', $incidence)
                                     ->with('urls', $urls);
     }
@@ -111,11 +120,14 @@ class IncidenceController extends Controller
     public function edit(Incidence $incidence)
     {
         $incidence = Incidence::find($incidence->id);
+
         foreach ($incidence->incidenceImages as $image) {
             $urls[$image->id] = Storage::url($image->url_of_img);
         }
+
         $typeofincidences = TypeOfIncidence::all();
         $estates = Estate::all();
+
         return view('incidences.edit')->with('incidence', $incidence)
                                     ->with('typeofincidences', $typeofincidences)
                                     ->with('estates', $estates)
@@ -131,17 +143,55 @@ class IncidenceController extends Controller
      */
     public function update(UpdateIncidence $request, Incidence $incidence)
     {
-        if ($request->id_photos != NULL && $request->photos != NULL) {
-            foreach ($request->photos as $photo) {
-                $image = IncidenceImage::find($request->id_photos);
-                Storage::delete($image->url_of_img);
-                $image->url_of_img = $photo->store('public/incidences');
-                $image->type_of_img = $photo->getClientMimeType();
-                $image->save();
-            }
-        } else {
-            Incidence::find($incidence->id)->update($request->all());
+        $incidence = Incidence::find($incidence->id);
+
+        switch ($request->area) {
+            case 'date':
+                $incidence->date = $request->date;
+                break;
+
+            case 'description':
+                $incidence->description = $request->description;
+                break;
+
+            case 'typeofincidence':
+                $incidence->typeOfIncidence()->dissociate();
+                $typeOfIncidence = TypeOfIncidence::find($request->type_of_incidence_id);
+                $incidence->typeOfIncidence()->associate($typeOfIncidence);
+                break;
+
+            case 'estate':
+                $incidence->estate()->dissociate();
+                $estate = Estate::find($request->estate_id);
+                $incidence->estate()->associate($estate);
+                break;
+
+            case 'photos':
+                foreach ($incidence->incidenceImages as $image) {
+                    Storage::delete($image->url_of_img);
+                    $image->delete();
+                }
+
+                foreach ($request->photos as $photo) {
+                    $image = new IncidenceImage;
+
+                    $image->url_of_img = $photo->store('public/incidences');
+                    $image->type_of_img = $photo->getClientMimeType();
+
+                    $image->incidence()->associate($incidence);
+
+                    $image->save();
+                }
+                break;
+            
+            default:
+                return redirect()->route('incidences.index')
+                                ->with('error', 'Hubo un problema al actualizar la incidencia, intente de nuevo');
+                break;
         }
+
+        $incidence->save();
+
         return redirect()->route('incidences.index')
                         ->with('success', 'Incidencia actualizada satisfactoriamente');
     }
@@ -154,11 +204,15 @@ class IncidenceController extends Controller
      */
     public function destroy(Incidence $incidence)
     {
+        $incidence = Incidence::find($incidence->id);
+
         foreach ($incidence->incidenceImages as $image) {
             Storage::delete($image->url_of_img);
-            IncidenceImage::find($image->id)->delete();
+            $image->delete();
         }
-        Incidence::find($incidence->id)->delete();
+
+        $incidence->delete();
+
         return redirect()->route('incidences.index')
                         ->with('success', 'Incidencia eliminada satisfactoriamente');
     }

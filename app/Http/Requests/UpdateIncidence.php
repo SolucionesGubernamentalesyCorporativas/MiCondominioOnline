@@ -34,10 +34,6 @@ class UpdateIncidence extends FormRequest
         foreach (range(0, $photos) as $index) {
             $rules['photos.' . $index] = 'image|mimes:jpeg,bmp,png';
         }
-        $ids = count($this->input('id_photos'));
-        foreach (range(0, $ids) as $index) {
-            $rules['ids.' . $index] = 'numeric';
-        }
         return $rules;
     }
 }

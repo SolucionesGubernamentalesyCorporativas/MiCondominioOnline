@@ -70,7 +70,6 @@
                                 <div class="field">
                                     <div class="ui toggle checkbox">
                                         <input type="checkbox" name="verified" value="1">
-                                        <label>Si</label>
                                     </div>
                                 </div>
                                 @if ($errors->has('verified'))

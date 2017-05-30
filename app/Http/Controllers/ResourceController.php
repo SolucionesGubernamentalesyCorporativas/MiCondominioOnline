@@ -24,6 +24,7 @@ class ResourceController extends Controller
     public function index()
     {
         $data = Resource::paginate(12);
+
         return view('resources.index')->with('data', $data);
     }
 
@@ -36,6 +37,7 @@ class ResourceController extends Controller
     {
         $typeofresources = TypeOfResource::all();
         $estates = Estate::all();
+
         return view('resources.create')->with('typeofresources', $typeofresources)
                                         ->with('estates', $estates);
     }
@@ -48,7 +50,18 @@ class ResourceController extends Controller
      */
     public function store(StoreResource $request)
     {
-        Resource::create($request->all());
+        $resource = new Resource;
+
+        $resource->capacity = $request->capacity;
+        $resource->fee = $request->fee;
+
+        $typeOfResource = TypeOfResource::find($request->type_of_resource_id);
+        $resource->typeOfResource()->associate($typeOfResource);
+        $estate = Estate::find($request->estate_id);
+        $resource->estate()->associate($estate);
+
+        $resource->save();
+
         return redirect()->route('resources.index')
                         ->with('success', 'Recurso creado satisfactoriamente');
     }
@@ -62,6 +75,7 @@ class ResourceController extends Controller
     public function show(Resource $resource)
     {
         $resource = Resource::find($resource->id);
+
         return view('resources.show')->with('resource', $resource);
     }
 
@@ -74,8 +88,10 @@ class ResourceController extends Controller
     public function edit(Resource $resource)
     {
         $resource = Resource::find($resource->id);
+
         $typeofresources = TypeOfResource::all();
         $estates = Estate::all();
+
         return view('resources.edit')->with('resource', $resource)
                                     ->with('typeofresources', $typeofresources)
                                     ->with('estates', $estates);
@@ -91,7 +107,37 @@ class ResourceController extends Controller
      */
     public function update(UpdateResource $request, Resource $resource)
     {
-        Resource::find($resource->id)->update($request->all());
+        $resource = Resource::find($resource->id);
+
+        switch ($request->area) {
+            case 'capacity':
+                $resource->capacity = $request->capacity;
+                break;
+            
+            case 'fee':
+                $resource->fee = $request->fee;
+                break;
+
+            case 'typeofresource':
+                $resource->typeOfResource()->dissociate();
+                $typeOfResource = TypeOfResource::find($request->type_of_resource_id);
+                $resource->typeOfResource()->associate($typeOfResource);
+                break;
+
+            case 'estate':
+                $resource->estate()->dissociate();
+                $estate = Estate::find($request->estate_id);
+                $resource->estate()->associate($estate);
+                break;
+
+            default:
+                return redirect()->route('resources.index')
+                                ->with('error', 'Hubo un problema al actualizar el recurso, intente de nuevo');
+                break;
+        }
+
+        $resource->save();
+        
         return redirect()->route('resources.index')
                         ->with('success', 'Recurso actualizado satisfactoriamente');
     }
@@ -105,6 +151,7 @@ class ResourceController extends Controller
     public function destroy(Resource $resource)
     {
         Resource::find($resource->id)->delete();
+        
         return redirect()->route('resources.index')
                         ->with('success', 'Recurso eliminado satisfactoriamente');
     }

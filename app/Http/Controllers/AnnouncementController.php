@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Announcement;
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreAnnouncement;
 use App\Http\Requests\UpdateAnnouncement;
+use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
 {
@@ -23,6 +23,7 @@ class AnnouncementController extends Controller
     public function index()
     {
         $data = Announcement::paginate(12);
+
         return view('announcements.index')->with('data', $data);
     }
 
@@ -34,6 +35,7 @@ class AnnouncementController extends Controller
     public function create()
     {
         $users = User::all();
+
         return view('announcements.create')->with('users', $users);
     }
 
@@ -68,6 +70,7 @@ class AnnouncementController extends Controller
     public function show(Announcement $announcement)
     {
         $announcement = Announcement::find($announcement->id);
+
         return view('announcements.show')->with('announcement', $announcement);
     }
 
@@ -80,7 +83,9 @@ class AnnouncementController extends Controller
     public function edit(Announcement $announcement)
     {
         $announcement = Announcement::find($announcement->id);
+
         $users = User::all();
+
         return view('announcements.edit')->with('announcement', $announcement)
                                         ->with('users', $users);
     }
@@ -132,6 +137,7 @@ class AnnouncementController extends Controller
     public function destroy(Announcement $announcement)
     {
         Announcement::find($announcement->id)->delete();
+
         return redirect()->route('announcements.index')
                         ->with('success', 'Anuncio eliminado satisfactoriamente');
     }

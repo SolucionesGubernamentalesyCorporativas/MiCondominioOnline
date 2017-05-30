@@ -35,6 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="capacity">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -57,6 +58,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="fee">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -88,6 +90,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="typeofresource">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -119,6 +122,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="estate">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>

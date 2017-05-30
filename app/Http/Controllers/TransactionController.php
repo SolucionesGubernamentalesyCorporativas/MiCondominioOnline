@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Transaction;
 use App\TypeOfTransaction;
 use App\Estate;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreTransaction;
 use App\Http\Requests\UpdateTransaction;
+use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
@@ -30,6 +30,7 @@ class TransactionController extends Controller
         }
         else
             $data = Transaction::paginate(12);
+
         return view('transactions.index')->with('data', $data);
     }
 
@@ -42,6 +43,7 @@ class TransactionController extends Controller
     {
         $typeoftransactions = TypeOfTransaction::all();
         $estates = Estate::all();
+
         return view('transactions.create')->with('typeoftransactions', $typeoftransactions)
                                         ->with('estates', $estates);
     }
@@ -55,6 +57,7 @@ class TransactionController extends Controller
     public function store(StoreTransaction $request)
     {
         $transaction = new Transaction;
+
         $transaction->observations = $request->observations;
         $transaction->ammount = $request->ammount;
 
@@ -71,8 +74,6 @@ class TransactionController extends Controller
                 $transaction->estates()->attach($estate);
             }
         }
-        
-        $transaction->save();
 
         return redirect()->route('transactions.index')
                         ->with('success', 'Transacción creada satisfactoriamente');
@@ -87,6 +88,7 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         $transaction = Transaction::find($transaction->id);
+
         return view('transactions.show')->with('transaction', $transaction);
     }
 
@@ -128,36 +130,29 @@ class TransactionController extends Controller
 
         switch ($request->area) {
             case 'observations':
-                if ($request->observations != NULL) {
-                    $transaction->observations = $request->observations;
-                }
+                $transaction->observations = $request->observations;
                 break;
 
             case 'ammount':
-                if ($request->ammount != NULL) {
-                    $transaction->ammount = $request->ammount;
-                }
+                $transaction->ammount = $request->ammount;
                 break;
             
             case 'typeoftransaction':
-                if ($request->type_of_transaction_id != NULL) {
-                    $transaction->typeOfTransaction()->dissociate();
-                    $typeOfTransaction = TypeOfTransaction::find($request->type_of_transaction_id);
-                    $transaction->typeOfTransaction->associate($typeOfTransaction);
-                }
+                $transaction->typeOfTransaction()->dissociate();
+                $typeOfTransaction = TypeOfTransaction::find($request->type_of_transaction_id);
+                $transaction->typeOfTransaction->associate($typeOfTransaction);
                 break;
 
             case 'estate':
+                $transaction->estates()->detach();
+
                 if ($request->estate_ids != NULL) {
-                    $transaction->estates()->detach();
                     $ids = explode(",", $request->estate_ids);
 
                     foreach ($ids as $id) {
                         $estate = Estate::find($id);
                         $transaction->estates()->attach($estate);
                     }
-                } else {
-                    $transaction->estates()->detach();
                 }
                 break;
 
@@ -182,6 +177,7 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         Transaction::find($transaction->id)->delete();
+        
         return redirect()->route('transactions.index')
                         ->with('success', 'Transacción eliminada satisfactoriamente');
     }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Condo;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreCondo;
 use App\Http\Requests\UpdateCondo;
+use Illuminate\Http\Request;
 
 class CondoController extends Controller
 {
@@ -22,6 +22,7 @@ class CondoController extends Controller
     public function index()
     {
         $data = Condo::paginate(12);
+
         return view('condos.index')->with('data', $data);
     }
 
@@ -63,6 +64,7 @@ class CondoController extends Controller
     public function show(Condo $condo)
     {
         $condo = Condo::find($condo->id);
+
         return view('condos.show')->with('condo', $condo);
     }
 
@@ -75,6 +77,7 @@ class CondoController extends Controller
     public function edit(Condo $condo)
     {
         $condo = Condo::find($condo->id);
+
         return view('condos.edit')->with('condo', $condo);
     }
 
@@ -119,6 +122,7 @@ class CondoController extends Controller
     public function destroy(Condo $condo)
     {
         Condo::find($condo->id)->delete();
+        
         return redirect()->route('condos.index')
                         ->with('success', 'Condominio eliminado satisfactoriamente');
     }

@@ -19,6 +19,18 @@
                 <div class="ui relaxed divided list">
                     <div class="item">
                         <div class="content">
+                            <div class="header">Condominio al que pertenece</div>
+                            <div class="description">{{ count($estate->condo) == 1 ? $estate->condo->name : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Tipo de unidad privativa</div>
+                            <div class="description">{{  count($estate->typeOfEstate) == 1 ? $estate->typeOfEstate->name : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
                             <div class="header">Numero</div>
                             <div class="description">{{ $estate->number }}</div>
                         </div>
@@ -39,18 +51,6 @@
                         <div class="content">
                             <div class="header">Notas</div>
                             <div class="description">{{ $estate->notes }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Tipo de unidad privativa</div>
-                            <div class="description">{{  count($estate->typeOfEstate) == 1 ? $estate->typeOfEstate->name : 'Ninguno' }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Condominio</div>
-                            <div class="description">{{ count($estate->condo) == 1 ? $estate->condo->name : 'Ninguno' }}</div>
                         </div>
                     </div>
                     <div class="item">
@@ -108,7 +108,7 @@
                         <div class="content">
                             <div class="header">Activos</div>
                             @if(count($estate->assets) >= 1)
-                                <div class="description">Activos asociados a la unidad privativa</div>
+                                <div class="description">Activos prestados a la unidad privativa</div>
                                 <div class="list">
                                     @foreach($estate->assets as $asset)
                                         <div class="item">
@@ -117,7 +117,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun activo asociado a la unidad privativa</div>
+                                <div class="description">Ningun activo prestado a la unidad privativa</div>
                             @endif
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <div class="content">
                             <div class="header">Recurso</div>
                             @if(count($estate->resources) >= 1)
-                                <div class="description">Recursos asociados a la unidad privativa</div>
+                                <div class="description">Recursos prestados a la unidad privativa</div>
                                 <div class="list">
                                     @foreach($estate->resources as $resource)
                                         <div class="item">
@@ -134,7 +134,7 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="description">Ningun recurso asociado a la unidad privativa</div>
+                                <div class="description">Ningun recurso prestado a la unidad privativa</div>
                             @endif
                         </div>
                     </div>

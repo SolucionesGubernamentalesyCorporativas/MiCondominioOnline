@@ -35,6 +35,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="date">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -57,6 +58,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="description">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -64,25 +66,22 @@
                     <div class="item">
                         <div class="title">
                             <i class="icon dropdown"></i>
-                            Cambiar foto del incidente
+                            Cambiar fotos de la incidencia
                         </div>
                         <div class="content field">
                             <form class="ui form error" role="form" method="POST" action="{{ route('incidences.update', $incidence->id) }}" enctype="multipart/form-data">
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('photo') ? 'error' : '' }}">
-                                    <label>Selecciona la foto que quieras cambiar</label>
-                                    @foreach ($urls as $url)
-                                        <img src="{{ $url }}" alt="foto-recibo-{{ $incidence->typeOfIncidence->name }}" class="ui small image">
-                                    @endforeach
-                                    <label>Sube una nueva foto</label>
-                                    <input type="file" name="photo">
-                                    @if ($errors->has('photo'))
+                                    <label>Sube las fotos pertenecientes a la incidencia (Max. 3)</label>
+                                    <input type="file" name="photos[]" multiple>
+                                    @if ($errors->has('photos'))
                                         <span class="ui error message">
-                                            <strong>{{ $errors->first('photo') }}</strong>
+                                            <strong>{{ $errors->first('photos') }}</strong>
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="photos">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -114,6 +113,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="typeofincidence">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>
@@ -145,6 +145,7 @@
                                         </span>
                                     @endif
                                 </div>
+                                <input type="hidden" name="area" value="estate">
                                 <button class="ui submit blue small button" type="submit">Guardar</button>
                             </form>
                         </div>

@@ -43,14 +43,19 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Membresia</div>
-                            <div class="description">{{ count($user->membership) == 1 ? $user->membership->typeOfMembership->name : 'Ninguna' }}</div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">Rol</div>
-                            <div class="description">{{ count($user->role) == 1 ? $user->role->name : 'Ninguno' }}</div>
+                            <div class="header">Condominios</div>
+                            @if(count($user->condos) >= 1)
+                                <div class="description">Condominios asociados al usuario</div>
+                                <div class="list">
+                                    @foreach($user->condos as $condo)
+                                        <div class="item">
+                                            <div class="description">{{ $condo->name }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="description">Ningun condominio asociado al usuario</div>
+                            @endif
                         </div>
                     </div>
                     <div class="item">
@@ -72,19 +77,14 @@
                     </div>
                     <div class="item">
                         <div class="content">
-                            <div class="header">Condominios</div>
-                            @if(count($user->condos) >= 1)
-                                <div class="description">Condominios asociados al usuario</div>
-                                <div class="list">
-                                    @foreach($user->condos as $condo)
-                                        <div class="item">
-                                            <div class="description">{{ $condo->name }}</div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="description">Ningun condominio asociado al usuario</div>
-                            @endif
+                            <div class="header">Rol</div>
+                            <div class="description">{{ count($user->role) == 1 ? $user->role->name : 'Ninguno' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
+                            <div class="header">Membresia</div>
+                            <div class="description">{{ count($user->membership) == 1 ? $user->membership->typeOfMembership->name : 'Ninguna' }}</div>
                         </div>
                     </div>
                     <div class="item">

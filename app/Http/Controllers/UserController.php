@@ -7,9 +7,9 @@ use App\Membership;
 use App\Role;
 use App\Estate;
 use App\Condo;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -83,6 +83,7 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {
         $user = new User;
+
         $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
@@ -178,70 +179,56 @@ class UserController extends Controller
 
         switch ($request->area) {
             case 'name':
-                if ($request->name != NULL) {
-                    $user->name = $request->name;
-                }
+                $user->name = $request->name;
                 break;
             
             case 'lastname':
-                if ($request->lastname != NULL) {
-                    $user->lastname = $request->lastname;
-                }
+                $user->lastname = $request->lastname;
                 break;
                 
             case 'email':
-                if ($request->email != NULL) {
-                    $user->email = $request->email;
-                }
+                $user->email = $request->email;
                 break;
 
             case 'phone':
-                if ($request->phone != NULL) {
-                    $user->phone = $request->phone;
-                }
+                $user->phone = $request->phone;
                 break;
 
             case 'membership':
-                if ($request->membership_id != NULL) {
-                    $user->membership()->dissociate();
-                    $membership = Membership::find($request->membership_id);
-                    $user->membership()->associate($membership);
-                }
+                $user->membership()->dissociate();
+                $membership = Membership::find($request->membership_id);
+                $user->membership()->associate($membership);
                 break;
 
             case 'role':
-                if ($request->role_id != NULL) {
-                    $user->role()->dissociate();
-                    $role = Role::find($request->role_id);
-                    $user->role()->associate($role);
-                }
+                $user->role()->dissociate();
+                $role = Role::find($request->role_id);
+                $user->role()->associate($role);
                 break;
 
             case 'estate':
+                $user->estates()->detach();
+                
                 if ($request->estate_ids != NULL) {
-                    $user->estates()->detach();
                     $estateIds = explode(",", $request->estate_ids);
                 
                     foreach ($estateIds as $estateId) {
                         $estate = Estate::find($estateId);
                         $user->estates()->attach($estate);
                     }
-                } else {
-                    $user->estates()->detach();
                 }
                 break;
 
             case 'condo':
+                $user->condos()->detach();
+                
                 if ($request->condo_ids != NULL) {
-                    $user->condos()->detach();
                     $condoIds = explode(",", $request->condo_ids);
                     
                     foreach ($condoIds as $condoId) {
                         $condo = Condo::find($condoId);
                         $user->condos()->attach($condo);
                     }
-                } else {
-                    $user->condos()->detach();
                 }
                 break;
 
@@ -266,6 +253,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::find($user->id)->delete();
+        
         return redirect()->route('users.index')
                         ->with('success','Usuario eliminado satisfactoriamente');
     }

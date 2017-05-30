@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Estate;
 use App\TypeOfEstate;
 use App\Condo;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreEstate;
 use App\Http\Requests\UpdateEstate;
+use Illuminate\Http\Request;
 
 class EstateController extends Controller
 {
@@ -86,6 +86,7 @@ class EstateController extends Controller
     public function show(Estate $estate)
     {
         $estate = Estate::find($estate->id);
+
         return view('estates.show')->with('estate', $estate);
     }
 
@@ -120,43 +121,31 @@ class EstateController extends Controller
 
         switch ($request->area) {
             case 'number':
-                if ($request->number != NULL) {
-                    $estate->number = $request->number;
-                }
+                $estate->number = $request->number;
                 break;
             
             case 'rented':
-                if ($request->rented != NULL) {
-                    $estate->rented = $request->rented;
-                }
+                $estate->rented = $request->rented;
                 break;
 
             case 'number_of_parking_lots':
-                if ($request->number_of_parking_lots != NULL) {
-                    $estate->number_of_parking_lots = $request->number_of_parking_lots;
-                }
+                $estate->number_of_parking_lots = $request->number_of_parking_lots;
                 break;
 
             case 'notes':
-                if ($request->notes != NULL) {
-                    $estate->notes = $request->notes;
-                }
+                $estate->notes = $request->notes;
                 break;
 
             case 'typeofestate':
-                if ($request->type_of_estate_id != NULL) {
-                    $estate->typeOfEstate()->dissociate();
-                    $typeOfEstate = TypeOfEstate::find($request->type_of_estate_id);
-                    $estate->typeOfEstate()->associate($typeOfEstate);
-                }
+                $estate->typeOfEstate()->dissociate();
+                $typeOfEstate = TypeOfEstate::find($request->type_of_estate_id);
+                $estate->typeOfEstate()->associate($typeOfEstate);
                 break;
             
             case 'condo':
-                if ($request->condo_id != NULL) {
-                    $estate->condo()->dissociate();
-                    $condo = Condo::find($request->condo_id);
-                    $estate->condo()->associate($condo);
-                }
+                $estate->condo()->dissociate();
+                $condo = Condo::find($request->condo_id);
+                $estate->condo()->associate($condo);
                 break;
 
             default:
@@ -180,6 +169,7 @@ class EstateController extends Controller
     public function destroy(Estate $estate)
     {
         Estate::find($estate->id)->delete();
+        
         return redirect()->route('estates.index')
                         ->with('success', 'Unidad privativa eliminada satisfactoriamente');
     }

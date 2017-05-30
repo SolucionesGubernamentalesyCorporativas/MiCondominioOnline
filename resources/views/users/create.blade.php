@@ -56,39 +56,21 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="field {{ $errors->has('membership_id') ? 'error' : '' }}">
-                                <label>Membresia</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" name="membership_id" value="{{ old('membership_id') }}">
+                            <div class="field {{ $errors->has('condo_ids') ? 'error' : '' }}">
+                                <label>Condominio</label>
+                                <div class="ui multiple selection dropdown">
+                                    <input type="hidden" name="condo_ids" value="{{ old('condo_ids') }}">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona una membresia</div>
+                                    <div class="default text">Si el usuario pertenece a uno o mas condominios seleccionalos</div>
                                     <div class="menu">
-                                        @foreach($memberships as $membership)
-                                            <div class="item" data-value="{{ $membership->id }}">{{ $membership->typeOfMembership->name }}</div>
+                                        @foreach($condos as $condo)
+                                            <div class="item" data-value="{{ $condo->id }}">{{ $condo->name }}</div>
                                         @endforeach
                                     </div>
                                 </div>
-                                @if ($errors->has('membership_id'))
+                                @if ($errors->has('condo_ids'))
                                     <span class="ui error message">
-                                        <strong>{{ $errors->first('membership_id') }}</strong>
-                                    </span>
-                                @endif  
-                            </div>
-                            <div class="field {{ $errors->has('role_id') ? 'error' : '' }}">
-                                <label>Rol</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" name="role_id" value="{{ old('role_id') }}">
-                                    <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona un rol</div>
-                                    <div class="menu">
-                                        @foreach($roles as $role)
-                                            <div class="item" data-value="{{ $role->id }}">{{ $role->name }}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @if ($errors->has('role_id'))
-                                    <span class="ui error message">
-                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                        <strong>{{ $errors->first('condo_ids') }}</strong>
                                     </span>
                                 @endif  
                             </div>
@@ -110,21 +92,39 @@
                                     </span>
                                 @endif  
                             </div>
-                            <div class="field {{ $errors->has('condo_ids') ? 'error' : '' }}">
-                                <label>Condominio</label>
-                                <div class="ui multiple selection dropdown">
-                                    <input type="hidden" name="condo_ids" value="{{ old('condo_ids') }}">
+                            <div class="field {{ $errors->has('role_id') ? 'error' : '' }}">
+                                <label>Rol</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="role_id" value="{{ old('role_id') }}">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">Si el usuario pertenece a uno o mas condominios seleccionalos</div>
+                                    <div class="default text">Selecciona un rol</div>
                                     <div class="menu">
-                                        @foreach($condos as $condo)
-                                            <div class="item" data-value="{{ $condo->id }}">{{ $condo->name }}</div>
+                                        @foreach($roles as $role)
+                                            <div class="item" data-value="{{ $role->id }}">{{ $role->name }}</div>
                                         @endforeach
                                     </div>
                                 </div>
-                                @if ($errors->has('condo_ids'))
+                                @if ($errors->has('role_id'))
                                     <span class="ui error message">
-                                        <strong>{{ $errors->first('condo_ids') }}</strong>
+                                        <strong>{{ $errors->first('role_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            <div class="field {{ $errors->has('membership_id') ? 'error' : '' }}">
+                                <label>Membresia</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="membership_id" value="{{ old('membership_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona una membresia</div>
+                                    <div class="menu">
+                                        @foreach($memberships as $membership)
+                                            <div class="item" data-value="{{ $membership->id }}">{{ $membership->typeOfMembership->name }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('membership_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('membership_id') }}</strong>
                                     </span>
                                 @endif  
                             </div>

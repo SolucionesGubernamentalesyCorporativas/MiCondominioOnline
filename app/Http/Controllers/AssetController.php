@@ -23,6 +23,7 @@ class AssetController extends Controller
     public function index()
     {
         $data = Asset::paginate(12);
+
         return view('assets.index')->with('data', $data);
     }
 
@@ -34,6 +35,7 @@ class AssetController extends Controller
     public function create()
     {
         $estates = Estate::all();
+
         return view('assets.create')->with('estates', $estates);
     }
 
@@ -57,8 +59,6 @@ class AssetController extends Controller
 
         return redirect()->route('assets.index')
                         ->with('success', 'Activo creado satisfactoriamente');
-
-
     }
 
     /**
@@ -70,6 +70,7 @@ class AssetController extends Controller
     public function show(Asset $asset)
     {
         $asset = Asset::find($asset->id);
+
         return view('assets.show')->with('asset', $asset);
     }
 
@@ -82,7 +83,9 @@ class AssetController extends Controller
     public function edit(Asset $asset)
     {
         $asset = Asset::find($asset->id);
+
         $estates = Estate::all();
+
         return view('assets.edit')->with('asset', $asset)
                                 ->with('estates', $estates);
     }
@@ -134,6 +137,7 @@ class AssetController extends Controller
     public function destroy(Asset $asset)
     {
         Asset::find($asset->id)->delete();
+        
         return redirect()->route('assets.index')
                         ->with('success', 'Activo eliminado satisfactoriamente');
     }

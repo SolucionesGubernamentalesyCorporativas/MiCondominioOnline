@@ -22,6 +22,7 @@ class RoleController extends Controller
     public function index()
     {
         $data = Role::paginate(12);
+        
         return view('roles.index')->with('data', $data);
     }
 
@@ -44,6 +45,7 @@ class RoleController extends Controller
     public function store(StoreRole $request)
     {
         Role::create($request->all());
+
         return redirect()->route('roles.index')
                         ->with('success', 'Rol creado satisfactoriamente');
     }
@@ -57,6 +59,7 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         $role = Role::find($role->id);
+
         return view('roles.show')->with('role', $role);
     }
 
@@ -69,6 +72,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         $role = Role::find($role->id);
+
         return view('roles.edit')->with('role', $role);
     }
 
@@ -82,6 +86,7 @@ class RoleController extends Controller
     public function update(UpdateRole $request, Role $role)
     {
         Role::find($role->id)->update($request->all());
+
         return redirect()->route('roles.index')
                         ->with('success', 'Rol actualizado satisfactoriamente');
     }
@@ -95,6 +100,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         Role::find($role->id)->delete();
+        
         return redirect()->route('roles.index')
                         ->with('success', 'Rol eliminado satisfactoriamente');
     }

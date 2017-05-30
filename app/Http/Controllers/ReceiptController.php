@@ -43,6 +43,7 @@ class ReceiptController extends Controller
         } else {
             $urls = NULL;
         }
+
         return view('receipts.index')->with('data', $data)
                                     ->with('urls', $urls);
     }
@@ -55,6 +56,7 @@ class ReceiptController extends Controller
     public function create()
     {
         $transactions = Transaction::all();
+
         return view('receipts.create')->with('transactions', $transactions);
     }
 
@@ -67,17 +69,22 @@ class ReceiptController extends Controller
     public function store(StoreReceipt $request)
     {
         $receipt = new Receipt;
+
         $receipt->date = $request->date;
         $receipt->ammount = $request->ammount;
-        $request->verified == 1 ? $receipt->verified = 1 : $receipt->verified = 0;
+        $receipt->verified = $request->input('verified', 0);
+
         $transaction = Transaction::find($request->transaction_id);
         $receipt->transaction()->associate($transaction);
+
         $receipt->save();
       
         $image = new ReceiptImage;
-        $image->receipt()->associate($receipt);
+
         $image->url_of_img = $request->photo->store('public/receipts');
         $image->type_of_img = $request->photo->getClientMimeType();
+        $image->receipt()->associate($receipt);
+
         $image->save();
 
         return redirect()->route('receipts.index')
@@ -93,7 +100,9 @@ class ReceiptController extends Controller
     public function show(Receipt $receipt)
     {
         $receipt = Receipt::find($receipt->id);
+
         $url = Storage::url($receipt->receiptImage->url_of_img);
+
         return view('receipts.show')->with('receipt', $receipt)
                                     ->with('url', $url);
     }
@@ -107,8 +116,11 @@ class ReceiptController extends Controller
     public function edit(Receipt $receipt)
     {
         $receipt = Receipt::find($receipt->id);
+
         $url = Storage::url($receipt->receiptImage->url_of_img);
+
         $transactions = Transaction::all();
+
         return view('receipts.edit')->with('receipt', $receipt)
                                     ->with('transactions', $transactions)
                                     ->with('url', $url);
@@ -123,15 +135,46 @@ class ReceiptController extends Controller
      */
     public function update(UpdateReceipt $request, Receipt $receipt)
     {
-        if($request->photo != NULL) {
-            $image = ReceiptImage::find($receipt->receiptImage->id);
-            Storage::delete($image->url_of_img);
-            $image->url_of_img = $request->photo->store('public/receipts');
-            $image->type_of_img = $request->photo->getClientMimeType();
-            $image->save();
-        } else {
-            Receipt::find($receipt->id)->update($request->all());
+        $receipt = Receipt::find($receipt->id);
+
+        switch ($request->area) {
+            case 'date':
+                $receipt->date = $request->date;
+                break;
+
+            case 'ammount':
+                $receipt->ammount = $request->ammount;
+                break;
+
+            case 'verified':
+                $receipt->verified = $request->input('verified', 0);
+                break;
+            
+            case 'transaction':
+                $receipt->transaction()->dissociate();
+                $transaction = Transaction::find($request->transaction_id);
+                $receipt->transaction()->associate($transaction);
+                break;
+
+            case 'photo':
+                $image = ReceiptImage::find($receipt->receiptImage->id);
+
+                Storage::delete($image->url_of_img);
+
+                $image->url_of_img = $request->photo->store('public/receipts');
+                $image->type_of_img = $request->photo->getClientMimeType();
+
+                $image->save();
+                break;
+
+            default:
+                return redirect()->route('receipts.index')
+                                ->with('error', 'Hubo un problema al actualizar el recibo, intente de nuevo');
+                break;
         }
+
+        $receipt->save();
+
         return redirect()->route('receipts.index')
                         ->with('success', 'Recibo actualizado satisfactoriamente');
     }
@@ -144,9 +187,14 @@ class ReceiptController extends Controller
      */
     public function destroy(Receipt $receipt)
     {
+        $receipt = Receipt::find($receipt->id);
+        $image = ReceiptImage::find($receipt->receiptImage->id);
+
         Storage::delete($receipt->receiptImage->url_of_img);
-        ReceiptImage::find($receipt->receiptImage->id)->delete();
-        Receipt::find($receipt->id)->delete();
+
+        $image->delete();
+        $receipt->delete();
+
         return redirect()->route('receipts.index')
                         ->with('success', 'Recibo eliminado satisfactoriamente');
     }
