@@ -15,38 +15,44 @@
     </div>
     <div class="row">
         <div class="column">
-            @if($data)
-                <table class="ui four column selectable blue table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Fecha de llegada</th>
-                            <th>Vehiculo</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($data as $row)   
-                            <tr>
-                                <td>{{ $row->name }}</td>
-                                <td>{{ $row->date_arrival->diffForHumans() }}</td>
-                                <td>{{ $row->vehicle == 0 ? 'No' : 'Si' }}</td>
-                                <td>
-                                    <div class="ui small buttons">
-                                        <a class="ui green button" href="{{ route('visitors.show', $row->id) }}">Info</a>
-                                        <a class="ui blue button" href="{{ route('visitors.edit', $row->id) }}">Editar</a>
-                                        <form method="POST" action="{{ route('visitors.destroy', $row->id) }}" style="display: inline;">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="ui red button">Borrar</button>
-                                        </form>
+            <div class="ui blue segment">
+                @if ($data)
+                    @foreach ($uniqueDates as $date)
+                        <div class="ui raised vertical segments">
+                            <div class="ui segment">
+                                <div class="header">{{ $date->toFormattedDateString() }}</div>
+                            </div>
+                            @foreach ($data as $row)
+                                @if ($row->date_arrival == $date)
+                                    <div class="ui clearing secondary segment">
+                                        <div class="ui three column grid">
+                                            <div class="column">
+                                                <p>Nombre del visitante: {{ $row->name }}</p>
+                                                <p>Domicilio que visita: {{ $row->estate->typeOfEstate->name . ' ' . $row->estate->number }}</p>
+                                                <p>Relacion con el condomino: {{ $row->typeOfVisitor->name }}</p>
+                                            </div>
+                                            <div class="column">
+                                                <p>Vehiculo: {{ $row->vehicle == 1 ? 'Si' : 'No' }}</p>
+                                            </div>
+                                            <div class="centered column">
+                                                <div class="ui right floated small buttons">
+                                                    <a class="ui green button" href="{{ route('visitors.show', $row->id) }}">Info</a>
+                                                    <a class="ui blue button" href="{{ route('visitors.edit', $row->id) }}">Editar</a>
+                                                    <form method="POST" action="{{ route('visitors.destroy', $row->id) }}" style="display: inline;">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="ui red button">Borrar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
+                                @endif
+                            @endforeach
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         </div>
     </div>
     {{ $data->links() }}

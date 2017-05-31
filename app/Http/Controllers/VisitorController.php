@@ -25,7 +25,15 @@ class VisitorController extends Controller
     {
         $data = Visitor::paginate(12);
 
-        return view('visitors.index')->with('data', $data);
+        foreach ($data as $row) {
+            $dates[] = $row->date_arrival;
+        }
+
+        $uniqueDates = array_unique($dates);
+        rsort($uniqueDates);
+
+        return view('visitors.index')->with('data', $data)
+                                    ->with('uniqueDates', $uniqueDates);
     }
 
     /**
