@@ -20,7 +20,7 @@ class CreateEstatesTable extends Migration
             $table->text('number');
             $table->boolean('rented')->default(0);
             $table->integer('number_of_parking_lots');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

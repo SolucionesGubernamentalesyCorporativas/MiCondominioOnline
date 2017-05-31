@@ -15,17 +15,21 @@ class AnnouncementsTableSeeder extends Seeder
             array(
                 'title' => 'Reparación de luminarias',
                 'description' => 'Se repararan los focos de la entrada el proximo martes',
-                'user_id' => '1'
+                'user_id' => '1',
+                'created_at' => '2017-06-06'
+
             ),
             array(
                 'title' => 'Contratación de personas de aseo',
                 'description' => 'Se busca persona del aseo para casa 3',
-                'user_id' => '2'
+                'user_id' => '2',
+                'created_at' => '2017-06-06'
             ),
             array(
                 'title' => 'Venta de garage',
                 'description' => 'Fabulosos precios!',
-                'user_id' => '3'
+                'user_id' => '3',
+                'created_at' => '2017-06-06'
             )
         ));
     }

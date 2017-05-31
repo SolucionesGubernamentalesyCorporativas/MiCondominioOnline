@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+//Home buttons
+Route::get('/home/create/condo', 'HomeController@createCondo');
+Route::post('/home/store/condo', 'HomeController@storeCondo');
+
 //Billing statement
 Route::get('/billing/consult', 'BillingStatementController@consult');
 Route::get('/billing/consult/pdf', 'BillingStatementController@pdf');

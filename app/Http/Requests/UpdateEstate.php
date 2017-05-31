@@ -27,7 +27,7 @@ class UpdateEstate extends FormRequest
             'number' => 'numeric',
             'rented' => 'boolean',
             'number_of_parking_lots' => 'numeric',
-            'notes' => 'string',
+            'notes' => 'string|nullable',
             'type_of_estate_id' => 'numeric',
             'condo_id' => 'numeric'
         ];

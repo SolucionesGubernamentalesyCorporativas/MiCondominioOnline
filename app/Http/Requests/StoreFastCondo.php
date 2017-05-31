@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\TypeOfEstate;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEstate extends FormRequest
+class StoreFastCondo extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +24,18 @@ class StoreEstate extends FormRequest
      */
     public function rules()
     {
-        return [
-            'number' => 'required|numeric',
-            'rented' => 'boolean',
-            'number_of_parking_lots' => 'required|numeric',
-            'notes' => 'string|nullable',
-            'type_of_estate_id' => 'required|numeric',
-            'condo_id' => 'required|numeric'
+        $rules = [
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'parking_spots' => 'required|numeric'
         ];
+
+        $data = TypeOfEstate::all();
+
+        foreach ($data as $typeOfEstate) {
+            $rules[$typeOfEstate->name] = 'required|numeric';
+        }
+
+        return $rules;
     }
 }
