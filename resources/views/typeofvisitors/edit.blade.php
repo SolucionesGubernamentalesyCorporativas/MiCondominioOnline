@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="field {{ $errors->has('name') ? 'error' : '' }}">
                                     <label>Nombre</label>
-                                    <input type="text" name="name" placeholder="{{ $typeofvisitor->name }}">
+                                    <input type="text" name="name" value="{{ $typeofvisitor->name }}">
                                     @if ($errors->has('name'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -50,7 +50,7 @@
                                 {{ csrf_field() }}
                                 <div class="field {{ $errors->has('description') ? 'error' : '' }}">
                                     <label>Descripción</label>
-                                    <input type="text" name="description" placeholder="{{ $typeofvisitor->description }}">
+                                    <input type="text" name="description" value="{{ $typeofvisitor->description }}">
                                     @if ($errors->has('description'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('description') }}</strong>

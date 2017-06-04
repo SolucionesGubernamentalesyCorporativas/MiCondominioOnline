@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('observations') ? 'error' : '' }}">
                                     <label>Observaciones</label>
-                                    <input type="text" name="observations" placeholder="{{ $transaction->observations }}">
+                                    <input type="text" name="observations" value="{{ $transaction->observations }}">
                                     @if ($errors->has('observations'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('observations') }}</strong>
@@ -51,7 +51,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('ammount') ? 'error' : '' }}">
                                     <label>Cantidad</label>
-                                    <input type="text" name="ammount" placeholder="${{ number_format($transaction->ammount, 2) }}">
+                                    <input type="text" name="ammount" value="${{ number_format($transaction->ammount, 2) }}">
                                     @if ($errors->has('ammount'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('ammount') }}</strong>

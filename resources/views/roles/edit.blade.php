@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('name') ? 'error' : '' }}">
                                     <label>Rol</label>
-                                    <input type="text" name="name" placeholder="{{ $role->name }}">
+                                    <input type="text" name="name" value="{{ $role->name }}">
                                     @if ($errors->has('name'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('name') }}</strong>

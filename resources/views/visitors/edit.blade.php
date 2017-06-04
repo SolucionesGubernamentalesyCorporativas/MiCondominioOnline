@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('name') ? 'error' : '' }}">
                                     <label>Nombre</label>
-                                    <input type="text" name="name" placeholder="{{ $visitor->name }}">
+                                    <input type="text" name="name" value="{{ $visitor->name }}">
                                     @if ($errors->has('name'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -51,7 +51,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('date_arrival') ? 'error' : '' }}">
                                     <label>Fecha de llegada</label>
-                                    <input type="date" name="date_arrival" value="{{ $visitor->date_arrival }}">
+                                    <input type="date" name="date_arrival" value="{{ $visitor->date_arrival->format('Y-m-d') }}" min="{{ date('Y-m-d') }}">
                                     @if ($errors->has('date_arrival'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('date_arrival') }}</strong>
@@ -80,7 +80,7 @@
                                         <div class="default text">Selecciona una unidad privativa</div>
                                         <div class="menu">
                                             @foreach($estates as $estate)
-                                                <div class="item" data-value="{{ $estate->id }}">{{ $estate->number }}</div>
+                                                <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -137,10 +137,10 @@
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="inline fields {{ $errors->has('vehicle') ? 'error' : '' }}">
-                                    <label>Vehiculo</label>
+                                    <label for="vehicle">Vehiculo</label>
                                     <div class="field">
                                         <div class="ui toggle checkbox">
-                                            <input type="radio" name="vehicle" value="1">
+                                            <input type="checkbox" id="vehicle" name="vehicle" value="1">
                                         </div>
                                     </div>
                                     @if ($errors->has('vehicle'))

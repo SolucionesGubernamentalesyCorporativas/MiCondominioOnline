@@ -31,7 +31,7 @@
                             </div>
                             <div class="field {{ $errors->has('description') ? 'error' : '' }}">
                                 <label>Descripción</label>
-                                <input type="text" name="description" value="{{ old('description') }}" placeholder="Escribe el contenido del anuncio">
+                                <textarea name="description" cols="5" rows="10" placeholder="Escribe el contenido del anuncio">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('description') }}</strong>

@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('capacity') ? 'error' : '' }}">
                                     <label>Capacidad</label>
-                                    <input type="text" name="capacity" placeholder="{{ $resource->capacity }}">
+                                    <input type="text" name="capacity" value="{{ $resource->capacity }}">
                                     @if ($errors->has('capacity'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('capacity') }}</strong>
@@ -51,7 +51,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('fee') ? 'error' : '' }}">
                                     <label>Costo</label>
-                                    <input type="text" name="fee" placeholder="{{ $resource->fee }}">
+                                    <input type="text" name="fee" value="{{ $resource->fee }}">
                                     @if ($errors->has('fee'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('fee') }}</strong>

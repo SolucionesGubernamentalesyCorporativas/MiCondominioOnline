@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('number') ? 'error' : '' }}">
                                     <label>Numero</label>
-                                    <input type="text" name="number" placeholder="{{ $estate->number }}">
+                                    <input type="text" name="number" value="{{ $estate->number }}">
                                     @if ($errors->has('number'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('number') }}</strong>
@@ -53,14 +53,7 @@
                                     <label>Rentado</label>
                                     <div class="field">
                                         <div class="ui toggle checkbox">
-                                            <input type="radio" name="rented" value="0" checked>
-                                            <label>No</label>
-                                        </div>
-                                    </div>
-                                    <div class="field">
-                                        <div class="ui toggle checkbox">
-                                            <input type="radio" name="rented" value="1">
-                                            <label>Si</label>
+                                            <input type="checkbox" name="rented" value="1">
                                         </div>
                                     </div>
                                     @if ($errors->has('rented'))
@@ -85,7 +78,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('number_of_parking_lots') ? 'error' : '' }}">
                                     <label>Numero de lugares de estacionamiento</label>
-                                    <input type="text" name="number_of_parking_lots" placeholder="{{ $estate->number_of_parking_lots }}">
+                                    <input type="text" name="number_of_parking_lots" value="{{ $estate->number_of_parking_lots }}">
                                     @if ($errors->has('number_of_parking_lots'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('number_of_parking_lots') }}</strong>
@@ -108,7 +101,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('notes') ? 'error' : '' }}">
                                     <label>Notas</label>
-                                    <input type="text" name="notes" placeholder="{{ $estate->notes }}">
+                                    <input type="text" name="notes" value="{{ $estate->notes }}">
                                     @if ($errors->has('notes'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('notes') }}</strong>

@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('name') ? 'error' : '' }}">
                                     <label>Nombre</label>
-                                    <input type="text" name="name" placeholder="{{ $condo->name }}">
+                                    <input type="text" name="name" value="{{ $condo->name }}">
                                     @if ($errors->has('name'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -51,7 +51,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('address') ? 'error' : '' }}">
                                     <label>Dirección</label>
-                                    <input type="text" name="address" placeholder="{{ $condo->address }}">
+                                    <input type="text" name="address" value="{{ $condo->address }}">
                                     @if ($errors->has('address'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('address') }}</strong>

@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 <div class="eight wide field {{ $errors->has('date') ? 'error' : '' }}">
                                     <label>Fecha</label>
-                                    <input type="date" name="date" value="{{ date('Y-m-d') }}" max="{{ date('Y-m-d') }}">
+                                    <input type="date" name="date" value="{{ $receipt->date->format('Y-m-d') }}" max="{{ date('Y-m-d') }}">
                                     @if ($errors->has('date'))
                                         <span class="ui error message">
                                             <strong>{{ $errors->first('date') }}</strong>
@@ -98,10 +98,10 @@
                                 {{ method_field('PUT') }}
                                 {{ csrf_field() }}
                                 <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
-                                    <label>¿Recibo verificado por un administrador?</label>
+                                    <label for="verified">¿Recibo verificado por un administrador?</label>
                                     <div class="field">
                                         <div class="ui toggle checkbox">
-                                            <input type="checkbox" name="verified" value="1">
+                                            <input type="checkbox" id="verified" name="verified" value="1">
                                         </div>
                                     </div>
                                     @if ($errors->has('verified'))
