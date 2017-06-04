@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::orderBy('created_at','desc')->get();
+        $announcements = Announcement::orderBy('created_at','asc')->get();
 
         return view('home')->with('announcements', $announcements);
     }

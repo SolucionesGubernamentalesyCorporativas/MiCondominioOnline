@@ -125,7 +125,7 @@ class EstateController extends Controller
                 break;
             
             case 'rented':
-                $estate->rented = $request->rented;
+                $estate->rented = $request->input('rented', 0);
                 break;
 
             case 'number_of_parking_lots':
