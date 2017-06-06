@@ -6,6 +6,7 @@ use App\Announcement;
 use App\User;
 use App\Http\Requests\StoreAnnouncement;
 use App\Http\Requests\UpdateAnnouncement;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -22,7 +23,13 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $data = Announcement::paginate(12);
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->users as $user) {
+                $userIds[] = $user->id;
+            }
+        }
+
+        $data = Announcement::whereIn('user_id', $userIds)->paginate(12);
 
         return view('announcements.index')->with('data', $data);
     }
@@ -34,7 +41,11 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->users as $user) {
+                $users[] = $user;
+            }
+        }
 
         return view('announcements.create')->with('users', $users);
     }
@@ -84,7 +95,11 @@ class AnnouncementController extends Controller
     {
         $announcement = Announcement::find($announcement->id);
 
-        $users = User::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->users as $user) {
+                $users[] = $user;
+            }
+        }
 
         return view('announcements.edit')->with('announcement', $announcement)
                                         ->with('users', $users);

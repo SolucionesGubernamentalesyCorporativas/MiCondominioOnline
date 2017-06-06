@@ -7,6 +7,7 @@ use App\Estate;
 use App\TypeOfVisitor;
 use App\Http\Requests\StoreVisitor;
 use App\Http\Requests\UpdateVisitor;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class VisitorController extends Controller
@@ -23,7 +24,13 @@ class VisitorController extends Controller
      */
     public function index()
     {
-        $data = Visitor::paginate(12);
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estateIds[] = $estate->id;
+            }
+        }
+
+        $data = Visitor::whereIn('estate_id', $estateIds)->paginate(12);
 
         foreach ($data as $row) {
             $dates[] = $row->date_arrival;
@@ -43,7 +50,12 @@ class VisitorController extends Controller
      */
     public function create()
     {
-        $estates = Estate::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
+        
         $typeofvisitors = TypeOfVisitor::all();
 
         return view('visitors.create')->with('estates', $estates)
@@ -98,7 +110,12 @@ class VisitorController extends Controller
     {
         $visitor = Visitor::find($visitor->id);
 
-        $estates = Estate::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
+
         $typeofvisitors = TypeOfVisitor::all();
 
         return view('visitors.edit')->with('visitor', $visitor)

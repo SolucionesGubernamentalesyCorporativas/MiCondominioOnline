@@ -6,6 +6,7 @@ use App\Asset;
 use App\Estate;
 use App\Http\Requests\StoreAsset;
 use App\Http\Requests\UpdateAsset;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AssetController extends Controller
@@ -22,7 +23,13 @@ class AssetController extends Controller
      */
     public function index()
     {
-        $data = Asset::paginate(12);
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estateIds[] = $estate->id;
+            }
+        }
+
+        $data = Asset::whereIn('estate_id', $estateIds)->paginate(12);
 
         return view('assets.index')->with('data', $data);
     }
@@ -34,7 +41,11 @@ class AssetController extends Controller
      */
     public function create()
     {
-        $estates = Estate::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         return view('assets.create')->with('estates', $estates);
     }
@@ -84,7 +95,11 @@ class AssetController extends Controller
     {
         $asset = Asset::find($asset->id);
 
-        $estates = Estate::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         return view('assets.edit')->with('asset', $asset)
                                 ->with('estates', $estates);

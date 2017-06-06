@@ -7,6 +7,7 @@ use App\TypeOfResource;
 use App\Estate;
 use App\Http\Requests\StoreResource;
 use App\Http\Requests\UpdateResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -23,7 +24,13 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        $data = Resource::paginate(12);
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estateIds[] = $estate->id;
+            }
+        }
+
+        $data = Resource::whereIn('estate_id', $estateIds)->paginate(12);
 
         return view('resources.index')->with('data', $data);
     }
@@ -36,7 +43,11 @@ class ResourceController extends Controller
     public function create()
     {
         $typeofresources = TypeOfResource::all();
-        $estates = Estate::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         return view('resources.create')->with('typeofresources', $typeofresources)
                                         ->with('estates', $estates);
@@ -90,7 +101,12 @@ class ResourceController extends Controller
         $resource = Resource::find($resource->id);
 
         $typeofresources = TypeOfResource::all();
-        $estates = Estate::all();
+        
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         return view('resources.edit')->with('resource', $resource)
                                     ->with('typeofresources', $typeofresources)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Condo;
 use App\Http\Requests\StoreCondo;
 use App\Http\Requests\UpdateCondo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CondoController extends Controller
@@ -21,7 +22,7 @@ class CondoController extends Controller
      */
     public function index()
     {
-        $data = Condo::paginate(12);
+        $data = Auth::user()->condos()->paginate(12);
 
         return view('condos.index')->with('data', $data);
     }

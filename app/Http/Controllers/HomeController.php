@@ -7,6 +7,7 @@ use App\Condo;
 use App\Estate;
 use App\TypeOfEstate;
 use App\Http\Requests\StoreFastCondo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,7 +30,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::orderBy('created_at','asc')->get();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->users as $user) {
+                $userIds[] = $user->id;
+            }
+        }
+
+        $announcements = Announcement::whereIn('user_id', $userIds)->orderBy('created_at','asc')->get();
 
         return view('home')->with('announcements', $announcements);
     }

@@ -28,7 +28,7 @@
                                         <div class="ui three column grid">
                                             <div class="column">
                                                 <p>Nombre del visitante: {{ $row->name }}</p>
-                                                <p>Domicilio que visita: {{ $row->estate->typeOfEstate->name . ' ' . $row->estate->number }}</p>
+                                                <p>Domicilio que visita: {{$row->estate->condo->name . ' - ' . $row->estate->typeOfEstate->name . ' ' . $row->estate->number }}</p>
                                                 <p>Relacion con el condomino: {{ $row->typeOfVisitor->name }}</p>
                                             </div>
                                             <div class="column">

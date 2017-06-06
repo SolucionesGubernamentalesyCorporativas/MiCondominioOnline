@@ -9,6 +9,7 @@ use App\Estate;
 use App\Condo;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -26,19 +27,32 @@ class UserController extends Controller
     public function index()
     {
         $roles = Role::all();
-        $condos = Condo::all();
+        $condos = Auth::user()->condos;
+        
+        request('role') != NULL ? $rolerequest = Role::find(request('role')) : $rolerequest = NULL;
         request('condo') != NULL ? $condorequest = Condo::find(request('condo')) : $condorequest = NULL;
-        request('role') != NULL ? $rolerequest = Condo::find(request('role')) : $rolerequest = NULL;
 
 
         if (request()->has('sort')) {
-            $data = User::orderBy('name', request('sort'))
-                                ->paginate(12)
-                                ->appends('sort', request('sort'));
+            $data = User::whereHas('condos', function ($query) {
+                $condos = Auth::user()->condos;
+                foreach ($condos as $condo) {
+                    $condoIds[] = $condo->id;
+                }
+                $query->whereIn('id', $condoIds);
+            })->orderBy('name', request('sort'))
+            ->paginate(12)
+            ->appends('sort', request('sort'));
         } elseif (request()->has('role')) {
-            $data = User::where('role_id', request('role'))
-                                ->paginate(12)
-                                ->appends('role', request('role'));
+            $data = User::whereHas('condos', function ($query) {
+                $condos = Auth::user()->condos;
+                foreach ($condos as $condo) {
+                    $condoIds[] = $condo->id;
+                }
+                $query->whereIn('id', $condoIds);
+            })->where('role_id', request('role'))
+            ->paginate(12)
+            ->appends('role', request('role'));
         } elseif (request()->has('condo')) {
             $condo = request('condo');
             $data = User::whereHas('condos', function ($query) {
@@ -47,7 +61,13 @@ class UserController extends Controller
             ->appends('condo', request('condo'));
         }
         else
-            $data = User::paginate(12);
+            $data = User::whereHas('condos', function ($query) {
+                $condos = Auth::user()->condos;
+                foreach ($condos as $row) {
+                    $condoIds[] = $row->id;
+                }
+                $query->whereIn('id', $condoIds);
+            })->paginate(12);
 
         return view('users.index')->with('data', $data)
                                 ->with('roles', $roles)
@@ -65,8 +85,12 @@ class UserController extends Controller
     {
         $memberships = Membership::all();
         $roles = Role::all();
-        $estates = Estate::all();
-        $condos = Condo::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
+        $condos = Auth::user()->condos;
 
         return view('users.create')->with('memberships', $memberships)
                                     ->with('roles', $roles)
@@ -143,8 +167,12 @@ class UserController extends Controller
         
         $memberships = Membership::all();
         $roles = Role::all();
-        $estates = Estate::all();
-        $condos = Condo::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
+        $condos = Auth::user()->condos;
 
         $idsestates = NULL;
         $idscondos = NULL;

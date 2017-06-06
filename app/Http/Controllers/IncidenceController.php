@@ -9,6 +9,7 @@ use App\IncidenceImage;
 use App\Http\Requests\StoreIncidence;
 use App\Http\Requests\UpdateIncidence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class IncidenceController extends Controller
@@ -24,7 +25,13 @@ class IncidenceController extends Controller
      */
     public function index()
     {
-        $data = Incidence::paginate(12);
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estateIds[] = $estate->id;
+            }
+        }
+
+        $data = Incidence::whereIn('estate_id', $estateIds)->paginate(12);
 
         if (count($data) >= 1) {
             foreach ($data as $row) {
@@ -50,7 +57,11 @@ class IncidenceController extends Controller
     public function create()
     {
         $typeofincidences = TypeOfIncidence::all();
-        $estates = Estate::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         return view('incidences.create')->with('typeofincidences', $typeofincidences)
                                         ->with('estates', $estates);
@@ -126,7 +137,11 @@ class IncidenceController extends Controller
         }
 
         $typeofincidences = TypeOfIncidence::all();
-        $estates = Estate::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         return view('incidences.edit')->with('incidence', $incidence)
                                     ->with('typeofincidences', $typeofincidences)

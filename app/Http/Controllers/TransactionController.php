@@ -7,6 +7,7 @@ use App\TypeOfTransaction;
 use App\Estate;
 use App\Http\Requests\StoreTransaction;
 use App\Http\Requests\UpdateTransaction;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -24,12 +25,27 @@ class TransactionController extends Controller
     public function index()
     {
         if(request()->has('sort')) {
-            $data = Transaction::orderBy('ammount', request('sort'))
-                                ->paginate(12)
-                                ->appends('sort', request('sort'));
+            $data = Transaction::whereHas('estates', function ($query) {
+                foreach (Auth::user()->condos as $condo) {
+                    foreach ($condo->estates as $estate) {
+                        $estateIds[] = $estate->id;
+                    }
+                }
+                $query->whereIn('id', $estateIds);
+            })->orderBy('ammount', request('sort'))
+            ->paginate(12)
+            ->appends('sort', request('sort'));
+        } else {
+            $data = Transaction::whereHas('estates', function ($query) {
+                foreach (Auth::user()->condos as $condo) {
+                    foreach ($condo->estates as $estate) {
+                        $estateIds[] = $estate->id;
+                    }
+                }
+                $query->whereIn('id', $estateIds);
+            })->paginate(12);
         }
-        else
-            $data = Transaction::paginate(12);
+            
 
         return view('transactions.index')->with('data', $data);
     }
@@ -42,7 +58,12 @@ class TransactionController extends Controller
     public function create()
     {
         $typeoftransactions = TypeOfTransaction::all();
-        $estates = Estate::all();
+
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         $ids = NULL;
         
@@ -110,7 +131,12 @@ class TransactionController extends Controller
         $transaction = Transaction::Find($transaction->id);
 
         $typeoftransactions = TypeOfTransaction::all();
-        $estates = Estate::all();
+        
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+            }
+        }
 
         $ids = NULL;
 

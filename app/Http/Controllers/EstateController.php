@@ -7,6 +7,7 @@ use App\TypeOfEstate;
 use App\Condo;
 use App\Http\Requests\StoreEstate;
 use App\Http\Requests\UpdateEstate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class EstateController extends Controller
@@ -23,14 +24,17 @@ class EstateController extends Controller
      */
     public function index()
     {
-        $condos = Condo::all();
+        foreach (Auth::user()->condos as $condo) {
+            $condos[] = $condo;
+            $condoIds[] = $condo->id;
+        }
 
         if (request()->has('condo')) {
             $data = Estate::where('condo_id', request('condo'))
             ->paginate(12)
             ->appends('condo', request('condo'));
         } else {
-            $data = Estate::paginate(12);
+            $data = Estate::whereIn('condo_id', $condoIds)->paginate(12);
         }
         
         return view('estates.index')->with('data', $data)
@@ -45,7 +49,7 @@ class EstateController extends Controller
     public function create()
     {
         $typeofestates = TypeOfEstate::all();
-        $condos = Condo::all();
+        $condos = Auth::user()->condos;
 
         return view('estates.create')->with('typeofestates', $typeofestates)
                                     ->with('condos', $condos);
@@ -101,7 +105,7 @@ class EstateController extends Controller
         $estate = Estate::find($estate->id);
 
         $typeofestates = TypeOFEstate::all();
-        $condos = Condo::all();
+        $condos = Auth::user()->condos;
 
         return view('estates.edit')->with('estate', $estate)
                                     ->with('typeofestates', $typeofestates)
