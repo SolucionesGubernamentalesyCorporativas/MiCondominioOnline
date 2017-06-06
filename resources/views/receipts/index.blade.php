@@ -61,6 +61,7 @@
                                     <div class="description">
                                         <p>{{ $row->transaction->observations }}</p>
                                         <p>Pago: ${{ number_format($row->ammount, 2)}}</p>
+                                        <p>Unidad privativa: {{ $row->estate->typeOfEstate->name . ' ' . $row->estate->number }}</p>
                                     </div>
                                     <div class="extra">
                                         <span>Recibo verificado: {{ $row->verified == 0 ? 'No' : 'Si' }}</span>

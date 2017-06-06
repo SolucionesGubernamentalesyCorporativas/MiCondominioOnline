@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Estate;
 use App\Receipt;
-use App\Transaction;
 use App\ReceiptImage;
+use App\Transaction;
 use App\Http\Requests\StoreReceipt;
 use App\Http\Requests\UpdateReceipt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ReceiptController extends Controller
@@ -24,16 +26,22 @@ class ReceiptController extends Controller
      */
     public function index()
     {
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estateIds[] = $estate->id;
+            }
+        }
+
         if (request()->has('sort')) {
-            $data = Receipt::orderBy('date', request('sort'))
-                            ->paginate(12)
-                            ->appends('sort', request('sort'));
+            $data = Receipt::whereIn('estate_id', $estateIds)->orderBy('date', request('sort'))
+                                                                        ->paginate(12)
+                                                                        ->appends('sort', request('sort'));
         } elseif (request()->has('verified')) {
-            $data = Receipt::where('verified', request('verified'))
-                                ->paginate(12)
-                                ->appends('verified', request('verified'));
+            $data = Receipt::whereIn('estate_id', $estateIds)->where('verified', request('verified'))
+                                                                        ->paginate(12)
+                                                                        ->appends('verified', request('verified'));
         } else {
-            $data = Receipt::paginate(12);
+            $data = Receipt::whereIn('estate_id', $estateIds)->paginate(12);
         }
 
         if (count($data) >= 1) {
@@ -55,9 +63,17 @@ class ReceiptController extends Controller
      */
     public function create()
     {
-        $transactions = Transaction::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+                foreach ($estate->transactions as $transaction) {
+                    $transactions[] = $transaction;
+                }
+            }
+        }
 
-        return view('receipts.create')->with('transactions', $transactions);
+        return view('receipts.create')->with('transactions', $transactions)
+                                    ->with('estates', $estates);
     }
 
     /**
@@ -76,6 +92,9 @@ class ReceiptController extends Controller
 
         $transaction = Transaction::find($request->transaction_id);
         $receipt->transaction()->associate($transaction);
+
+        $estate = Estate::find($request->estate_id);
+        $receipt->estate()->associate($estate);
 
         $receipt->save();
       
@@ -119,10 +138,18 @@ class ReceiptController extends Controller
 
         $url = Storage::url($receipt->receiptImage->url_of_img);
 
-        $transactions = Transaction::all();
+        foreach (Auth::user()->condos as $condo) {
+            foreach ($condo->estates as $estate) {
+                $estates[] = $estate;
+                foreach ($estate->transactions as $transaction) {
+                    $transactions[] = $transaction;
+                }
+            }
+        }
 
         return view('receipts.edit')->with('receipt', $receipt)
                                     ->with('transactions', $transactions)
+                                    ->with('estates', $estates)
                                     ->with('url', $url);
     }
 
@@ -154,6 +181,12 @@ class ReceiptController extends Controller
                 $receipt->transaction()->dissociate();
                 $transaction = Transaction::find($request->transaction_id);
                 $receipt->transaction()->associate($transaction);
+                break;
+
+            case 'estate':
+                $receipt->estate()->dissociate();
+                $estate = Estate::find($request->estate_id);
+                $receipt->estate()->associate($estate);
                 break;
 
             case 'photo':

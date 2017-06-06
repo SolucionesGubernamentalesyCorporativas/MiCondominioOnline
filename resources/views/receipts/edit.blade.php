@@ -147,6 +147,38 @@
                             </form>
                         </div>
                     </div>
+                    <div class="item">
+                        <div class="title">
+                            <i class="icon dropdown"></i>
+                            Editar unidad privativa asociada
+                        </div>
+                        <div class="content field">
+                            <form class="ui form error" role="form" method="POST" action="{{ route('receipts.update', $receipt->id) }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="eight wide field {{ $errors->has('estate_id') ? 'error' : '' }}">
+                                    <label>Unidad privativa</label>
+                                    <div class="ui selection dropdown">
+                                        <input type="hidden" name="estate_id" value="{{ $receipt->estate_id }}">
+                                        <i class="dropdown icon"></i>
+                                        <div class="default text">Selecciona una unidad privativa</div>
+                                        <div class="menu">
+                                            @foreach($estates as $estate)
+                                                <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('estate_id'))
+                                        <span class="ui error message">
+                                            <strong>{{ $errors->first('estate_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <input type="hidden" name="area" value="transaction">
+                                <button class="ui submit blue small button" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

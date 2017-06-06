@@ -18,7 +18,8 @@ class Receipt extends Model
         'date',
         'verified',
         'ammount',
-        'transaction_id'
+        'transaction_id',
+        'estate_id'
     ];
 
     /**
@@ -39,5 +40,10 @@ class Receipt extends Model
     public function receiptImage()
     {
         return $this->hasOne('App\ReceiptImage');
+    }
+
+    public function estate()
+    {
+        return $this->belongsTo('App\Estate');
     }
 }

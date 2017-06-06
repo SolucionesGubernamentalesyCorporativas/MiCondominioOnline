@@ -16,15 +16,21 @@ class CreateReceiptsTable extends Migration
         Schema::create('receipts', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('transaction_id')->nullable();
+            $table->unsignedBigInteger('estate_id')->nullable();
             $table->date('date');
             $table->float('ammount');
             $table->boolean('verified')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
-             $table->foreign('transaction_id')
+            $table->foreign('transaction_id')
             ->references('id')
             ->on('transactions')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreign('estate_id')
+            ->references('id')
+            ->on('estates')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });

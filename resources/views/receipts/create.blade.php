@@ -65,6 +65,24 @@
                                     </span>
                                 @endif  
                             </div>
+                            <div class="field {{ $errors->has('estate_id') ? 'error' : '' }}">
+                                <label>Unidad privativa</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="estate_id" value="{{ old('estate_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona la unidad privativa asociada al recibo</div>
+                                    <div class="menu">
+                                        @foreach($estates as $estate)
+                                            <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @if ($errors->has('estate_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('estate_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
                             <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
                                 <label>¿El recibo fue verificado por un administrador?</label>
                                 <div class="field">

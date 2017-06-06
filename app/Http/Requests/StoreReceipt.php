@@ -28,7 +28,8 @@ class StoreReceipt extends FormRequest
             'verified' => 'boolean',
             'ammount' => 'required|numeric',
             'photo' => 'required|image|mimes:jpeg,bmp,png',
-            'transaction_id' => 'required|numeric'
+            'transaction_id' => 'required|numeric',
+            'estate_id' => 'required|numeric'
         ];
     }
 }

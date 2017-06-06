@@ -49,6 +49,12 @@
                     </div>
                     <div class="item">
                         <div class="content">
+                            <div class="header">Unidad privativa</div>
+                            <div class="description">{{ count($receipt->estate) == 1 ? $receipt->estate->typeOfEstate->name . ' ' . $receipt->estate->number : 'Ninguna' }}</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="content">
                             <div class="header">Fecha de creación</div>
                             <div class="description">{{ $receipt->created_at != NULL ? $receipt->created_at->diffForHumans() : 'No registrado' }}</div>
                         </div>

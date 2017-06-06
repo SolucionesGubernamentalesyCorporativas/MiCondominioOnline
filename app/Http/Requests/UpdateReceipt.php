@@ -28,7 +28,8 @@ class UpdateReceipt extends FormRequest
             'verified' => 'boolean',
             'ammount' => 'numeric',
             'photo' => 'image|mimes:jpeg,bmp,png',
-            'transaction_id' => 'numeric'
+            'transaction_id' => 'numeric',
+            'estate_id' => 'numeric'
         ];
     }
 }
