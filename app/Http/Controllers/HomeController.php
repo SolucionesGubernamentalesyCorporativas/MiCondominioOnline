@@ -61,6 +61,8 @@ class HomeController extends Controller
 
         $condo->save();
 
+        Auth::user()->condos()->attach($condo);
+
         $data = TypeOfEstate::all();
 
         foreach ($data as $row) {

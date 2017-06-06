@@ -52,6 +52,8 @@ class CondoController extends Controller
 
         $condo->save();
 
+        Auth::user()->condos()->attach($condo);
+
         return redirect()->route('condos.index')
                         ->with('success', 'Condominio creado satisfactoriamente');
     }

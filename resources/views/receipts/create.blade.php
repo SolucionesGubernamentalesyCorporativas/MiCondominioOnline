@@ -84,10 +84,10 @@
                                 @endif  
                             </div>
                             <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
-                                <label>¿El recibo fue verificado por un administrador?</label>
+                                <label for="verified">¿El recibo fue verificado por un administrador?</label>
                                 <div class="field">
                                     <div class="ui toggle checkbox">
-                                        <input type="checkbox" name="verified" value="1">
+                                        <input id="verified" type="checkbox" name="verified" value="1">
                                     </div>
                                 </div>
                                 @if ($errors->has('verified'))
