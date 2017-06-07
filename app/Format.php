@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Condo extends Model
+class Format extends Model
 {
-    use SoftDeletes;
-    
+    use softDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -17,7 +16,9 @@ class Condo extends Model
      */
     protected $fillable = [
         'name',
-        'address'
+        'content',
+        'type_of_format_id',
+        'condo_id'
     ];
 
     /**
@@ -28,19 +29,14 @@ class Condo extends Model
     protected $dates = [
         'deleted_at'
     ];
-    
-    public function estates()
+
+    public function typeOfFormat()
     {
-        return $this->hasMany('App\Estate');
+        return $this->belongsTo('App\TypeOfFormat');
     }
 
-    public function formats()
+    public function condo()
     {
-        return $this->hasMany('App\Format');
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany('App\User');
+        return $this->belongsTo('App\Condo');
     }
 }

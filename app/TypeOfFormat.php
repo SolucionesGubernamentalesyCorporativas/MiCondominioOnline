@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Condo extends Model
+class TypeOfFormat extends Model
 {
     use SoftDeletes;
     
@@ -17,7 +16,7 @@ class Condo extends Model
      */
     protected $fillable = [
         'name',
-        'address'
+        'description'
     ];
 
     /**
@@ -29,18 +28,8 @@ class Condo extends Model
         'deleted_at'
     ];
     
-    public function estates()
-    {
-        return $this->hasMany('App\Estate');
-    }
-
     public function formats()
     {
         return $this->hasMany('App\Format');
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany('App\User');
     }
 }

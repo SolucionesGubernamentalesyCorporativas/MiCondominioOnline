@@ -11,6 +11,11 @@ use PDF;
 
 class BillingStatementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function consult()
     {
         $user = Auth::user();

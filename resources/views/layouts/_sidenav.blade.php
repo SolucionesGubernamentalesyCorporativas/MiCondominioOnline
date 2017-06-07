@@ -14,5 +14,6 @@
     <a href="{{ route('incidences.index') }}" class="{{ Request::is('incidences*') ? 'item active' : 'item' }}">Incidencias</a>
     <a href="{{ url('billing/consult') }}" class="{{ Request::is('billingstatements*') ? 'item active' : 'item' }}">Estado de cuenta</a>
     <a href="{{ url('financial/consult') }}" class="{{ Request::is('financialstatements*') ? 'item active' : 'item' }}">Estado financiero</a>
+    <a href="{{ route('formats.index') }}" class="{{ Request::is('formats*') ? 'item active' : 'item' }}">Formatos</a>
 </div>
 

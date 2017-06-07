@@ -31,6 +31,11 @@ Route::get('/billing/consult/pdf', 'BillingStatementController@pdf');
 Route::get('/financial/consult', 'FinancialStatementController@consult');
 Route::get('/financial/consult/pdf', 'FinancialStatementController@pdf');
 
+//Fill formats
+Route::get('/fillformats/select', 'FillFormatController@select');
+Route::post('/fillformats/write', 'FillFormatController@write');
+Route::post('/fillformats/write/pdf/{format}', 'FillFormatController@pdf');
+
 //CRUD routes
 Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
@@ -48,5 +53,7 @@ Route::resource('resources', 'ResourceController');
 Route::resource('assets', 'AssetController');
 Route::resource('incidences', 'IncidenceController');
 Route::resource('typeofincidences', 'TypeOfIncidenceController');
+Route::resource('formats', 'FormatController');
+Route::resource('typeofformats', 'TypeOfFormatController');
 
 
