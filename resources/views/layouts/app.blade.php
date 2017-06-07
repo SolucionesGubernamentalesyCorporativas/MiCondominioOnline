@@ -22,6 +22,7 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    <script src="https://cdn.ckeditor.com/4.7.0/standard/ckeditor.js"></script>
 </head>
 <body>
     <nav class="ui large borderless inverted blue menu">
