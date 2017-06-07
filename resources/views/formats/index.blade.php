@@ -7,6 +7,7 @@
             <div class="ui clearing blue segment">
                 <div style="position: relative; top: 8px;" class="ui left floated header">Formatos</div>
                 <div class="ui right floated blue buttons">
+                    <a class="ui button" href="{{ url('fillformats/select') }}">Llenar formato</a>
                     <a class="ui button" href="{{ route('typeofformats.index') }}">Tipos de formatos</a>
                     <a class="ui button" href="{{ route('formats.create') }}">Añadir formato</a>
                 </div>
