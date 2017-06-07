@@ -48,5 +48,7 @@ Route::resource('resources', 'ResourceController');
 Route::resource('assets', 'AssetController');
 Route::resource('incidences', 'IncidenceController');
 Route::resource('typeofincidences', 'TypeOfIncidenceController');
+Route::resource('formats', 'FormatController');
+Route::resource('typeofformats', 'TypeOfFormatController');
 
 
