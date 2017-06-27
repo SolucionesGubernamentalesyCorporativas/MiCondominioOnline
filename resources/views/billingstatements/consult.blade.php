@@ -13,42 +13,46 @@
     <div class="row">
         <div class="column">
             <div class="ui blue segment">
-                <div class="header">Pago esperado : ${{ $debt }}</div>
+                <div class="header">Balance : 
+                    @if($debt >=0)
+                        <span class="ui tag label green"> $ {{number_format($debt),2}} </span>
+                    @else
+
+                    <span class="ui tag label red "> -$ {{number_format(abs($debt),2)}}</span>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="column">
             @if (count($user->estates) >= 1)
-                <table class="ui six column selectable blue table">
+                <table class="ui six column structured blue table">
                     <thead>
                         <tr>
+                            <th>Tipo de transacción</th>
                             <th>Transacción</th>
                             <th>Cantidad</th>
-                            <th>Tipo de transacción</th>
-                            <th>Ingreso o gasto</th>
                             <th>Pago verificado</th>
                             <th>Recibo</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($user->estates as $estate)
+                            <tr > <th colspan ="5" class="active" >{{$estate->typeOfEstate->name }} {{$estate->number}}</th> </tr>
                             @foreach ($estate->transactions as $transaction)
-                                @foreach ($transaction->receipt as $receipt)
                                     <tr>
-                                        <td>{{ $transaction->observations }}</td>
-                                        <td>${{ number_format($receipt->ammount, 2) }}</td>
                                         <td>{{ $transaction->typeoftransaction->name }}</td>
-                                        <td>{{ $transaction->typeoftransaction->income_outcome == 0 ? 'Ingreso' : 'Gasto' }}</td>
-                                        @if (count($receipt) >= 1)
-                                            <td>{{ $receipt->verified == 0 ? 'No' : 'Si' }}</td>
-                                            <td><img src="{{ $urls[$receipt->receiptImage->id] }}" alt="foto-recibo-{{ $transaction->observations }}" class="ui small image"></td>
+                                        <td>{{ $transaction->observations }}</td>
+                                        <td>${{ number_format($transaction->ammount, 2) }}</td>
+                                        
+                                        @if(count($transaction->receipt)>0)
+                                            <td> si {{count($transaction->receipt)}} </td>
                                         @else
-                                            <td>No hay un recibo asociado</td>
-                                            <td>No hay una imagen del recibo asociada</td>
-                                        @endif
+                                            <td> no </td>
+                                        @endif 
+                                        <td></td>
                                     </tr>
-                                @endforeach
                             @endforeach
                         @endforeach
                     </tbody>

@@ -57,3 +57,13 @@ Route::resource('formats', 'FormatController');
 Route::resource('typeofformats', 'TypeOfFormatController');
 
 
+
+//ajax routes
+
+Route::prefix('ajax')->group(function () {
+    Route::get('users', 'AjaxController@users');
+    Route::get('estatesCondo', 'AjaxController@estatesCondo');
+    Route::get('transactionEstate', 'AjaxController@transactionEstate');
+});
+
+

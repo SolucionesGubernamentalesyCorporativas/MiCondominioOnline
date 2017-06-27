@@ -73,12 +73,12 @@
                                 </div>
                                 <div class="extra content">
                                     <div class="ui two buttons">
-                                        <a class="ui green basic button" href="{{ route('users.edit', $row->id) }}">Editar</a>
+                                        <a class="ui green  button" href="{{ route('users.edit', $row->id) }}">Editar</a>
                                         <form id="destroy_{{ $row->id }}" method="POST" action="{{ route('users.destroy', $row->id) }}">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
                                         </form>
-                                        <button form="destroy_{{ $row->id }}" type="submit" class="ui red basic button">Borrar</button>
+                                        <button form="destroy_{{ $row->id }}" type="submit" class="ui red  button">Borrar</button>
                                     </div>
                                 </div>
                             </div>

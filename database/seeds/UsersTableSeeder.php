@@ -32,8 +32,8 @@ class UsersTableSeeder extends Seeder
             ),
             array(
                 'name' => 'Hugo',
-                'lastname' => 'Rivas',
-                'email' => 'hugo@rivas.com',
+                'lastname' => 'De la Rosa ',
+                'email' => 'hugo@gmail.com',
                 'phone' => '321321321',
                 'password' => bcrypt('password'),
                 'membership_id' => '3',

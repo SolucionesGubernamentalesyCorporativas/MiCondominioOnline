@@ -1,5 +1,36 @@
 @extends('layouts.app')
 
+@section('scripts')
+
+    <script>
+        $('.ui.dropdown')
+        .dropdown()
+        ;
+        $('.clear .clear.button')
+        .on('click', function() {
+            $('.clear .ui.dropdown')
+            .dropdown('clear')
+            ;
+        })
+        ;
+        $('.restore .restore.button')
+        .on('click', function() {
+            $('.restore .ui.dropdown')
+            .dropdown('restore defaults')
+            ;
+        })
+        ;
+        $('.ui.checkbox')
+         .checkbox()
+        ;
+        $('.ui.accordion')
+        .accordion()
+        ;
+    </script>
+
+@endsection
+
+
 @section('content')
 <div class="ui container">
     <div class="row">

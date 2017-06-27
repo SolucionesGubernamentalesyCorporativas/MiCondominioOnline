@@ -22,21 +22,21 @@ class BillingStatementController extends Controller
         $debt = 0;
         $urls = NULL;
 
+        //dd($user->estates[0]->transactions);
+        
         foreach ($user->estates as $estate) {
             foreach ($estate->transactions as $transaction){
                 if ($transaction->typeOfTransaction->income_outcome == 0) {
-                    $debt += $transaction->ammount;
-                    if (count($transaction->receipt) >= 1) {
-                        foreach ($transaction->receipt as $receipt) {
-                            $urls[$receipt->receiptImage->id] = Storage::url($receipt->receiptImage->url_of_img);
-                            if ($receipt->verified == 1) {
-                                $debt -= $receipt->ammount;
-                            }
-                        }
+                    $debt -= $transaction->ammount;
+                }
+                foreach($transaction->receipt as $receipt){
+                    if($receipt->verified && $receipt->estate_id == $estate->id){
+                        $debt+= $receipt->ammount;
                     }
                 }
             }
         }
+        //dd($user);
         
         return view('billingstatements.consult')->with('user', $user)
                                                 ->with('debt', $debt)

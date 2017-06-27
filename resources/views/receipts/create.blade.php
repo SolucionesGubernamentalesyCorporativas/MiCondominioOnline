@@ -1,5 +1,57 @@
 @extends('layouts.app')
 
+@section('scripts')
+
+<script>
+    $('#condominio').dropdown({
+        onChange: function(value, text, choice){
+            $( "#estates" ).addClass("loading");
+            $.get( "/ajax/estatesCondo",{id:value} ,function(data) {
+                //alert( JSON.stringify(data) );
+                $.each(data, function(i, item) {
+                    //alert(item.id);
+                    var string = '<div class="item" data-value="'+item.id+'">'+item.name+' '+item.number+'</div>';	
+                    $( "#estatesOp" ).append( string  );
+                    $( "#estates" ).removeClass("loading");
+                    $( "#estates" ).removeClass("disabled");
+                    
+                });
+            });
+        }
+    });
+
+    $('#estates').dropdown({
+        onChange: function(value, text, choice){
+            $( "#transactions" ).addClass("disabled");
+            $( "#transactions" ).addClass("loading");
+            $( "#transactionsOp" ).html("");
+            //alert(value);
+            $.get( "/ajax/transactionEstate",{id:value} ,function(data) {
+                //alert( JSON.stringify(data) );
+                $.each(data, function(i, item) {
+                    //alert(item.id);
+                    var string = '<div class="item" data-value="'+item.id+'">'+item.observations+'</div>';	
+                    $( "#transactionsOp" ).append( string  );
+                    $( "#transactions" ).removeClass("loading");
+                    $( "#transactions" ).removeClass("disabled");
+                    
+                });
+            })
+        }
+    });
+
+    $('#transactions').dropdown();
+
+    
+
+    $('.ui.checkbox')
+        .checkbox()
+    ;
+
+</script>
+
+@endsection
+
 @section('content')
 <div class="ui container">
     <div class="row">
@@ -48,14 +100,14 @@
                                 @endif
                             </div>
                             <div class="field {{ $errors->has('transaction_id') ? 'error' : '' }}">
-                                <label>Transacción</label>
-                                <div class="ui selection dropdown">
+                                <label>Condominio</label>
+                                <div id="condominio" class="ui selection dropdown">
                                     <input type="hidden" name="transaction_id" value="{{ old('transaction_id') }}">
                                     <i class="dropdown icon"></i>
-                                    <div class="default text">Selecciona una transacción asociada al recibo</div>
+                                    <div class="default text">Selecciona un condominio</div>
                                     <div class="menu">
-                                        @foreach($transactions as $transaction)
-                                            <div class="item" data-value="{{ $transaction->id }}">{{ $transaction->observations }}</div>
+                                        @foreach(Auth::user()->condos as $condo)
+                                            <div class="item" data-value="{{ $condo->id }}">{{ $condo->name }}</div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -67,14 +119,11 @@
                             </div>
                             <div class="field {{ $errors->has('estate_id') ? 'error' : '' }}">
                                 <label>Unidad privativa</label>
-                                <div class="ui selection dropdown">
+                                <div id="estates" class="ui selection disabled dropdown">
                                     <input type="hidden" name="estate_id" value="{{ old('estate_id') }}">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">Selecciona la unidad privativa asociada al recibo</div>
-                                    <div class="menu">
-                                        @foreach($estates as $estate)
-                                            <div class="item" data-value="{{ $estate->id }}">{{ $estate->typeOfEstate->name . ' ' . $estate->number }}</div>
-                                        @endforeach
+                                    <div id="estatesOp" class="menu">      
                                     </div>
                                 </div>
                                 @if ($errors->has('estate_id'))
@@ -83,6 +132,22 @@
                                     </span>
                                 @endif  
                             </div>
+                            <div class="field {{ $errors->has('transaction_id') ? 'error' : '' }}">
+                                <label>Transacción</label>
+                                <div id="transactions" class="ui selection disabled dropdown">
+                                    <input type="hidden" name="transaction_id" value="{{ old('transaction_id') }}">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Selecciona una transacción asociada al recibo</div>
+                                    <div id="transactionsOp" class="menu">
+                                    </div>
+                                </div>
+                                @if ($errors->has('transaction_id'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('transaction_id') }}</strong>
+                                    </span>
+                                @endif  
+                            </div>
+                            
                             <div class="inline fields {{ $errors->has('verified') ? 'error' : '' }}">
                                 <label for="verified">¿El recibo fue verificado por un administrador?</label>
                                 <div class="field">
