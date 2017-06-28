@@ -75,6 +75,9 @@
         $('.ui.accordion')
         .accordion()
         ;
+
+    $('.ui .dropdown').dropdown();
+
     </script>
     @yield('scripts')
     

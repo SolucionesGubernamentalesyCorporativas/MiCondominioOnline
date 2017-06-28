@@ -36,7 +36,7 @@
                 }else{
                     $.each(data, function(i, item) {
                         //alert(item.id);
-                        var string = '<div class="item" data-value="'+item.id+'">'+item.observations+'</div>';	
+                        var string = '<div class="item" data-value="'+item.id+'">'+item.name+' - '+item.observations+'</div>';	
                         $( "#transactionsOp" ).append( string  );
                         $( "#transactions" ).removeClass("loading");
                         $( "#transactions" ).removeClass("disabled");

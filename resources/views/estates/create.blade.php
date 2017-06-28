@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('scripts')
+<script>
+    $('.ui .dropdown').dropdown();
+</script>
+@endsection
 
 @section('content')
 <div class="ui container">

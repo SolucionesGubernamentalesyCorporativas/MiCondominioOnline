@@ -17,9 +17,29 @@ class FinancialStatementController extends Controller
     
     public function consult()
     {
-        $user = User::find(Auth::id());
+        $debt=0;
+        foreach(Auth::user()->condos as $condo){
+            foreach($condo->estates as $estate){
+                foreach($estate->transactions as $transaction){
+                    //$debt -= $transaction->ammount;
+                    foreach($estate->receipts as $receipt){
+                        if($receipt->verified && $receipt->transaction->id == $transaction->id){
+                            $debt += $receipt->ammount;
+                        }
+                    }
+                }
+            }
+        }
 
-        return view('financialstatements.consult')->with('user', $user);
+        $outcomes = Transaction::doesntHave('estates')->get();
+        foreach($outcomes as $out){
+            $debt-= $out->ammount;
+        }
+        //dd($outcomes);
+        
+
+
+        return view('financialstatements.consult')->with('debt', $debt);
     }
 
     public function pdf()

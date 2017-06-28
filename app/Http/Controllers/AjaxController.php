@@ -29,7 +29,9 @@ class AjaxController extends Controller
     public function transactionEstate(Request $request ){
         //dd($request->id);
         $estate = Estate::find($request->id);
-        $transactions = $estate->transactions;
+        $transactions = $estate->transactions()->leftJoin('type_of_transactions', 'transactions.type_of_transaction_id', '=', 'type_of_transactions.id')
+                                             ->get(array('transactions.*', 'type_of_transactions.name'));
+                                             //dd($transactions);
         $results = collect();
         foreach($transactions as $tr){
             if(($estate->receipts->where('transaction_id',$tr->id)->sum('ammount') - $tr->ammount )<0){
