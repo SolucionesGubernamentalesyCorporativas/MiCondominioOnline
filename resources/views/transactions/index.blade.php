@@ -41,6 +41,7 @@
                         <tr>
                             <th>Observaciones</th>
                             <th>Cantidad</th>
+                            <th>Fecha Límite de Pago</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -49,6 +50,7 @@
                             <tr>
                                 <td>{{ $row->observations }}</td>
                                 <td>${{ number_format($row->ammount, 2) }}</td>
+                                <td>{{ $row->deadline }}</td>
                                 <td>
                                     <div class="ui small buttons">
                                         <a class="ui green button" href="{{ route('transactions.show', $row->id) }}">Info</a>

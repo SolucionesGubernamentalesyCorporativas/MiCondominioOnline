@@ -57,6 +57,11 @@ class Estate extends Model
         return $this->hasMany('App\Visitor');
     }
 
+    public function receipts()
+    {
+        return $this->hasMany('App\Receipt');
+    }
+
     public function assets()
     {
         return $this->hasMany('App\Asset');

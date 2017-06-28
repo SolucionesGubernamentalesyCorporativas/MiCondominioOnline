@@ -34,7 +34,7 @@ class Transaction extends Model
         return $this->belongsTo('App\TypeOfTransaction');
     }
 
-    public function receipt()
+    public function receipts()
     {
         return $this->hasMany('App\Receipt');
     }

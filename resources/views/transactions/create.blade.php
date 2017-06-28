@@ -20,12 +20,6 @@
             ;
         })
         ;
-        $('.ui.checkbox')
-         .checkbox()
-        ;
-        $('.ui.accordion')
-        .accordion()
-        ;
     </script>
 
 @endsection
@@ -52,7 +46,7 @@
                         <form class="ui form error" role="form" method="POST" action="{{ route('transactions.store') }}">
                             {{ csrf_field() }}
                             <div class="field {{ $errors->has('observations') ? 'error' : '' }}">
-                                <label>Observaciones</label>
+                                <label>Descripción</label>
                                 <input type="text" name="observations" value="{{ old('observations') }}" placeholder="Describe la transacción" autofocus>
                                 @if ($errors->has('observations'))
                                     <span class="ui error message">
@@ -61,11 +55,20 @@
                                 @endif
                             </div>
                             <div class="field {{ $errors->has('ammount') ? 'error' : '' }}">
-                                <label>Cantidad</label>
-                                <input type="text" name="ammount" value="{{ old('ammount') }}" placeholder="Cantidad monetaria">
+                                <label>Importe</label>
+                                <input type="text" name="ammount" value="{{ old('ammount') }}" placeholder="256.30">
                                 @if ($errors->has('ammount'))
                                     <span class="ui error message">
                                         <strong>{{ $errors->first('ammount') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="field {{ $errors->has('date') ? 'error' : '' }}">
+                                <label>Fecha Límite de pago</label>
+                                <input type="date" name="date" max="{{ date('Y-m-d') }}">
+                                @if ($errors->has('date'))
+                                    <span class="ui error message">
+                                        <strong>{{ $errors->first('date') }}</strong>
                                     </span>
                                 @endif
                             </div>

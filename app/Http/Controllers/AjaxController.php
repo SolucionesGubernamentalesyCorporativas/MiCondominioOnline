@@ -29,7 +29,14 @@ class AjaxController extends Controller
     public function transactionEstate(Request $request ){
         //dd($request->id);
         $estate = Estate::find($request->id);
-        $results = $estate->transactions;
+        $transactions = $estate->transactions;
+        $results = collect();
+        foreach($transactions as $tr){
+            if(($estate->receipts->where('transaction_id',$tr->id)->sum('ammount') - $tr->ammount )<0){
+                $results->push($tr);
+            }
+        }
+        //dd($results);
         return response()->json($results);
     }
 }

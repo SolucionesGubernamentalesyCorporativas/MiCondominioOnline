@@ -88,6 +88,7 @@ class TransactionController extends Controller
 
         $transaction->observations = $request->observations;
         $transaction->ammount = $request->ammount;
+        $transaction->deadline = $request->date;
 
         $typeOfTransaction = TypeOfTransaction::find($request->type_of_transaction_id);
         $transaction->typeOfTransaction()->associate($typeOfTransaction);

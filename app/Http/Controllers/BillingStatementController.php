@@ -18,27 +18,29 @@ class BillingStatementController extends Controller
     
     public function consult()
     {
-        $user = Auth::user();
+
+        $month_ini =  date('Y-m-d', strtotime('first day of previous month'));
+        $month_end =  date('Y-m-d', strtotime('last day of previous month'));
+        //dd($month_ini);
         $debt = 0;
         $urls = NULL;
 
-        //dd($user->estates[0]->transactions);
+        //dd($user->estates[0]->receipts);
         
-        foreach ($user->estates as $estate) {
-            foreach ($estate->transactions as $transaction){
-                if ($transaction->typeOfTransaction->income_outcome == 0) {
-                    $debt -= $transaction->ammount;
-                }
-                foreach($transaction->receipt as $receipt){
-                    if($receipt->verified && $receipt->estate_id == $estate->id){
-                        $debt+= $receipt->ammount;
+        foreach(Auth::user()->estates as $estate){
+            foreach($estate->transactions as $transaction){
+                $debt -= $transaction->ammount;
+                foreach($estate->receipts as $receipt){
+                    if($receipt->verified && $receipt->transaction->id == $transaction->id){
+                        $debt += $receipt->ammount;
                     }
                 }
             }
         }
-        //dd($user);
         
-        return view('billingstatements.consult')->with('user', $user)
+        //dd($debt);
+        
+        return view('billingstatements.consult')->with('user', Auth::user())
                                                 ->with('debt', $debt)
                                                 ->with('urls', $urls);
     }

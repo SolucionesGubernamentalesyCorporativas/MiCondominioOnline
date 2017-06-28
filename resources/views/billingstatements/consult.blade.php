@@ -33,25 +33,24 @@
                             <th>Tipo de transacción</th>
                             <th>Transacción</th>
                             <th>Cantidad</th>
-                            <th>Pago verificado</th>
-                            <th>Recibo</th>
+                            <th>Fecha Límite de Pago</th>
+                            <th>Pagado</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($user->estates as $estate)
-                            <tr > <th colspan ="5" class="active" >{{$estate->typeOfEstate->name }} {{$estate->number}}</th> </tr>
+                            <tr > <th colspan ="5" class="active" >Unidad Privativa - {{$estate->typeOfEstate->name }} {{$estate->number}}</th> </tr>
                             @foreach ($estate->transactions as $transaction)
-                                    <tr>
+                                    @if(($estate->receipts->where('transaction_id',$transaction->id)->where('verified',1)->sum('ammount') - $transaction->ammount)<0  )
+                                        <tr class='warning'>
+                                    @else
+                                        <tr class='positive'>
+                                    @endif
                                         <td>{{ $transaction->typeoftransaction->name }}</td>
                                         <td>{{ $transaction->observations }}</td>
                                         <td>${{ number_format($transaction->ammount, 2) }}</td>
-                                        
-                                        @if(count($transaction->receipt)>0)
-                                            <td> si {{count($transaction->receipt)}} </td>
-                                        @else
-                                            <td> no </td>
-                                        @endif 
-                                        <td></td>
+                                        <td>{{ $transaction->deadline }}</td>
+                                        <td>${{number_format($estate->receipts->where('transaction_id',$transaction->id)->where('verified',1)->sum('ammount'),2)}}</td>
                                     </tr>
                             @endforeach
                         @endforeach

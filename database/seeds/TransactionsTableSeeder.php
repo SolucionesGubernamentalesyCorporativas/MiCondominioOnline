@@ -15,17 +15,20 @@ class TransactionsTableSeeder extends Seeder
             array(
                 'observations' => 'Cuota mensual de mantenimiento',
                 'ammount' => '12000.00',
-                'type_of_transaction_id' => '1'
+                'type_of_transaction_id' => '1',
+                'deadline' => '2016-06-27'
             ),
             array(
                 'observations' => 'Pago de servicios',
                 'ammount' => '750.00',
-                'type_of_transaction_id' => '2'
+                'type_of_transaction_id' => '2',
+                'deadline' => '2016-06-27'
             ),
             array(
                 'observations' => 'Pago a SeguriFenix',
                 'ammount' => '3000.00',
-                'type_of_transaction_id' => '3'
+                'type_of_transaction_id' => '3',
+                'deadline' => '2016-06-27'
             )
         ));
     }

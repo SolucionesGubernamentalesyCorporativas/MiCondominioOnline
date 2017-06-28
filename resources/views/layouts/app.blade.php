@@ -68,6 +68,14 @@
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script src="/semantic-ui/semantic.min.js"></script>
+    <script>
+        $('.ui.checkbox')
+         .checkbox()
+        ;
+        $('.ui.accordion')
+        .accordion()
+        ;
+    </script>
     @yield('scripts')
     
 </body>
